@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rspeak_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,12 +59,12 @@ WSGI_APPLICATION = 'RSpeak.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, 'db/RSpeak_db'),
+        'NAME': 'rspeak_db',
         'PORT': 5432,
         'HOST': 'localhost',
         'USER': 'postgres',
-        'PASSWORD': '',
-    }
+        'PASSWORD': 'postgres',
+    },
 }
 
 # Internationalization
