@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		B42D30AD0F364A01AD700476 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87104E8B09D04C838D1A5F78 /* libPods.a */; };
 		F379C41B191F41F700165497 /* LimitedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F379C41A191F41F700165497 /* LimitedTextView.m */; };
+		F3E0AFAD19200D630014C610 /* CurrencyBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */; };
+		F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAF19200E0F0014C610 /* CurrencyDashboardView.m */; };
+		F3E0AFB7192014660014C610 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFB6192014660014C610 /* Settings.m */; };
+		F3E0AFB9192017140014C610 /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFB8192017140014C610 /* Keys.m */; };
+		F3E0AFBD192022840014C610 /* DeviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFBC192022840014C610 /* DeviceInformation.m */; };
 		F3F2A78718D4D0D6001401C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78618D4D0D6001401C0 /* Foundation.framework */; };
 		F3F2A78918D4D0D6001401C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */; };
 		F3F2A78B18D4D0D6001401C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78A18D4D0D6001401C0 /* UIKit.framework */; };
@@ -51,6 +56,17 @@
 		DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F379C419191F41F700165497 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
 		F379C41A191F41F700165497 /* LimitedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedTextView.m; sourceTree = "<group>"; };
+		F3E0AFAB19200D630014C610 /* CurrencyBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyBarButtonItem.h; sourceTree = "<group>"; };
+		F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyBarButtonItem.m; sourceTree = "<group>"; };
+		F3E0AFAE19200E0F0014C610 /* CurrencyDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyDashboardView.h; sourceTree = "<group>"; };
+		F3E0AFAF19200E0F0014C610 /* CurrencyDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyDashboardView.m; sourceTree = "<group>"; };
+		F3E0AFB2192014090014C610 /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		F3E0AFB5192014660014C610 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		F3E0AFB6192014660014C610 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		F3E0AFB8192017140014C610 /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
+		F3E0AFBA192022260014C610 /* DeviceInformationRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInformationRequestDelegate.h; sourceTree = "<group>"; };
+		F3E0AFBB192022840014C610 /* DeviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInformation.h; sourceTree = "<group>"; };
+		F3E0AFBC192022840014C610 /* DeviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInformation.m; sourceTree = "<group>"; };
 		F3F2A78318D4D0D6001401C0 /* IOSAnonQuestion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSAnonQuestion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F2A78618D4D0D6001401C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -225,6 +241,10 @@
 				F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */,
 				F379C419191F41F700165497 /* LimitedTextView.h */,
 				F379C41A191F41F700165497 /* LimitedTextView.m */,
+				F3E0AFAB19200D630014C610 /* CurrencyBarButtonItem.h */,
+				F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */,
+				F3E0AFAE19200E0F0014C610 /* CurrencyDashboardView.h */,
+				F3E0AFAF19200E0F0014C610 /* CurrencyDashboardView.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -235,6 +255,7 @@
 				F3F2A7E318D4E373001401C0 /* Cloud.h */,
 				F3F2A7E418D4E373001401C0 /* Cloud.m */,
 				F3F2A7F618D517B6001401C0 /* AskQuestionDelegate.h */,
+				F3E0AFBA192022260014C610 /* DeviceInformationRequestDelegate.h */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -258,6 +279,12 @@
 			children = (
 				F3F2A7F218D515C8001401C0 /* Question.h */,
 				F3F2A7F318D515C8001401C0 /* Question.m */,
+				F3E0AFB2192014090014C610 /* Keys.h */,
+				F3E0AFB8192017140014C610 /* Keys.m */,
+				F3E0AFB5192014660014C610 /* Settings.h */,
+				F3E0AFB6192014660014C610 /* Settings.m */,
+				F3E0AFBB192022840014C610 /* DeviceInformation.h */,
+				F3E0AFBC192022840014C610 /* DeviceInformation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -393,11 +420,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E0AFAD19200D630014C610 /* CurrencyBarButtonItem.m in Sources */,
 				F3F2A7DB18D4E05F001401C0 /* MagnetModeNavigationController.m in Sources */,
 				F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */,
+				F3E0AFB7192014660014C610 /* Settings.m in Sources */,
+				F3E0AFBD192022840014C610 /* DeviceInformation.m in Sources */,
 				F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */,
+				F3E0AFB9192017140014C610 /* Keys.m in Sources */,
 				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
 				F379C41B191F41F700165497 /* LimitedTextView.m in Sources */,
+				F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */,
 				F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */,
 				F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */,
 				F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */,

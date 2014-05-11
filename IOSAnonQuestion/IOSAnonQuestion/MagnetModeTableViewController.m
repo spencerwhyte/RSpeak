@@ -7,6 +7,7 @@
 //
 
 #import "MagnetModeTableViewController.h"
+#import "CurrencyBarButtonItem.h"
 
 @interface MagnetModeTableViewController ()
 
@@ -19,7 +20,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.navigationItem.title = @"Magnet Mode";
-        
+        self.navigationItem.leftBarButtonItem = [[CurrencyBarButtonItem alloc] initWithCustomView:nil];
     }
     return self;
 }

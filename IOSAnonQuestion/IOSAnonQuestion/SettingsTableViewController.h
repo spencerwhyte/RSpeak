@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Settings.h"
 
 @interface SettingsTableViewController : UITableViewController
+
+-(NSInteger)recipientsCountForIndex:(NSInteger)index;
 
 @end

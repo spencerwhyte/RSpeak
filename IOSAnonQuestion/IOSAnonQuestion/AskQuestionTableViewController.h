@@ -14,6 +14,7 @@
 @interface AskQuestionTableViewController : UITableViewController <AskQuestionDelegate>
 
 @property LimitedTextView * questionTextField;
+@property int selectedIndex;
 
 -(void)questionAskDidFail;
 -(void)questionAskDidSucceed;

@@ -10,6 +10,7 @@
 #import "Question.h"
 #import "AskQuestionDelegate.h"
 #import "AFNetworking.h"
+#import "DeviceInformationRequestDelegate.h"
 
 @interface Cloud : NSObject
 

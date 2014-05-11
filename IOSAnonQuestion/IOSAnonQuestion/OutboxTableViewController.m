@@ -8,6 +8,7 @@
 
 #import "OutboxTableViewController.h"
 #import "AskQuestionNavigationController.h"
+#import "CurrencyBarButtonItem.h"
 
 @interface OutboxTableViewController ()
 
@@ -22,7 +23,7 @@
         self.navigationItem.title = @"Outbox";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(askQuestion:)];
         
-        //self.navigationItem.leftBarButtonItem = [UIBarButtonItem ];
+        self.navigationItem.leftBarButtonItem = [[CurrencyBarButtonItem alloc] initWithCustomView:nil];
     }
     return self;
 }

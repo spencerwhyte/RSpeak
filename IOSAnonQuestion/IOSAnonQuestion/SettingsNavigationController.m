@@ -17,7 +17,7 @@
 
 - (id)init
 {
-    SettingsTableViewController * settingsTableViewController = [[SettingsTableViewController alloc] init];
+    SettingsTableViewController * settingsTableViewController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self = [super initWithRootViewController:settingsTableViewController];
     if (self) {
         self.tabBarItem.title = @"Settings";

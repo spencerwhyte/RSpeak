@@ -8,6 +8,10 @@
 
 #import "SettingsTableViewController.h"
 
+
+
+
+
 @interface SettingsTableViewController ()
 
 @end
@@ -48,24 +52,90 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cellulose";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ 
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }else{
+        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
-    // Configure the cell...
+    if(indexPath.section == 0){
+        if(indexPath.row == 0){
+            cell.textLabel.text = @"1";
+        }else if(indexPath.row == 1){
+            cell.textLabel.text = @"5";
+        }else if(indexPath.row == 2){
+            cell.textLabel.text = @"10";
+        }
+        if([self recipientsCountForIndex:indexPath.row] == [self currentRecipientsCount]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    }
     
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 0){
+        [[Settings sharedInstance] setDefaultRecipientsCount:[self recipientsCountForIndex:indexPath.row]];
+        NSIndexSet * sectionsToReload = [[NSIndexSet alloc] initWithIndex:0];
+        [tableView reloadSections:sectionsToReload withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return @"Default Number of Recipients";
+    }
+    return nil;
+}
+
+
+#pragma mark Conveinence mapping methods
+
+
+-(NSInteger)recipientsCountForIndex:(NSInteger)index{
+    if(index == 0){
+        return 1;
+    }else if(index == 1){
+        return 5;
+    }else if(index == 2){
+        return 10;
+    }
+    return 0; // WTF
+}
+
+-(NSInteger)indexForRecipientsCount:(NSInteger)index{
+    if(index == 1){
+        return 0;
+    }else if(index == 5){
+        return 1;
+    }else if(index == 10){
+        return 2;
+    }
+    return 0; // WTF
+}
+
+-(NSInteger)currentRecipientsCount{
+    return [[Settings sharedInstance] defaultRecipientsCount];
 }
 
 /*

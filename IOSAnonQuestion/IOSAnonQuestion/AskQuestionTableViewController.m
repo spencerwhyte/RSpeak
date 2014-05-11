@@ -9,6 +9,7 @@
 #import "AskQuestionTableViewController.h"
 #import "Question.h"
 #import "Cloud.h"
+#import "Settings.h"
 
 @interface AskQuestionTableViewController ()
 
@@ -23,6 +24,9 @@
         self.navigationItem.title = @"Ask";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(send:)];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+        
+        self.selectedIndex = [self indexForRecipientsCount:[[Settings sharedInstance] defaultRecipientsCount] ];
+        
     }
     return self;
 }
@@ -51,14 +55,18 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    if(section == 0){
+        return 1;
+    }else{
+        return 3;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,31 +74,77 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }else{
+        cell.detailTextLabel.text = @"";
     }
     
     if(indexPath.section == 0){ //
         if(indexPath.row == 0){ // Question Text
             if(self.questionTextField == nil){
-                self.questionTextField = [[LimitedTextView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+                self.questionTextField = [[LimitedTextView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
                 [self.questionTextField.textView becomeFirstResponder];
+                
             }
             [cell.contentView addSubview:self.questionTextField];
             
-        }else if(indexPath.row == 1){ // Number of recipients
-            
         }
     
+    }else if(indexPath.section == 1){
+        if(indexPath.row == 0){ // Number of recipients
+            // 1
+            cell.textLabel.text = @"1";
+        }else if(indexPath.row == 1){
+            // 5
+            cell.textLabel.text = @"5";
+        }else if(indexPath.row == 2){
+            // 10
+            cell.textLabel.text = @"10";
+        }
+        if(indexPath.row == self.selectedIndex){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        if([self indexForRecipientsCount:[[Settings sharedInstance] defaultRecipientsCount] ] == indexPath.row){
+            cell.detailTextLabel.text= @"Default";
+        }else{
+            cell.detailTextLabel.text= @"";
+        }
     }
     
     return cell;
 }
 
 
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        NSString * questionTitle = NSLocalizedStringWithDefaultValue(@"QuestionTableTitle", @"", [NSBundle mainBundle], @"Question", @"Text displayed to the user right above where they type in their question");
+        return questionTitle;
+    }else if(section == 1){
+        NSString * recipientCount = NSLocalizedStringWithDefaultValue(@"QuestionTableRecipients", @"", [NSBundle mainBundle], @"Number of Recipients", @"Displayed to the user right above where they select the number of recipients.");
+        return recipientCount;
+    }
+    return nil;
+}
+
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    if(indexPath.section == 0){
+        return 80;
+    }else if(indexPath.section == 1){
+        return 30;
+    }
+    return 0;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 1){
+        self.selectedIndex = indexPath.row;
+        NSIndexSet * set = [[NSIndexSet alloc] initWithIndex:1];
+        [tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 
@@ -115,6 +169,10 @@
 -(void)questionAskDidSucceed{
     // TODO: Add it to the internal model (Core Data)
     
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
+        
+    }];
 }
 
 -(void)questionAskDidFail{
@@ -127,6 +185,19 @@
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:failTitle message:failMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     [alert show];
+}
+
+#pragma mark Convienence mapping methods
+
+-(NSInteger)indexForRecipientsCount:(NSInteger)recipientsCount{
+    if(recipientsCount == 1){
+        return 0;
+    }else if(recipientsCount == 5){
+        return 1;
+    }else if(recipientsCount == 10){
+        return 2;
+    }
+    return 0; // WTF
 }
 
 /*

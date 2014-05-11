@@ -7,6 +7,7 @@
 //
 
 #import "InboxTableViewController.h"
+#import "CurrencyBarButtonItem.h"
 
 @interface InboxTableViewController ()
 
@@ -19,6 +20,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.navigationItem.title = @"Inbox";
+        self.navigationItem.leftBarButtonItem = [[CurrencyBarButtonItem alloc] initWithCustomView:nil];
     }
     return self;
 }
