@@ -13,16 +13,25 @@
 		F3F2A79118D4D0D6001401C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3F2A78F18D4D0D6001401C0 /* InfoPlist.strings */; };
 		F3F2A79318D4D0D6001401C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A79218D4D0D6001401C0 /* main.m */; };
 		F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A79618D4D0D6001401C0 /* AppDelegate.m */; };
-		F3F2A79A18D4D0D6001401C0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F2A79818D4D0D6001401C0 /* Main_iPhone.storyboard */; };
-		F3F2A79D18D4D0D6001401C0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F2A79B18D4D0D6001401C0 /* Main_iPad.storyboard */; };
-		F3F2A7A018D4D0D6001401C0 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A79F18D4D0D6001401C0 /* FirstViewController.m */; };
-		F3F2A7A318D4D0D6001401C0 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7A218D4D0D6001401C0 /* SecondViewController.m */; };
 		F3F2A7A518D4D0D6001401C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F2A7A418D4D0D6001401C0 /* Images.xcassets */; };
 		F3F2A7AC18D4D0D6001401C0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A7AB18D4D0D6001401C0 /* XCTest.framework */; };
 		F3F2A7AD18D4D0D6001401C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78618D4D0D6001401C0 /* Foundation.framework */; };
 		F3F2A7AE18D4D0D6001401C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78A18D4D0D6001401C0 /* UIKit.framework */; };
 		F3F2A7B618D4D0D6001401C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3F2A7B418D4D0D6001401C0 /* InfoPlist.strings */; };
 		F3F2A7B818D4D0D6001401C0 /* IOSAnonQuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7B718D4D0D6001401C0 /* IOSAnonQuestionTests.m */; };
+		F3F2A7C618D4D846001401C0 /* OutboxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7C518D4D846001401C0 /* OutboxTableViewController.m */; };
+		F3F2A7CC18D4D97D001401C0 /* OutboxNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7CB18D4D97D001401C0 /* OutboxNavigationViewController.m */; };
+		F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7D118D4DCF0001401C0 /* CentralTabBarController.m */; };
+		F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7D418D4DE82001401C0 /* InboxNavigationViewController.m */; };
+		F3F2A7D818D4DEB7001401C0 /* InboxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7D718D4DEB7001401C0 /* InboxTableViewController.m */; };
+		F3F2A7DB18D4E05F001401C0 /* MagnetModeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7DA18D4E05F001401C0 /* MagnetModeNavigationController.m */; };
+		F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7DD18D4E088001401C0 /* MagnetModeTableViewController.m */; };
+		F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7E418D4E373001401C0 /* Cloud.m */; };
+		F3F2A7E818D4E3CB001401C0 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7E718D4E3CB001401C0 /* SettingsTableViewController.m */; };
+		F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7EA18D4E3E3001401C0 /* SettingsNavigationController.m */; };
+		F3F2A7EE18D4E55D001401C0 /* AskQuestionNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7ED18D4E55D001401C0 /* AskQuestionNavigationController.m */; };
+		F3F2A7F118D4E791001401C0 /* AskQuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */; };
+		F3F2A7F418D515C8001401C0 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F2A7F318D515C8001401C0 /* Question.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,18 +55,39 @@
 		F3F2A79418D4D0D6001401C0 /* IOSAnonQuestion-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOSAnonQuestion-Prefix.pch"; sourceTree = "<group>"; };
 		F3F2A79518D4D0D6001401C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F3F2A79618D4D0D6001401C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F3F2A79918D4D0D6001401C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		F3F2A79C18D4D0D6001401C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		F3F2A79E18D4D0D6001401C0 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		F3F2A79F18D4D0D6001401C0 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		F3F2A7A118D4D0D6001401C0 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		F3F2A7A218D4D0D6001401C0 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		F3F2A7A418D4D0D6001401C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F3F2A7AA18D4D0D6001401C0 /* IOSAnonQuestionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSAnonQuestionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F2A7AB18D4D0D6001401C0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F3F2A7B318D4D0D6001401C0 /* IOSAnonQuestionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IOSAnonQuestionTests-Info.plist"; sourceTree = "<group>"; };
 		F3F2A7B518D4D0D6001401C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3F2A7B718D4D0D6001401C0 /* IOSAnonQuestionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSAnonQuestionTests.m; sourceTree = "<group>"; };
+		F3F2A7C418D4D846001401C0 /* OutboxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutboxTableViewController.h; sourceTree = "<group>"; };
+		F3F2A7C518D4D846001401C0 /* OutboxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutboxTableViewController.m; sourceTree = "<group>"; };
+		F3F2A7CA18D4D97D001401C0 /* OutboxNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutboxNavigationViewController.h; sourceTree = "<group>"; };
+		F3F2A7CB18D4D97D001401C0 /* OutboxNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutboxNavigationViewController.m; sourceTree = "<group>"; };
+		F3F2A7D018D4DCF0001401C0 /* CentralTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CentralTabBarController.h; sourceTree = "<group>"; };
+		F3F2A7D118D4DCF0001401C0 /* CentralTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CentralTabBarController.m; sourceTree = "<group>"; };
+		F3F2A7D318D4DE82001401C0 /* InboxNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxNavigationViewController.h; sourceTree = "<group>"; };
+		F3F2A7D418D4DE82001401C0 /* InboxNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxNavigationViewController.m; sourceTree = "<group>"; };
+		F3F2A7D618D4DEB7001401C0 /* InboxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxTableViewController.h; sourceTree = "<group>"; };
+		F3F2A7D718D4DEB7001401C0 /* InboxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxTableViewController.m; sourceTree = "<group>"; };
+		F3F2A7D918D4E05F001401C0 /* MagnetModeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetModeNavigationController.h; sourceTree = "<group>"; };
+		F3F2A7DA18D4E05F001401C0 /* MagnetModeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnetModeNavigationController.m; sourceTree = "<group>"; };
+		F3F2A7DC18D4E088001401C0 /* MagnetModeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetModeTableViewController.h; sourceTree = "<group>"; };
+		F3F2A7DD18D4E088001401C0 /* MagnetModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnetModeTableViewController.m; sourceTree = "<group>"; };
+		F3F2A7E318D4E373001401C0 /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
+		F3F2A7E418D4E373001401C0 /* Cloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cloud.m; sourceTree = "<group>"; };
+		F3F2A7E618D4E3CB001401C0 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		F3F2A7E718D4E3CB001401C0 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		F3F2A7E918D4E3E3001401C0 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
+		F3F2A7EA18D4E3E3001401C0 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
+		F3F2A7EC18D4E55D001401C0 /* AskQuestionNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskQuestionNavigationController.h; sourceTree = "<group>"; };
+		F3F2A7ED18D4E55D001401C0 /* AskQuestionNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskQuestionNavigationController.m; sourceTree = "<group>"; };
+		F3F2A7EF18D4E791001401C0 /* AskQuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskQuestionTableViewController.h; sourceTree = "<group>"; };
+		F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskQuestionTableViewController.m; sourceTree = "<group>"; };
+		F3F2A7F218D515C8001401C0 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		F3F2A7F318D515C8001401C0 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		F3F2A7F618D517B6001401C0 /* AskQuestionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskQuestionDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,14 +147,13 @@
 		F3F2A78C18D4D0D6001401C0 /* IOSAnonQuestion */ = {
 			isa = PBXGroup;
 			children = (
+				F3F2A7F518D515D3001401C0 /* Model */,
+				F3F2A7E218D4E29A001401C0 /* Images */,
+				F3F2A7E118D4E266001401C0 /* ThirdParty */,
+				F3F2A7E018D4E259001401C0 /* Networking */,
+				F3F2A7DF18D4E24F001401C0 /* UserInterface */,
 				F3F2A79518D4D0D6001401C0 /* AppDelegate.h */,
 				F3F2A79618D4D0D6001401C0 /* AppDelegate.m */,
-				F3F2A79818D4D0D6001401C0 /* Main_iPhone.storyboard */,
-				F3F2A79B18D4D0D6001401C0 /* Main_iPad.storyboard */,
-				F3F2A79E18D4D0D6001401C0 /* FirstViewController.h */,
-				F3F2A79F18D4D0D6001401C0 /* FirstViewController.m */,
-				F3F2A7A118D4D0D6001401C0 /* SecondViewController.h */,
-				F3F2A7A218D4D0D6001401C0 /* SecondViewController.m */,
 				F3F2A7A418D4D0D6001401C0 /* Images.xcassets */,
 				F3F2A78D18D4D0D6001401C0 /* Supporting Files */,
 			);
@@ -158,6 +187,68 @@
 				F3F2A7B418D4D0D6001401C0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3F2A7DF18D4E24F001401C0 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				F3F2A7C418D4D846001401C0 /* OutboxTableViewController.h */,
+				F3F2A7C518D4D846001401C0 /* OutboxTableViewController.m */,
+				F3F2A7CA18D4D97D001401C0 /* OutboxNavigationViewController.h */,
+				F3F2A7CB18D4D97D001401C0 /* OutboxNavigationViewController.m */,
+				F3F2A7D018D4DCF0001401C0 /* CentralTabBarController.h */,
+				F3F2A7D118D4DCF0001401C0 /* CentralTabBarController.m */,
+				F3F2A7D318D4DE82001401C0 /* InboxNavigationViewController.h */,
+				F3F2A7D418D4DE82001401C0 /* InboxNavigationViewController.m */,
+				F3F2A7D618D4DEB7001401C0 /* InboxTableViewController.h */,
+				F3F2A7D718D4DEB7001401C0 /* InboxTableViewController.m */,
+				F3F2A7D918D4E05F001401C0 /* MagnetModeNavigationController.h */,
+				F3F2A7DA18D4E05F001401C0 /* MagnetModeNavigationController.m */,
+				F3F2A7DC18D4E088001401C0 /* MagnetModeTableViewController.h */,
+				F3F2A7DD18D4E088001401C0 /* MagnetModeTableViewController.m */,
+				F3F2A7E618D4E3CB001401C0 /* SettingsTableViewController.h */,
+				F3F2A7E718D4E3CB001401C0 /* SettingsTableViewController.m */,
+				F3F2A7E918D4E3E3001401C0 /* SettingsNavigationController.h */,
+				F3F2A7EA18D4E3E3001401C0 /* SettingsNavigationController.m */,
+				F3F2A7EC18D4E55D001401C0 /* AskQuestionNavigationController.h */,
+				F3F2A7ED18D4E55D001401C0 /* AskQuestionNavigationController.m */,
+				F3F2A7EF18D4E791001401C0 /* AskQuestionTableViewController.h */,
+				F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		F3F2A7E018D4E259001401C0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F3F2A7E318D4E373001401C0 /* Cloud.h */,
+				F3F2A7E418D4E373001401C0 /* Cloud.m */,
+				F3F2A7F618D517B6001401C0 /* AskQuestionDelegate.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		F3F2A7E118D4E266001401C0 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		F3F2A7E218D4E29A001401C0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F3F2A7F518D515D3001401C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3F2A7F218D515C8001401C0 /* Question.h */,
+				F3F2A7F318D515C8001401C0 /* Question.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F2A79D18D4D0D6001401C0 /* Main_iPad.storyboard in Resources */,
 				F3F2A7A518D4D0D6001401C0 /* Images.xcassets in Resources */,
-				F3F2A79A18D4D0D6001401C0 /* Main_iPhone.storyboard in Resources */,
 				F3F2A79118D4D0D6001401C0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,10 +347,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F2A7A318D4D0D6001401C0 /* SecondViewController.m in Sources */,
+				F3F2A7DB18D4E05F001401C0 /* MagnetModeNavigationController.m in Sources */,
+				F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */,
+				F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */,
+				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
+				F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */,
 				F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */,
-				F3F2A7A018D4D0D6001401C0 /* FirstViewController.m in Sources */,
+				F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */,
+				F3F2A7D818D4DEB7001401C0 /* InboxTableViewController.m in Sources */,
 				F3F2A79318D4D0D6001401C0 /* main.m in Sources */,
+				F3F2A7CC18D4D97D001401C0 /* OutboxNavigationViewController.m in Sources */,
+				F3F2A7F118D4E791001401C0 /* AskQuestionTableViewController.m in Sources */,
+				F3F2A7E818D4E3CB001401C0 /* SettingsTableViewController.m in Sources */,
+				F3F2A7F418D515C8001401C0 /* Question.m in Sources */,
+				F3F2A7C618D4D846001401C0 /* OutboxTableViewController.m in Sources */,
+				F3F2A7EE18D4E55D001401C0 /* AskQuestionNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,22 +390,6 @@
 				F3F2A79018D4D0D6001401C0 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F3F2A79818D4D0D6001401C0 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3F2A79918D4D0D6001401C0 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		F3F2A79B18D4D0D6001401C0 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3F2A79C18D4D0D6001401C0 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		F3F2A7B418D4D0D6001401C0 /* InfoPlist.strings */ = {
