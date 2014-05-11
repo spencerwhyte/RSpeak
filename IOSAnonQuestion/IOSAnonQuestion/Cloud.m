@@ -8,6 +8,7 @@
 
 #import "Cloud.h"
 
+
 static Cloud * sharedInstance = nil;
 
 @implementation Cloud
@@ -21,7 +22,19 @@ static Cloud * sharedInstance = nil;
 
 
 -(void)askQuestion:(Question *)question delegate:(NSObject<AskQuestionDelegate> *)delegate{
-
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"question": @"Will this work?"};
+    [manager POST:@"http://google.com" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate questionAskDidSucceed];
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [delegate questionAskDidFail];
+        NSLog(@"Error: %@", error);
+    }];
+    
+    
     
 }
 

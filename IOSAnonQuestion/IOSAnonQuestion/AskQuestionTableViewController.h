@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AskQuestionTableViewController : UITableViewController
+#import "AskQuestionDelegate.h"
+#import "LimitedTextView.h"
+
+@interface AskQuestionTableViewController : UITableViewController <AskQuestionDelegate>
+
+@property LimitedTextView * questionTextField;
+
+-(void)questionAskDidFail;
+-(void)questionAskDidSucceed;
 
 @end

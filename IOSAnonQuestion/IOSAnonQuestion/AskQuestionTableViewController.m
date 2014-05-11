@@ -38,6 +38,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -70,8 +71,12 @@
     
     if(indexPath.section == 0){ //
         if(indexPath.row == 0){ // Question Text
-            UITextField * questionTextField = [[UITextField alloc] init];
-            [cell.contentView addSubview:questionTextField];
+            if(self.questionTextField == nil){
+                self.questionTextField = [[LimitedTextView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+                [self.questionTextField.textView becomeFirstResponder];
+            }
+            [cell.contentView addSubview:self.questionTextField];
+            
         }else if(indexPath.row == 1){ // Number of recipients
             
         }
@@ -82,13 +87,19 @@
 }
 
 
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;
+}
+
+
 #pragma mark Event Handlers
 
 -(void)send:(id)sender{
     NSString * questionText = @"testing";
     Question * question = [[Question alloc] initWithText:questionText];
-//    [[Cloud sharedInstance] askQuestion:question];
-    
+    [[Cloud sharedInstance] askQuestion:question delegate:self];
 }
 
 -(void)cancel:(id)sender{
@@ -97,6 +108,25 @@
         
     }];
     
+}
+
+#pragma mark AskQuestionDelegate methods
+
+-(void)questionAskDidSucceed{
+    // TODO: Add it to the internal model (Core Data)
+    
+}
+
+-(void)questionAskDidFail{
+    
+    NSString * failTitle = NSLocalizedStringWithDefaultValue(@"QuestionAskFailTitle", @"", [NSBundle mainBundle], @"Error", @"Title of the alert dialog that is shown to the user when they try and ask a question and it fails for some reason.");
+    
+    NSString * failMessage = NSLocalizedStringWithDefaultValue(@"QuestionAskFailMessage", @"", [NSBundle mainBundle], @"Please ensure you have an active internet connection and try again", @"Message of the alert dialog that is shown to the user when they try and ask a question and it fails for some reason.");
+    
+    // Display an error message and try again
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:failTitle message:failMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 /*

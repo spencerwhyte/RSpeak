@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B42D30AD0F364A01AD700476 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87104E8B09D04C838D1A5F78 /* libPods.a */; };
+		F379C41B191F41F700165497 /* LimitedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F379C41A191F41F700165497 /* LimitedTextView.m */; };
 		F3F2A78718D4D0D6001401C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78618D4D0D6001401C0 /* Foundation.framework */; };
 		F3F2A78918D4D0D6001401C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */; };
 		F3F2A78B18D4D0D6001401C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78A18D4D0D6001401C0 /* UIKit.framework */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87104E8B09D04C838D1A5F78 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F379C419191F41F700165497 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
+		F379C41A191F41F700165497 /* LimitedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedTextView.m; sourceTree = "<group>"; };
 		F3F2A78318D4D0D6001401C0 /* IOSAnonQuestion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSAnonQuestion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F2A78618D4D0D6001401C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,6 +104,7 @@
 				F3F2A78918D4D0D6001401C0 /* CoreGraphics.framework in Frameworks */,
 				F3F2A78B18D4D0D6001401C0 /* UIKit.framework in Frameworks */,
 				F3F2A78718D4D0D6001401C0 /* Foundation.framework in Frameworks */,
+				B42D30AD0F364A01AD700476 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +128,7 @@
 				F3F2A7B118D4D0D6001401C0 /* IOSAnonQuestionTests */,
 				F3F2A78518D4D0D6001401C0 /* Frameworks */,
 				F3F2A78418D4D0D6001401C0 /* Products */,
+				DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +148,7 @@
 				F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */,
 				F3F2A78A18D4D0D6001401C0 /* UIKit.framework */,
 				F3F2A7AB18D4D0D6001401C0 /* XCTest.framework */,
+				87104E8B09D04C838D1A5F78 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,6 +223,8 @@
 				F3F2A7ED18D4E55D001401C0 /* AskQuestionNavigationController.m */,
 				F3F2A7EF18D4E791001401C0 /* AskQuestionTableViewController.h */,
 				F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */,
+				F379C419191F41F700165497 /* LimitedTextView.h */,
+				F379C41A191F41F700165497 /* LimitedTextView.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -258,9 +269,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3F2A7BB18D4D0D6001401C0 /* Build configuration list for PBXNativeTarget "IOSAnonQuestion" */;
 			buildPhases = (
+				D19DB833B3D8431D846ED16F /* Check Pods Manifest.lock */,
 				F3F2A77F18D4D0D6001401C0 /* Sources */,
 				F3F2A78018D4D0D6001401C0 /* Frameworks */,
 				F3F2A78118D4D0D6001401C0 /* Resources */,
+				48B6781F9F5B4093AD292818 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,6 +355,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		48B6781F9F5B4093AD292818 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D19DB833B3D8431D846ED16F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F3F2A77F18D4D0D6001401C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -351,6 +397,7 @@
 				F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */,
 				F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */,
 				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
+				F379C41B191F41F700165497 /* LimitedTextView.m in Sources */,
 				F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */,
 				F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */,
 				F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */,
@@ -479,6 +526,7 @@
 		};
 		F3F2A7BC18D4D0D6001401C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -492,6 +540,7 @@
 		};
 		F3F2A7BD18D4D0D6001401C0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -564,6 +613,7 @@
 				F3F2A7BD18D4D0D6001401C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3F2A7BE18D4D0D6001401C0 /* Build configuration list for PBXNativeTarget "IOSAnonQuestionTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +622,7 @@
 				F3F2A7C018D4D0D6001401C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
