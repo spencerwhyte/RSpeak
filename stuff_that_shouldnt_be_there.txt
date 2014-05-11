@@ -1,0 +1,8 @@
+Django superuser:
+-Username 'testing'
+-email 'testing@testing.ca'
+-password 'testing'
+
+Postgres user:
+-Username 'postgres'
+-Password 'postgres'
