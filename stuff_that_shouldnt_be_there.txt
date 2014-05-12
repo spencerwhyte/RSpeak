@@ -6,3 +6,7 @@ Django superuser:
 Postgres user:
 -Username 'postgres'
 -Password 'postgres'
+
+Google Account (for using GCM):
+-Username 'rspeak.dev@gmail.com'
+-Password 'sixungracefulyaks'
