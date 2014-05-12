@@ -7,12 +7,20 @@
 //
 
 #import "AppDelegate.h"
+#import "CentralTabBarController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
+    
+    CentralTabBarController * centralTabBarController = [[CentralTabBarController alloc] init];
+    self.window.rootViewController = centralTabBarController;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							
