@@ -50,7 +50,7 @@ class Updates():
 # The method inspects the type of device and uses the corresponding service to
 # sends a notification in order to sync the device with the updates
 def sendSyncNotification(device):
-	if device.device_type == "ANDROID":
+	if device.device_type is "ANDROID":
 		message = """Content-Type:application/json
  Authorization:key=%{gcm_api_key}
 
@@ -59,5 +59,8 @@ def sendSyncNotification(device):
  	"collapse_key" : "update"
  }""" % { 'gcm_api_key' : GCM_API_KEY, 'push_notification_id' : device.push_notification_id }
 
- 		# A response with 200 means transaction was succesfull
+ 		# A response with a return code of 200 means transaction was succesfull
  		response = requests.post(GCM_URL, data=message)
+
+ 	# elif device.device_type is "IOS":
+ 		

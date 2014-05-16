@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rspeak_app',
+    'rspeak_app_v1',
 )
 
 MIDDLEWARE_CLASSES = (

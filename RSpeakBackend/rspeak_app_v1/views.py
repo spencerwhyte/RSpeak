@@ -2,12 +2,13 @@
 # This file contains all the HTTP Request Handlers for the app
 
 import random
+import json
 
 from django.http import HttpResponse
 from django.utils import simplejson
 from rspeak_app_v1.models import Device, Question, Response
 from rspeak_app_v1.utils.notifications import Updates
-from notifications import Updates, sendSyncNotification
+from utils.notifications import Updates, sendSyncNotification
 
 
 # Request handler when someone posts a question
@@ -16,6 +17,7 @@ from notifications import Updates, sendSyncNotification
 # 3. Put the question in the answerer's update stack
 # 4. Send push notification to the answerer's device to retrieve updates
 def ask(request):
+	print >>sys.stderr, 'Goodbye, cruel world!'
 	if request.is_ajax():
 		if request.method == 'POST':
 			json_data = simplejson.loads( request.raw_post_data )
@@ -53,7 +55,6 @@ def ask(request):
 				# Send push notification to the client device
 				sendSyncNotification( random_device )
 
-	return some response
 
 # Request handler when someone posts a response
 # 1. Add response content to the database
@@ -65,17 +66,16 @@ def respond(request):
 			json_data = simplejson.loads( request.raw_post_data )
 
 			try:
-				question_id = json_data['question_id']
+				thread = json_data['thread_id']
 				response_content = json_data['response_content']
 				responder_device_id = json_data['responder_device_id']
 			except KeyError:
 				print "Error: A posted response did not have a JSON object with the required properties"
 			else:
 				# First, add response to database
-				response = Response(question_id=question_id, responder_device_id=responder_device_id, response_content=response_content)
+				response = Response(thread_id=thread_id, responder_device_id=responder_device_id, response_content=response_content)
 				response.save()
 
-	return some response
 
 # Request handler to update client model after receiving a push notification
 # 1. Check queue to see if the client has any updates on standby
@@ -83,3 +83,36 @@ def respond(request):
 # 3. Get ack from client
 # 4. Empty the queue
 def update_thread(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			json_data = simplejson.loads( request.raw_post_data )
+
+			try:
+				device_id = json_data['device_id']
+			except KeyError:
+				print "Error: A posted response did not have a JSON object with the required properties"
+			else:
+				# retrieve updates and send them to the client device
+				updates = Updates.get_updates( device_id )
+
+				if updates is not None:
+					return HttpResponse( json.dumps({ 'updates' : updates }), mimetype="application/json" )
+
+	return HttpResponse( json.dumps({ 'updates' : None }), mimetype="application/json" )
+
+
+# Once the device has updated its model it must acknowledge the update
+# to clear the updates stack.
+def ack_update(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			json_data = simplejson.loads( request.raw_post_data )
+
+			try:
+				device_id = json_data['device_id']
+				ackd_updates = json_data['ackd_updates']
+			except KeyError:
+				print "Error: A posted response did not have a JSON object with the required properties"
+			else:
+				# Remove the updates from the stack
+				Updates.ack_updates( device_id, ackd_updates )
