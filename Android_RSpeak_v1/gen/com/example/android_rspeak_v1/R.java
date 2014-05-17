@@ -858,10 +858,11 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070003;
+        public static final int abc_search_url_text_holo=0x7f070004;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int darker_scarlet=0x7f070003;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1078,6 +1079,13 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int rspeak_logo=0x7f020057;
+        public static final int tab_indicator_ab_=0x7f020058;
+        public static final int tab_selected_=0x7f020059;
+        public static final int tab_selected_focused_=0x7f02005a;
+        public static final int tab_selected_pressed_=0x7f02005b;
+        public static final int tab_unselected_=0x7f02005c;
+        public static final int tab_unselected_focused_=0x7f02005d;
+        public static final int tab_unselected_pressed_=0x7f02005e;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1269,7 +1277,9 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0b008c;
-        public static final int RSpeakActionBar=0x7f0b008d;
+        public static final int RSpeak_ActionBar=0x7f0b008d;
+        public static final int RSpeak_ActionBar_Tabs=0x7f0b008f;
+        public static final int RSpeak_ActionBar_Title=0x7f0b008e;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0b0063;
