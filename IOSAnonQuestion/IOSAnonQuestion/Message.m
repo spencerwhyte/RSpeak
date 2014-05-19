@@ -1,20 +1,18 @@
 //
-//  Question.m
+//  Message.m
 //  IOSAnonQuestion
 //
 //  Created by Spencer Whyte on 2014-05-19.
 //  Copyright (c) 2014 Spencer Whyte. All rights reserved.
 //
 
-#import "Question.h"
-#import "Thread.h"
+#import "Message.h"
 
 
-@implementation Question
+@implementation Message
 
 @dynamic senderDeviceID;
 @dynamic content;
 @dynamic dateOfCreation;
-@dynamic threads;
 
 @end

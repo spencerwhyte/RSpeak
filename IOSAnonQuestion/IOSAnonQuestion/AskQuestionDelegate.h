@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Question.h"
 
 @protocol AskQuestionDelegate <NSObject>
 
 -(void)questionAskDidFail;
--(void)questionAskDidSucceed;
+-(void)questionAskDidSucceed:(Question*)question;
 
 
 @end

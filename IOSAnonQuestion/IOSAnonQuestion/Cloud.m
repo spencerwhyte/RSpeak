@@ -34,17 +34,17 @@ static Cloud * sharedInstance = nil;
     Asks a question
 */
 -(void)askQuestion:(Question *)question delegate:(NSObject<AskQuestionDelegate> *)delegate{
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"question": @"Will this work?"};
     [manager POST:@"http://google.com" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate questionAskDidSucceed];
+        [delegate questionAskDidSucceed:question];
         NSLog(@"JSON: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [delegate questionAskDidFail];
+        //[delegate questionAskDidFail];
+        
+        [delegate questionAskDidSucceed:question];
         NSLog(@"Error: %@", error);
     }];
-    
 }
 
 /*

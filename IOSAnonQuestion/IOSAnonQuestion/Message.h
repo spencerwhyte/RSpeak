@@ -1,5 +1,5 @@
 //
-//  Question.h
+//  Message.h
 //  IOSAnonQuestion
 //
 //  Created by Spencer Whyte on 2014-05-19.
@@ -9,21 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Thread;
 
-@interface Question : NSManagedObject
+@interface Message : NSManagedObject
 
 @property (nonatomic, retain) NSString * senderDeviceID;
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSDate * dateOfCreation;
-@property (nonatomic, retain) NSSet *threads;
-@end
-
-@interface Question (CoreDataGeneratedAccessors)
-
-- (void)addThreadsObject:(Thread *)value;
-- (void)removeThreadsObject:(Thread *)value;
-- (void)addThreads:(NSSet *)values;
-- (void)removeThreads:(NSSet *)values;
 
 @end

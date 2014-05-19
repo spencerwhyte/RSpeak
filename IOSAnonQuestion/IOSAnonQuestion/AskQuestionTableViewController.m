@@ -152,7 +152,8 @@
 
 -(void)send:(id)sender{
     NSString * questionText = @"testing";
-    Question * question = [[Question alloc] initWithText:questionText];
+    Question * question = [[Question alloc] init];
+    question.content = questionText;
     [[Cloud sharedInstance] askQuestion:question delegate:self];
 }
 
@@ -166,7 +167,7 @@
 
 #pragma mark AskQuestionDelegate methods
 
--(void)questionAskDidSucceed{
+-(void)questionAskDidSucceed:(Question*)question{
     // TODO: Add it to the internal model (Core Data)
     
     
