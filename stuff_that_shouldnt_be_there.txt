@@ -6,3 +6,14 @@ Django superuser:
 Postgres user:
 -Username 'postgres'
 -Password 'postgres'
+
+Google Account (for using GCM):
+-Username 'rspeak.dev@gmail.com'
+-Password 'sixungracefulyaks'
+
+Apple Developer Account (for using APNs):
+-Username 'rspeak.dev@gmail.com'
+-Password 'Capital6ungracefulyaks'
+-'What is the first name of your best friend in highshcool?' : 'mr7x scissorhands'
+-'What is your dream job?' : 'kilt dry-cleaning'
+-'In what city did your parents meet?' : 'Saccharomyces'
