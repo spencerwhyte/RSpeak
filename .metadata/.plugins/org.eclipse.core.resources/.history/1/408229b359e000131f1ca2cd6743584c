@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android_RSpeak_v1</string>
+    <string name="title_section1">Questions</string>
+    <string name="title_section2">Answers</string>
+    <string name="title_section3">Answers</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
