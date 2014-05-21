@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OutboxNavigationViewController : UINavigationController
-
+@property (nonatomic) NSManagedObjectContext * managedObjectContext;
 -(id)init;
 
 @end

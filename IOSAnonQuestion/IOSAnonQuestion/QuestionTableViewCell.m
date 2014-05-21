@@ -19,6 +19,15 @@
     return self;
 }
 
+-(void)setQuestion:(Question *)question{
+    _question = question;
+    self.textLabel.text = self.question.content;
+    
+    self.detailTextLabel.text = @"No Answers";
+    //self.detailTextLabel.text = @"1 Answer";
+    //self.detailTextLabel.text = @"n Answers";
+}
+
 - (void)awakeFromNib
 {
     // Initialization code

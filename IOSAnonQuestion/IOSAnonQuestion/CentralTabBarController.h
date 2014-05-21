@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CentralTabBarController : UITabBarController
+
+@property (nonatomic) NSManagedObjectContext * managedObjectContext;
+
 -(id)init;
+
+
 @end

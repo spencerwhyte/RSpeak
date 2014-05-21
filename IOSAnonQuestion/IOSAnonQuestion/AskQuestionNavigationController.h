@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AskQuestionNavigationController : UINavigationController
+@property (nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end

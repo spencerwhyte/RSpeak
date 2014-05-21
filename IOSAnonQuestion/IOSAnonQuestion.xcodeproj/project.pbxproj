@@ -15,7 +15,6 @@
 		F3A7EA261929C3DC00E31A47 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA251929C3DC00E31A47 /* Question.m */; };
 		F3A7EA281929C4AD00E31A47 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A7EA271929C4AD00E31A47 /* CoreData.framework */; };
 		F3A7EA321929CC7600E31A47 /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA311929CC7600E31A47 /* QuestionTableViewCell.m */; };
-		F3A7EA351929CFC200E31A47 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA341929CFC200E31A47 /* CoreDataHelper.m */; };
 		F3E0AFAD19200D630014C610 /* CurrencyBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */; };
 		F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAF19200E0F0014C610 /* CurrencyDashboardView.m */; };
 		F3E0AFB7192014660014C610 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFB6192014660014C610 /* Settings.m */; };
@@ -72,8 +71,6 @@
 		F3A7EA271929C4AD00E31A47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F3A7EA301929CC7600E31A47 /* QuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
 		F3A7EA311929CC7600E31A47 /* QuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTableViewCell.m; sourceTree = "<group>"; };
-		F3A7EA331929CFC200E31A47 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
-		F3A7EA341929CFC200E31A47 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		F3E0AFAB19200D630014C610 /* CurrencyBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyBarButtonItem.h; sourceTree = "<group>"; };
 		F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyBarButtonItem.m; sourceTree = "<group>"; };
 		F3E0AFAE19200E0F0014C610 /* CurrencyDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyDashboardView.h; sourceTree = "<group>"; };
@@ -366,8 +363,6 @@
 				F3E0AFB8192017140014C610 /* Keys.m */,
 				F3E0AFB5192014660014C610 /* Settings.h */,
 				F3E0AFB6192014660014C610 /* Settings.m */,
-				F3A7EA331929CFC200E31A47 /* CoreDataHelper.h */,
-				F3A7EA341929CFC200E31A47 /* CoreDataHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -513,7 +508,6 @@
 				F3E0AFB9192017140014C610 /* Keys.m in Sources */,
 				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
 				F3A7EA02192967C700E31A47 /* DataModel.xcdatamodeld in Sources */,
-				F3A7EA351929CFC200E31A47 /* CoreDataHelper.m in Sources */,
 				F379C41B191F41F700165497 /* LimitedTextView.m in Sources */,
 				F3A7EA321929CC7600E31A47 /* QuestionTableViewCell.m in Sources */,
 				F3A7EA201929C3DB00E31A47 /* Thread.m in Sources */,

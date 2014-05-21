@@ -80,8 +80,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString * cellIdentifier = @"QuestionTableViewCell";
     QuestionTableViewCell *questionCell =
-    (QuestionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"QuestionCell" forIndexPath:indexPath];
+    (QuestionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(questionCell == nil){
+        questionCell = [[QuestionTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
     [self configureCell:questionCell atIndexPath:indexPath];
     
     return questionCell;
@@ -92,6 +97,26 @@
 	Question * question = (Question *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.question = question;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // If someone has answered the question, then we should show them the different threads that are going on
+    
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        NSLog(@"DELETION");
+    }
+    
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
 
 
 /*
@@ -150,16 +175,14 @@
 -(void)askQuestion:(id)sender{
 
     AskQuestionNavigationController * askQuestionNavigationController = [[AskQuestionNavigationController alloc] init];
-
+    askQuestionNavigationController.managedObjectContext = self.managedObjectContext;
     [self presentViewController:askQuestionNavigationController animated:YES completion:^(void){
         
     }];
-    
 }
 
-
 - (NSFetchedResultsController *)fetchedResultsController {
-    
+    // Do we need to refetch the results?
     // Set up the fetched results controller if needed.
     if (_fetchedResultsController == nil) {
         // Create the fetch request for the entity.
@@ -180,9 +203,9 @@
         aFetchedResultsController.delegate = self;
         self.fetchedResultsController = aFetchedResultsController;
     }
-	
 	return _fetchedResultsController;
 }
+
 
 
 @end

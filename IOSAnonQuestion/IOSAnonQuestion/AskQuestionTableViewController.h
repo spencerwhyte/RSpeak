@@ -12,7 +12,7 @@
 #import "LimitedTextView.h"
 
 @interface AskQuestionTableViewController : UITableViewController <AskQuestionDelegate>
-
+@property NSManagedObjectContext * managedObjectContext;
 @property LimitedTextView * questionTextField;
 @property int selectedIndex;
 

@@ -151,8 +151,9 @@
 #pragma mark Event Handlers
 
 -(void)send:(id)sender{
-    NSString * questionText = @"testing";
-    Question * question = [[Question alloc] init];
+    NSString * questionText = self.questionTextField.textView.text;
+    NSEntityDescription * entityDescription = [NSEntityDescription entityForName:@"Question" inManagedObjectContext:self.managedObjectContext];
+    Question * question = [[Question alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.managedObjectContext];
     question.content = questionText;
     [[Cloud sharedInstance] askQuestion:question delegate:self];
 }
@@ -169,7 +170,8 @@
 
 -(void)questionAskDidSucceed:(Question*)question{
     // TODO: Add it to the internal model (Core Data)
-    
+    NSError * error;
+    [question.managedObjectContext save:&error];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
         
