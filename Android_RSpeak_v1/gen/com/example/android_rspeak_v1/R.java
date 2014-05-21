@@ -858,11 +858,13 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070004;
+        public static final int abc_search_url_text_holo=0x7f070006;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
-        public static final int darker_scarlet=0x7f070003;
+        public static final int darker_scarlet=0x7f070005;
+        public static final int scarlet=0x7f070004;
+        public static final int white=0x7f070003;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1078,14 +1080,15 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int rspeak_logo=0x7f020057;
-        public static final int tab_indicator_ab_=0x7f020058;
-        public static final int tab_selected_=0x7f020059;
-        public static final int tab_selected_focused_=0x7f02005a;
-        public static final int tab_selected_pressed_=0x7f02005b;
-        public static final int tab_unselected_=0x7f02005c;
-        public static final int tab_unselected_focused_=0x7f02005d;
-        public static final int tab_unselected_pressed_=0x7f02005e;
+        public static final int bottom_action_bar_button=0x7f020057;
+        public static final int rspeak_logo=0x7f020058;
+        public static final int tab_indicator_ab_=0x7f020059;
+        public static final int tab_selected_=0x7f02005a;
+        public static final int tab_selected_focused_=0x7f02005b;
+        public static final int tab_selected_pressed_=0x7f02005c;
+        public static final int tab_unselected_=0x7f02005d;
+        public static final int tab_unselected_focused_=0x7f02005e;
+        public static final int tab_unselected_pressed_=0x7f02005f;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1099,10 +1102,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f05003e;
+        public static final int action_settings=0x7f050041;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
+        public static final int ask_button=0x7f05003f;
         public static final int beginning=0x7f050011;
+        public static final int bottom_action_bar=0x7f05003e;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f050028;
@@ -1127,6 +1132,8 @@ containing a value of this type.
         public static final int pager=0x7f05003c;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
+        public static final int qa_thread_list=0x7f05003d;
+        public static final int question_magnet_button=0x7f050040;
         public static final int radio=0x7f05002f;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
@@ -1138,7 +1145,6 @@ containing a value of this type.
         public static final int search_plate=0x7f050036;
         public static final int search_src_text=0x7f050037;
         public static final int search_voice_btn=0x7f05003b;
-        public static final int section_label=0x7f05003d;
         public static final int shortcut=0x7f05002e;
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
@@ -1250,11 +1256,12 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int action_settings=0x7f0a0011;
+        public static final int action_settings=0x7f0a0010;
         public static final int app_name=0x7f0a000d;
+        public static final int button_ask=0x7f0a0011;
+        public static final int button_question_magnet=0x7f0a0012;
         public static final int title_section1=0x7f0a000e;
         public static final int title_section2=0x7f0a000f;
-        public static final int title_section3=0x7f0a0010;
     }
     public static final class style {
         /** 
@@ -1482,6 +1489,8 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0b000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
+        public static final int bottom_action_bar_style=0x7f0b0090;
+        public static final int vertical_divider=0x7f0b0091;
     }
     public static final class styleable {
         /**  ============================================ 
