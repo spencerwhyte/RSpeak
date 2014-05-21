@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -62,6 +63,8 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
             }
         });
 
+        Log.v("a", "number of sections: " + mSectionsPagerAdapter.getCount());
+        
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
             // Create a tab with text corresponding to the page title defined by
@@ -130,8 +133,8 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
@@ -142,8 +145,6 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
         }
@@ -178,8 +179,8 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_browse_questions_answers, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
