@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.175"
-     inkscape:cx="643.99133"
-     inkscape:cy="486.42036"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="738.16109"
+     inkscape:cy="1063.1715"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -550,16 +550,16 @@
          id="flowPara5594">question id</flowPara></flowRoot>    <path
        sodipodi:nodetypes="ccc"
        style="fill:none;stroke:#38d871;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 380.92542,131.25983 -716.85807,0 -253.54829,-253.54828"
+       d="m 380.92542,156.97412 -716.85807,0 -253.54829,-253.548284"
        id="path5596"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        id="path5598"
-       d="m -618.33566,-152.38896 0,76.368701 77.14797,-77.147971 z"
+       d="m -618.33566,-126.67467 0,76.368697 77.14797,-77.147967 z"
        style="fill:#38d871;fill-opacity:1;stroke:none" />
     <flowRoot
-       transform="translate(89.767195,229.67351)"
+       transform="translate(89.767195,255.3878)"
        xml:space="preserve"
        id="flowRoot5600"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Tw Cen MT;-inkscape-font-specification:Tw Cen MT"><flowRegion
@@ -639,7 +639,7 @@
        xml:space="preserve"
        id="flowRoot5648"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#464646;fill-opacity:1;stroke:none;font-family:futura;-inkscape-font-specification:Century Gothic Bold"
-       transform="translate(184.02103,321.87971)"><flowRegion
+       transform="translate(184.02103,347.594)"><flowRegion
          id="flowRegion5650"><rect
            id="rect5652"
            width="253.54831"
@@ -697,20 +697,20 @@
            style="font-size:30px" /></flowRegion><flowPara
          id="flowPara4163">time response received</flowPara></flowRoot>    <path
        style="fill:#65db10;fill-opacity:1;stroke:none"
-       d="m -603.33566,-180.2461 0,76.3687 77.14797,-77.14797 z"
+       d="m -603.33566,-154.53181 0,76.368696 77.14797,-77.147966 z"
        id="path4211"
        inkscape:connector-curvature="0" />
     <path
        inkscape:connector-curvature="0"
        id="path4199"
-       d="m 380.92542,101.97411 -704.71521,0 -253.54829,-253.54828"
+       d="m 380.92542,127.6884 -704.71521,0 -253.54829,-253.54828"
        style="fill:none;stroke:#65db10;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:nodetypes="ccc" />
     <flowRoot
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Tw Cen MT;-inkscape-font-specification:Tw Cen MT"
        id="flowRoot4203"
        xml:space="preserve"
-       transform="translate(124.05291,200.38779)"><flowRegion
+       transform="translate(124.05291,226.10208)"><flowRegion
          id="flowRegion4205"><rect
            y="-119.41477"
            x="-288.90363"

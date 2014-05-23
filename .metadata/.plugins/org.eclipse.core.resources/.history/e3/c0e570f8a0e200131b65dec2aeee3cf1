@@ -1,0 +1,10 @@
+import android.database.sqlite.SQLiteDatabase;
+
+
+public class ThreadsDataSource {
+
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	
+}
