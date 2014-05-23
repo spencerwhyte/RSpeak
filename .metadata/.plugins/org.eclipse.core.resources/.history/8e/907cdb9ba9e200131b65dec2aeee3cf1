@@ -1,0 +1,59 @@
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+
+public class ResponsesDataSource {
+
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { RSpeakSQLiteHelper.RESPONSES_COLUMN_THREAD_ID,
+			RSpeakSQLiteHelper.RESPONSES_COLUMN_RESPONSE_CONTENT,
+			RSpeakSQLiteHelper.RESPONSES_COLUMN_TIME_POSTED };
+	
+	public ResponsesDataSource(Context context)
+	{
+		dbHelper = new RSpeakSQLiteHelper(context);
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+	
+	public void close()
+	{
+		dbHelper.close();
+	}
+	
+	public Response createResponse(String thread_id,
+			String response_content,
+			long time_posted)
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(RSpeakSQLiteHelper.RESPONSES_COLUMN_THREAD_ID, thread_id);
+		values.put(RSpeakSQLiteHelper.RESPONSES_COLUMN_RESPONSE_CONTENT, response_content);
+		values.put(RSpeakSQLiteHelper.RESPONSES_COLUMN_TIME_POSTED, time_posted);
+		
+		long response_id = database.insert(RSpeakSQLiteHelper.TABLE_RESPONSES, null, values);
+		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_RESPONSES,
+				allColumns,
+				)
+	}
+	database.insert(RSpeakSQLiteHelper.TABLE_THREADS, null, values);
+	Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_THREADS,
+			allColumns, 
+			RSpeakSQLiteHelper.THREADS_COLUMN_ID + " = " + thread_id,
+			null,
+			null,
+			null,
+			null);
+	cursor.moveToFirst();
+	Thread newThread = cursorToThread(cursor);
+	cursor.close();
+	return newThread;
+}

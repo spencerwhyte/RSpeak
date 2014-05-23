@@ -1,0 +1,17 @@
+import android.database.sqlite.SQLiteDatabase;
+
+
+public class ResponsesDataSource {
+
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { RSpeakSQLiteHelper.RESPONSES_COLUMN_THREAD_ID,
+			RSpeakSQLiteHelper.RESPONSES_COLUMN_RESPONSE_CONTENT,
+			RSpeakSQLiteHelper.RESPONSES_COLUMN_TIME_POSTED };
+	
+	public ResponsesDataSource()
+	{
+		dbHelper = new RSpeakSQLiteHelper();
+	}
+}

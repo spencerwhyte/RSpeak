@@ -1,0 +1,58 @@
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.text.format.DateFormat;
+
+
+public class ThreadsDataSource {
+
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { RSpeakSQLiteHelper.THREADS_COLUMN_ID,
+			RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID,
+			RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT,
+			RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED,
+			RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE,
+			RSpeakSQLiteHelper.THREADS_COLUMN_TIME_POSTED };
+	
+	public ThreadsDataSource(Context context)
+	{
+		dbHelper = new RSpeakSQLiteHelper(context);
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+	
+	public void close()
+	{
+		dbHelper.close();
+	}
+	
+	public Thread createThread( String thread_id, 
+			String other_device_id, 
+			String question_content, 
+			boolean is_stopped, 
+			boolean currently_on_asker_device, 
+			DateFormat time_posted )
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_ID, thread_id);
+		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID, other_device_id);
+	}
+	ContentValues values = new ContentValues();
+    values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
+    long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null,
+        values);
+    Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
+        null, null, null);
+    cursor.moveToFirst();
+    Comment newComment = cursorToComment(cursor);
+    cursor.close();
+    return newComment;
+}

@@ -1080,15 +1080,17 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int bottom_action_bar_button=0x7f020057;
-        public static final int rspeak_logo=0x7f020058;
-        public static final int tab_indicator_ab_=0x7f020059;
-        public static final int tab_selected_=0x7f02005a;
-        public static final int tab_selected_focused_=0x7f02005b;
-        public static final int tab_selected_pressed_=0x7f02005c;
-        public static final int tab_unselected_=0x7f02005d;
-        public static final int tab_unselected_focused_=0x7f02005e;
-        public static final int tab_unselected_pressed_=0x7f02005f;
+        public static final int ask_icon=0x7f020057;
+        public static final int bottom_action_bar_button=0x7f020058;
+        public static final int magnet_icon=0x7f020059;
+        public static final int rspeak_logo=0x7f02005a;
+        public static final int tab_indicator_ab_=0x7f02005b;
+        public static final int tab_selected_=0x7f02005c;
+        public static final int tab_selected_focused_=0x7f02005d;
+        public static final int tab_selected_pressed_=0x7f02005e;
+        public static final int tab_unselected_=0x7f02005f;
+        public static final int tab_unselected_focused_=0x7f020060;
+        public static final int tab_unselected_pressed_=0x7f020061;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
