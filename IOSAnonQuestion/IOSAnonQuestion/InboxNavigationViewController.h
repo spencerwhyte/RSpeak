@@ -10,6 +10,7 @@
 
 @interface InboxNavigationViewController : UINavigationController
 
+@property (nonatomic) NSManagedObjectContext * managedObjectContext;
 -(id)init;
 
 @end

@@ -12,9 +12,9 @@
 @implementation CurrencyBarButtonItem
 
 -(id)initWithCustomView:(UIView *)customView{
-    CurrencyDashboardView * currencyDisplay = [[CurrencyDashboardView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    CurrencyDashboardView * currencyDisplay = [[CurrencyDashboardView alloc] initWithFrame: CGRectMake(0, 0, 80, 30)];
     if(self = [super initWithCustomView:currencyDisplay]){
-        
+    
     }
     return self;
 }

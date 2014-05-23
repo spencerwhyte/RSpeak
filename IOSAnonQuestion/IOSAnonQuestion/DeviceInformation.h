@@ -11,5 +11,8 @@
 @interface DeviceInformation : NSObject
 @property NSDate * lastUpdated; // The last date we asked the server for the information
 @property NSInteger tokenCount;
+@property NSString * deviceID;
+
++(DeviceInformation*)sharedInstance;
 
 @end

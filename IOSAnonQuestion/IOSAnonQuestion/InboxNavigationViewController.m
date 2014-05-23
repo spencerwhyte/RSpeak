@@ -25,6 +25,11 @@
     return self;
 }
 
+-(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
+    _managedObjectContext = managedObjectContext;
+    ((InboxTableViewController*)[self.viewControllers objectAtIndex:0]).managedObjectContext = self.managedObjectContext;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

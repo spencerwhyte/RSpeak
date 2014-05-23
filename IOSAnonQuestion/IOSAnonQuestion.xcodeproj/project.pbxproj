@@ -15,11 +15,16 @@
 		F3A7EA261929C3DC00E31A47 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA251929C3DC00E31A47 /* Question.m */; };
 		F3A7EA281929C4AD00E31A47 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A7EA271929C4AD00E31A47 /* CoreData.framework */; };
 		F3A7EA321929CC7600E31A47 /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA311929CC7600E31A47 /* QuestionTableViewCell.m */; };
+		F3CFB478192E36A3000A8CB3 /* ThreadsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3CFB477192E36A3000A8CB3 /* ThreadsTableViewController.m */; };
+		F3CFB47B192E888D000A8CB3 /* BoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3CFB47A192E888D000A8CB3 /* BoxTableViewController.m */; };
+		F3CFB47F192ED68D000A8CB3 /* Coins.png in Resources */ = {isa = PBXBuildFile; fileRef = F3CFB47C192ED68D000A8CB3 /* Coins.png */; };
+		F3CFB480192ED68D000A8CB3 /* Coins2.png in Resources */ = {isa = PBXBuildFile; fileRef = F3CFB47D192ED68D000A8CB3 /* Coins2.png */; };
+		F3CFB481192ED68D000A8CB3 /* Coins3.png in Resources */ = {isa = PBXBuildFile; fileRef = F3CFB47E192ED68D000A8CB3 /* Coins3.png */; };
+		F3CFB484192EEA52000A8CB3 /* DeviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = F3CFB483192EEA52000A8CB3 /* DeviceInformation.m */; };
 		F3E0AFAD19200D630014C610 /* CurrencyBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */; };
 		F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFAF19200E0F0014C610 /* CurrencyDashboardView.m */; };
 		F3E0AFB7192014660014C610 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFB6192014660014C610 /* Settings.m */; };
 		F3E0AFB9192017140014C610 /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFB8192017140014C610 /* Keys.m */; };
-		F3E0AFBD192022840014C610 /* DeviceInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0AFBC192022840014C610 /* DeviceInformation.m */; };
 		F3F2A78718D4D0D6001401C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78618D4D0D6001401C0 /* Foundation.framework */; };
 		F3F2A78918D4D0D6001401C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */; };
 		F3F2A78B18D4D0D6001401C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F2A78A18D4D0D6001401C0 /* UIKit.framework */; };
@@ -71,6 +76,15 @@
 		F3A7EA271929C4AD00E31A47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F3A7EA301929CC7600E31A47 /* QuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableViewCell.h; sourceTree = "<group>"; };
 		F3A7EA311929CC7600E31A47 /* QuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTableViewCell.m; sourceTree = "<group>"; };
+		F3CFB476192E36A3000A8CB3 /* ThreadsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsTableViewController.h; sourceTree = "<group>"; };
+		F3CFB477192E36A3000A8CB3 /* ThreadsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsTableViewController.m; sourceTree = "<group>"; };
+		F3CFB479192E888D000A8CB3 /* BoxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxTableViewController.h; sourceTree = "<group>"; };
+		F3CFB47A192E888D000A8CB3 /* BoxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxTableViewController.m; sourceTree = "<group>"; };
+		F3CFB47C192ED68D000A8CB3 /* Coins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coins.png; sourceTree = "<group>"; };
+		F3CFB47D192ED68D000A8CB3 /* Coins2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coins2.png; sourceTree = "<group>"; };
+		F3CFB47E192ED68D000A8CB3 /* Coins3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coins3.png; sourceTree = "<group>"; };
+		F3CFB482192EEA52000A8CB3 /* DeviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInformation.h; sourceTree = "<group>"; };
+		F3CFB483192EEA52000A8CB3 /* DeviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInformation.m; sourceTree = "<group>"; };
 		F3E0AFAB19200D630014C610 /* CurrencyBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyBarButtonItem.h; sourceTree = "<group>"; };
 		F3E0AFAC19200D630014C610 /* CurrencyBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyBarButtonItem.m; sourceTree = "<group>"; };
 		F3E0AFAE19200E0F0014C610 /* CurrencyDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyDashboardView.h; sourceTree = "<group>"; };
@@ -80,8 +94,6 @@
 		F3E0AFB6192014660014C610 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		F3E0AFB8192017140014C610 /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
 		F3E0AFBA192022260014C610 /* DeviceInformationRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInformationRequestDelegate.h; sourceTree = "<group>"; };
-		F3E0AFBB192022840014C610 /* DeviceInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInformation.h; sourceTree = "<group>"; };
-		F3E0AFBC192022840014C610 /* DeviceInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInformation.m; sourceTree = "<group>"; };
 		F3F2A78318D4D0D6001401C0 /* IOSAnonQuestion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSAnonQuestion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F2A78618D4D0D6001401C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3F2A78818D4D0D6001401C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -154,6 +166,8 @@
 		F3A7EA291929CA2500E31A47 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F3CFB476192E36A3000A8CB3 /* ThreadsTableViewController.h */,
+				F3CFB477192E36A3000A8CB3 /* ThreadsTableViewController.m */,
 				F3F2A7E618D4E3CB001401C0 /* SettingsTableViewController.h */,
 				F3F2A7E718D4E3CB001401C0 /* SettingsTableViewController.m */,
 				F3F2A7DC18D4E088001401C0 /* MagnetModeTableViewController.h */,
@@ -164,6 +178,8 @@
 				F3F2A7C518D4D846001401C0 /* OutboxTableViewController.m */,
 				F3F2A7EF18D4E791001401C0 /* AskQuestionTableViewController.h */,
 				F3F2A7F018D4E791001401C0 /* AskQuestionTableViewController.m */,
+				F3CFB479192E888D000A8CB3 /* BoxTableViewController.h */,
+				F3CFB47A192E888D000A8CB3 /* BoxTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -343,6 +359,9 @@
 		F3F2A7E218D4E29A001401C0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F3CFB47C192ED68D000A8CB3 /* Coins.png */,
+				F3CFB47D192ED68D000A8CB3 /* Coins2.png */,
+				F3CFB47E192ED68D000A8CB3 /* Coins3.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -357,8 +376,8 @@
 				F3A7EA221929C3DC00E31A47 /* Message.m */,
 				F3A7EA1F1929C3DB00E31A47 /* Thread.m */,
 				F3A7EA00192967C700E31A47 /* DataModel.xcdatamodeld */,
-				F3E0AFBB192022840014C610 /* DeviceInformation.h */,
-				F3E0AFBC192022840014C610 /* DeviceInformation.m */,
+				F3CFB482192EEA52000A8CB3 /* DeviceInformation.h */,
+				F3CFB483192EEA52000A8CB3 /* DeviceInformation.m */,
 				F3E0AFB2192014090014C610 /* Keys.h */,
 				F3E0AFB8192017140014C610 /* Keys.m */,
 				F3E0AFB5192014660014C610 /* Settings.h */,
@@ -446,7 +465,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3F2A7A518D4D0D6001401C0 /* Images.xcassets in Resources */,
+				F3CFB47F192ED68D000A8CB3 /* Coins.png in Resources */,
 				F3F2A79118D4D0D6001401C0 /* InfoPlist.strings in Resources */,
+				F3CFB481192ED68D000A8CB3 /* Coins3.png in Resources */,
+				F3CFB480192ED68D000A8CB3 /* Coins2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +525,7 @@
 				F3F2A7DB18D4E05F001401C0 /* MagnetModeNavigationController.m in Sources */,
 				F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */,
 				F3E0AFB7192014660014C610 /* Settings.m in Sources */,
-				F3E0AFBD192022840014C610 /* DeviceInformation.m in Sources */,
+				F3CFB478192E36A3000A8CB3 /* ThreadsTableViewController.m in Sources */,
 				F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */,
 				F3E0AFB9192017140014C610 /* Keys.m in Sources */,
 				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
@@ -514,11 +536,13 @@
 				F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */,
 				F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */,
 				F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */,
+				F3CFB47B192E888D000A8CB3 /* BoxTableViewController.m in Sources */,
 				F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */,
 				F3F2A7D818D4DEB7001401C0 /* InboxTableViewController.m in Sources */,
 				F3F2A79318D4D0D6001401C0 /* main.m in Sources */,
 				F3F2A7CC18D4D97D001401C0 /* OutboxNavigationViewController.m in Sources */,
 				F3F2A7F118D4E791001401C0 /* AskQuestionTableViewController.m in Sources */,
+				F3CFB484192EEA52000A8CB3 /* DeviceInformation.m in Sources */,
 				F3F2A7E818D4E3CB001401C0 /* SettingsTableViewController.m in Sources */,
 				F3A7EA261929C3DC00E31A47 /* Question.m in Sources */,
 				F3F2A7C618D4D846001401C0 /* OutboxTableViewController.m in Sources */,

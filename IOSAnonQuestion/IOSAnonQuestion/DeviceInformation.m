@@ -12,9 +12,19 @@
 
 -(id)init{
     if(self = [super init]){
-        
+        self.tokenCount = -1;
+        self.deviceID = @"spencerwhyte";
     }
     return self;
 }
+
++(DeviceInformation*)sharedInstance{
+    static DeviceInformation * deviceInformation;
+    if(deviceInformation == nil){
+        deviceInformation = [[DeviceInformation alloc] init];
+    }
+    return deviceInformation;
+}
+
 
 @end

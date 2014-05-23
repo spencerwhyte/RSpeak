@@ -53,14 +53,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     if(section == 0){
         return 1;
@@ -155,6 +155,7 @@
     NSEntityDescription * entityDescription = [NSEntityDescription entityForName:@"Question" inManagedObjectContext:self.managedObjectContext];
     Question * question = [[Question alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.managedObjectContext];
     question.content = questionText;
+    question.senderDeviceID = @"OTHER PERSON"; // [DeviceInformation sharedInstance].deviceID;
     [[Cloud sharedInstance] askQuestion:question delegate:self];
 }
 
@@ -179,7 +180,6 @@
 }
 
 -(void)questionAskDidFail{
-    
     NSString * failTitle = NSLocalizedStringWithDefaultValue(@"QuestionAskFailTitle", @"", [NSBundle mainBundle], @"Error", @"Title of the alert dialog that is shown to the user when they try and ask a question and it fails for some reason.");
     
     NSString * failMessage = NSLocalizedStringWithDefaultValue(@"QuestionAskFailMessage", @"", [NSBundle mainBundle], @"Please ensure you have an active internet connection and try again", @"Message of the alert dialog that is shown to the user when they try and ask a question and it fails for some reason.");

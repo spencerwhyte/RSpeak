@@ -22,10 +22,13 @@
 -(void)setQuestion:(Question *)question{
     _question = question;
     self.textLabel.text = self.question.content;
-    
-    self.detailTextLabel.text = @"No Answers";
-    //self.detailTextLabel.text = @"1 Answer";
-    //self.detailTextLabel.text = @"n Answers";
+    if(question.threads.count == 0){
+        self.detailTextLabel.text = @"No Answers";
+    }else if(question.threads.count == 1){
+        self.detailTextLabel.text = @"1 Answer";
+    }else{
+        self.detailTextLabel.text = [NSString stringWithFormat:@"%d Answers", self.question.threads.count];
+    }
 }
 
 - (void)awakeFromNib

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "DeviceInformation.h"
 
-@interface CurrencyDashboardView : UIView
-
+@interface CurrencyDashboardView : UIView <NSFetchedResultsControllerDelegate>
+@property UILabel * coinDisplay;
+@property UIActivityIndicatorView * indicatorView;
 @end

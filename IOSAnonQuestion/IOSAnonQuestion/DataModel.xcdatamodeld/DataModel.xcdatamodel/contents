@@ -18,8 +18,8 @@
         <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="threads" inverseEntity="Question" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Thread" positionX="142" positionY="-27" width="128" height="103"/>
         <element name="Message" positionX="-29" positionY="9" width="128" height="88"/>
         <element name="Question" positionX="324" positionY="-18" width="128" height="103"/>
+        <element name="Thread" positionX="142" positionY="-27" width="128" height="103"/>
     </elements>
 </model>

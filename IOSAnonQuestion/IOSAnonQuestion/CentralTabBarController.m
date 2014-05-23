@@ -32,7 +32,6 @@
         SettingsNavigationController * settings = [[SettingsNavigationController alloc] init];
         
         self.viewControllers = [NSArray arrayWithObjects: outbox, inbox, magnet, settings, nil];
-        
     }
     return self;
 }
@@ -40,6 +39,7 @@
 -(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
     _managedObjectContext = managedObjectContext;
     ((OutboxNavigationViewController*)[self.viewControllers objectAtIndex:0]).managedObjectContext = self.managedObjectContext;
+    ((InboxNavigationViewController*)[self.viewControllers objectAtIndex:1]).managedObjectContext = self.managedObjectContext;
 }
 
 - (void)viewDidLoad

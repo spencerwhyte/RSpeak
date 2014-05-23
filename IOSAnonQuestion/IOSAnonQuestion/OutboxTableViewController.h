@@ -7,21 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import <CoreData/CoreData.h>
-
-#import "AskQuestionNavigationController.h"
-
-#import "CurrencyBarButtonItem.h"
-
-#import "QuestionTableViewCell.h"
-
-#import "Question.h"
+#import "BoxTableViewController.h"
 
 
 
-@interface OutboxTableViewController : UITableViewController<NSFetchedResultsControllerDelegate>
+@interface OutboxTableViewController : BoxTableViewController
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 
 @end

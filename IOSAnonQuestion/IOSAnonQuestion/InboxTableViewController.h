@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InboxTableViewController : UITableViewController
+#import "BoxTableViewController.h"
+
+@interface InboxTableViewController : BoxTableViewController
+
+
 
 @end
