@@ -1212,7 +1212,8 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_browse_questions_answers=0x7f030018;
         public static final int fragment_browse_questions_answers=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int qa_list_layout=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
         public static final int browse_questions_answers=0x7f0c0000;
