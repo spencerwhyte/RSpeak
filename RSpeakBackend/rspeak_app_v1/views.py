@@ -83,32 +83,31 @@ def respond(request):
 # 3. Get ack from client
 # 4. Empty the queue
 def update_thread(request):
-	updates = None
+	if request.is_ajax():
+		if request.method == 'POST':
+			json_data = simplejson.loads( request.raw_post_data )
 
-	# try sending the updates to the user
-	# if this fails in any way (IOError) then make sure the updates
-	# are back on the updates stack (else they won't reach the client).
-	try:
-		if request.is_ajax():
-			if request.method == 'POST':
-				json_data = simplejson.loads( request.raw_post_data )
+			try:
+				device_id = json_data['device_id']
+			except KeyError:
+				print "Error: A posted response did not have a JSON object with the required properties"
+			else:
 
+				# try sending the updates to the user
+				# if this fails in any way (IOError) then make sure the updates
+				# are back on the updates stack (else they won't reach the client).
 				try:
-					device_id = json_data['device_id']
-				except KeyError:
-					print "Error: A posted response did not have a JSON object with the required properties"
-				else:
 					# retrieve updates and send them to the client device
 					updates = Updates.get_updates( device_id )
 
 					if updates is not None:
 						return HttpResponse( json.dumps({ 'updates' : updates }), mimetype="application/json" )
-	except IOError:
-		print "Error: The update_thread HTTP request was aborted"
-	else:
-		# put the updates back in the stack
-		if updates is not None:
-			for update in updates:
-				Updates.add_update( device_id, update )
+				except IOError:
+					print "Error: The update_thread HTTP request was aborted"
+				else:
+					# put the updates back in the stack
+					if updates is not None:
+						for update in updates:
+							Updates.add_update( device_id, update )
 
 	return HttpResponse( json.dumps({ 'updates' : None }), mimetype="application/json" )
