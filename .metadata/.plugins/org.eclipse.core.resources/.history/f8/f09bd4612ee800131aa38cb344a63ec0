@@ -1,0 +1,71 @@
+package com.example.android_rspeak_v1;
+
+import java.util.List;
+
+import com.example.client_database_v1.RSpeakSQLiteHelper;
+import com.example.client_database_v1.Thread;
+import com.example.client_database_v1.ThreadsDataSource;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.view.View;
+import android.widget.ListView;
+
+public class QuestionsAnswersListFragment extends ListFragment {
+	
+	enum ThreadOrigin { LOCAL, FOREIGN };
+	ThreadOrigin threadOrigin;
+	Thread[] threadsArray;
+	
+	public static final QuestionsAnswersListFragment newInstance( ThreadOrigin origin )
+	{
+		QuestionsAnswersListFragment qa_fragment = new QuestionsAnswersListFragment();
+		Bundle bundle = new Bundle(1);
+		bundle.putInt( "THREAD ORIGIN", origin.ordinal() );
+		qa_fragment.setArguments( bundle );
+		return qa_fragment;
+	}
+	
+	@Override
+	public void onCreate( Bundle bundle )
+	{
+		List<Thread> threads;
+		threadOrigin = ThreadOrigin.values()[ getArguments().getInt("THREAD ORIGIN") ];
+		
+		RSpeakSQLiteHelper dbHelper = new RSpeakSQLiteHelper( getActivity() );
+        ThreadsDataSource threadsDataSource = new ThreadsDataSource( getActivity(), dbHelper );
+        threadsDataSource.open();
+        
+        //dbHelper.fillDatabase();
+		
+		if ( threadOrigin == ThreadOrigin.LOCAL )
+		{
+//			threads = threadsDataSource.getLocallyAskedThreads();
+			threads = threadsDataSource.getAllThreads();
+		}
+		else // if ( threadOrigin == ThreadOrigin.FOREIGN )
+		{
+//			threads = threadsDataSource.getForeignAskedThreads();
+			threads = threadsDataSource.getAllThreads();
+		}
+		
+		threadsArray = threads.toArray( new Thread[ threads.size() ] );
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+        
+        QuestionsAnswersArrayAdapter qa_adapter = new QuestionsAnswersArrayAdapter( getActivity(), null );//threadsArray );
+        
+        setListAdapter( qa_adapter );
+	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// do something with the data
+	}
+	
+}

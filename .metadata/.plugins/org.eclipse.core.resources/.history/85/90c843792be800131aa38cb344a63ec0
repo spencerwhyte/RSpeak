@@ -1,0 +1,59 @@
+package com.example.android_rspeak_v1;
+
+import java.util.List;
+
+import com.example.client_database_v1.RSpeakSQLiteHelper;
+import com.example.client_database_v1.Thread;
+import com.example.client_database_v1.ThreadsDataSource;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.view.View;
+import android.widget.ListView;
+
+public class QuestionsAnswersListFragment extends ListFragment {
+	
+	enum ThreadOrigin { LOCAL, FOREIGN };
+	ThreadOrigin threadOrigin;
+	
+	public static final QuestionsAnswersListFragment newInstance( ThreadOrigin origin )
+	{
+		QuestionsAnswersListFragment qa_fragment = new QuestionsAnswersListFragment();
+		Bundle bundle = new Bundle(1);
+		bundle.putInt( "THREAD ORIGIN", origin.ordinal() );
+		qa_fragment.setArguments( bundle );
+		return qa_fragment;
+	}
+	
+	@Override
+	public void onCreate( Bundle bundle )
+	{
+		threadOrigin = getArguments().getInt("THREAD ORIGIN")
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		
+		RSpeakSQLiteHelper dbHelper = new RSpeakSQLiteHelper( getActivity() );
+        ThreadsDataSource threadsDataSource = new ThreadsDataSource( getActivity(), dbHelper );
+        threadsDataSource.open();
+        
+        //dbHelper.fillDatabase();
+        
+        List<Thread> threads = threadsDataSource.getAllThreads();
+        Thread[] threadsArray = threads.toArray( new Thread[ threads.size() ] );
+        
+        QuestionsAnswersArrayAdapter qa_adapter = new QuestionsAnswersArrayAdapter( getActivity(), threadsArray );
+        
+        setListAdapter( qa_adapter );
+	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// do something with the data
+	}
+	
+}

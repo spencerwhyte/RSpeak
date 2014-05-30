@@ -1,0 +1,8 @@
+package com.example.android_rspeak_v1;
+
+import android.widget.ArrayAdapter;
+
+public class QuestionsAnswersArrayAdapter extends ArrayAdapter<String>
+{
+
+}

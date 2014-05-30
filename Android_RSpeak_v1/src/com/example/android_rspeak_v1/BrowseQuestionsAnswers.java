@@ -1,6 +1,12 @@
 package com.example.android_rspeak_v1;
 
+import java.util.List;
 import java.util.Locale;
+
+import com.example.android_rspeak_v1.QuestionsAnswersListFragment.ThreadOrigin;
+import com.example.client_database_v1.RSpeakSQLiteHelper;
+import com.example.client_database_v1.ThreadsDataSource;
+import com.example.client_database_v1.Thread;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -17,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionBar.TabListener {
@@ -76,6 +83,7 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+        
     }
 
 
@@ -104,6 +112,7 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+        
     }
 
     @Override
@@ -128,7 +137,15 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+
+        	if ( position == 0 ) // ASKED
+        	{
+        		return QuestionsAnswersListFragment.newInstance( ThreadOrigin.LOCAL );
+        	}
+        	else // if ( position == 1 ) // ANSWERED
+        	{
+        		return QuestionsAnswersListFragment.newInstance( ThreadOrigin.FOREIGN );
+        	}
         }
 
         @Override
@@ -147,41 +164,6 @@ public class BrowseQuestionsAnswers extends ActionBarActivity implements ActionB
                     return getString(R.string.title_section2).toUpperCase(l);
             }
             return null;
-        }
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_browse_questions_answers, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
         }
     }
 
