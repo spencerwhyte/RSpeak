@@ -22,6 +22,14 @@ static Cloud * sharedInstance = nil;
     return sharedInstance;
 }
 
+-(id)init{
+    if(self = [super init]){
+        
+        
+    }
+    return self;
+}
+
 /**
  Tells the server about our existance
  **/
@@ -52,8 +60,8 @@ static Cloud * sharedInstance = nil;
  */
 -(void)getDeviceInfromation:(NSObject<DeviceInformationRequestDelegate> *)delegate{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"question": @"Will this work?"};
-    [manager GET:@"http://google.com" parameters:@{@"deviceID":@"sdfjjsdfhkjsdhfjh387283fhh298h"} success:^(AFHTTPRequestOperation * operation, id responseObject){
+    NSDictionary *parameters = @{@"deviceID": @"sjdfj329239fhb32b"};
+    [manager GET:@"http://google.com" parameters:parameters success:^(AFHTTPRequestOperation * operation, id responseObject){
         // Success
     }
          failure:^(AFHTTPRequestOperation * operation, NSError * error){
@@ -68,8 +76,12 @@ static Cloud * sharedInstance = nil;
  For all thread responses, we get the information and pass it back as an array.
  The delegate can worry about putting the information in the data stores and forcing the UI update.
  */
--(void)get{
-    
+-(void)getNewInformation{
+    /*
+     Should return a list of URLS that we should hit for new information
+     We need to be careful here
+     
+     */
 }
 
 

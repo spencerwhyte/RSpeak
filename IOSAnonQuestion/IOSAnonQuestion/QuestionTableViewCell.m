@@ -21,13 +21,30 @@
 
 -(void)setQuestion:(Question *)question{
     _question = question;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [dateFormatter setDoesRelativeDateFormatting:YES];
+    
+   
+    NSString *dateString = [dateFormatter stringFromDate:question.dateOfCreation];
+    
+    NSLog(@"dateString: %@", dateString);
+    // Output
+    // dateString: après-après-demain
+    
+    if(!dateString){
+        dateString = @"";
+    }
     self.textLabel.text = self.question.content;
     if(question.threads.count == 0){
-        self.detailTextLabel.text = @"No Answers";
+        self.detailTextLabel.text = [@"No Answers - " stringByAppendingString:dateString];
     }else if(question.threads.count == 1){
-        self.detailTextLabel.text = @"1 Answer";
+        self.detailTextLabel.text = [@"1 Answer - " stringByAppendingString:dateString];
     }else{
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%d Answers", self.question.threads.count];
+        self.detailTextLabel.text = [NSString stringWithFormat:[@"%d Answers - " stringByAppendingString:dateString], self.question.threads.count];
     }
 }
 

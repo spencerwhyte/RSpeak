@@ -12,7 +12,7 @@
 
 -(id)init{
     if(self = [super init]){
-        self.tokenCount = -1;
+        self.tokenCount = 5;
         self.deviceID = @"spencerwhyte";
     }
     return self;

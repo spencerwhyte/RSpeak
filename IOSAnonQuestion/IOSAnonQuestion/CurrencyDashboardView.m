@@ -26,11 +26,12 @@
         self.coinDisplay = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/3, 0, 2*frame.size.width/3, frame.size.height)];
         self.coinDisplay.textAlignment = NSTextAlignmentCenter;
         self.coinDisplay.text = [NSString stringWithFormat:@"%d", [DeviceInformation sharedInstance].tokenCount];
-        self.coinDisplay.hidden = YES;
+        //self.coinDisplay.hidden = YES;
         
         self.indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(frame.size.width/3, 0, 2*frame.size.width/3, frame.size.height)];
         self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [self.indicatorView startAnimating];
+        //[self.indicatorView startAnimating];
+        self.indicatorView.hidden = YES;
         
         [self addSubview:coins];
         [self addSubview:self.coinDisplay];

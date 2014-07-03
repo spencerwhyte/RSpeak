@@ -155,7 +155,8 @@
     NSEntityDescription * entityDescription = [NSEntityDescription entityForName:@"Question" inManagedObjectContext:self.managedObjectContext];
     Question * question = [[Question alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.managedObjectContext];
     question.content = questionText;
-    question.senderDeviceID = @"OTHER PERSON"; // [DeviceInformation sharedInstance].deviceID;
+    question.dateOfCreation = [NSDate date];
+    question.senderDeviceID = [DeviceInformation sharedInstance].deviceID;
     [[Cloud sharedInstance] askQuestion:question delegate:self];
 }
 

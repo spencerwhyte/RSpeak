@@ -24,6 +24,12 @@
 
 #import "BoxTableViewController.h"
 
+#import "Thread.h"
+
+#import "Message.h"
+
+#import "MessagesViewController.h"
+
 @interface BoxTableViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

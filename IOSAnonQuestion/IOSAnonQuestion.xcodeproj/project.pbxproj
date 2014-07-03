@@ -8,6 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		B42D30AD0F364A01AD700476 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87104E8B09D04C838D1A5F78 /* libPods.a */; };
+		F3347954193D5F1900D839D2 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3347953193D5F1900D839D2 /* MessagesViewController.m */; };
+		F3347961193D5F4700D839D2 /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = F3347957193D5F4700D839D2 /* NSBubbleData.m */; };
+		F3347962193D5F4700D839D2 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3347959193D5F4700D839D2 /* UIBubbleTableView.m */; };
+		F3347963193D5F4700D839D2 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F334795B193D5F4700D839D2 /* UIBubbleTableViewCell.m */; };
+		F3347964193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F334795D193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.m */; };
+		F3347965193D5F4700D839D2 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F334795F193D5F4700D839D2 /* UIBubbleTypingTableViewCell.m */; };
+		F3347984193D5F7F00D839D2 /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797A193D5F7F00D839D2 /* bubbleMine.png */; };
+		F3347985193D5F7F00D839D2 /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797B193D5F7F00D839D2 /* bubbleMine@2x.png */; };
+		F3347986193D5F7F00D839D2 /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797C193D5F7F00D839D2 /* bubbleSomeone.png */; };
+		F3347987193D5F7F00D839D2 /* bubbleSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797D193D5F7F00D839D2 /* bubbleSomeone@2x.png */; };
+		F3347988193D5F7F00D839D2 /* missingAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797E193D5F7F00D839D2 /* missingAvatar.png */; };
+		F3347989193D5F7F00D839D2 /* missingAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F334797F193D5F7F00D839D2 /* missingAvatar@2x.png */; };
+		F334798A193D5F7F00D839D2 /* typingMine.png in Resources */ = {isa = PBXBuildFile; fileRef = F3347980193D5F7F00D839D2 /* typingMine.png */; };
+		F334798B193D5F7F00D839D2 /* typingMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3347981193D5F7F00D839D2 /* typingMine@2x.png */; };
+		F334798C193D5F7F00D839D2 /* typingSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = F3347982193D5F7F00D839D2 /* typingSomeone.png */; };
+		F334798D193D5F7F00D839D2 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F3347983193D5F7F00D839D2 /* typingSomeone@2x.png */; };
 		F379C41B191F41F700165497 /* LimitedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F379C41A191F41F700165497 /* LimitedTextView.m */; };
 		F3A7EA02192967C700E31A47 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA00192967C700E31A47 /* DataModel.xcdatamodeld */; };
 		F3A7EA201929C3DB00E31A47 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EA1F1929C3DB00E31A47 /* Thread.m */; };
@@ -64,6 +80,29 @@
 /* Begin PBXFileReference section */
 		87104E8B09D04C838D1A5F78 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB8DED4B552403FBD82FB0C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F3347952193D5F1900D839D2 /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
+		F3347953193D5F1900D839D2 /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
+		F3347956193D5F4700D839D2 /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
+		F3347957193D5F4700D839D2 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
+		F3347958193D5F4700D839D2 /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
+		F3347959193D5F4700D839D2 /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
+		F334795A193D5F4700D839D2 /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
+		F334795B193D5F4700D839D2 /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableViewCell.m; sourceTree = "<group>"; };
+		F334795C193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
+		F334795D193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		F334795E193D5F4700D839D2 /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
+		F334795F193D5F4700D839D2 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		F3347960193D5F4700D839D2 /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
+		F334797A193D5F7F00D839D2 /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
+		F334797B193D5F7F00D839D2 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
+		F334797C193D5F7F00D839D2 /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
+		F334797D193D5F7F00D839D2 /* bubbleSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleSomeone@2x.png"; sourceTree = "<group>"; };
+		F334797E193D5F7F00D839D2 /* missingAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missingAvatar.png; sourceTree = "<group>"; };
+		F334797F193D5F7F00D839D2 /* missingAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missingAvatar@2x.png"; sourceTree = "<group>"; };
+		F3347980193D5F7F00D839D2 /* typingMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingMine.png; sourceTree = "<group>"; };
+		F3347981193D5F7F00D839D2 /* typingMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingMine@2x.png"; sourceTree = "<group>"; };
+		F3347982193D5F7F00D839D2 /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
+		F3347983193D5F7F00D839D2 /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
 		F379C419191F41F700165497 /* LimitedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitedTextView.h; sourceTree = "<group>"; };
 		F379C41A191F41F700165497 /* LimitedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimitedTextView.m; sourceTree = "<group>"; };
 		F3A7EA01192967C700E31A47 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -163,6 +202,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3347955193D5F2200D839D2 /* UIBubbleTableView */ = {
+			isa = PBXGroup;
+			children = (
+				F334797A193D5F7F00D839D2 /* bubbleMine.png */,
+				F334797B193D5F7F00D839D2 /* bubbleMine@2x.png */,
+				F334797C193D5F7F00D839D2 /* bubbleSomeone.png */,
+				F334797D193D5F7F00D839D2 /* bubbleSomeone@2x.png */,
+				F334797E193D5F7F00D839D2 /* missingAvatar.png */,
+				F334797F193D5F7F00D839D2 /* missingAvatar@2x.png */,
+				F3347980193D5F7F00D839D2 /* typingMine.png */,
+				F3347981193D5F7F00D839D2 /* typingMine@2x.png */,
+				F3347982193D5F7F00D839D2 /* typingSomeone.png */,
+				F3347983193D5F7F00D839D2 /* typingSomeone@2x.png */,
+				F3347956193D5F4700D839D2 /* NSBubbleData.h */,
+				F3347957193D5F4700D839D2 /* NSBubbleData.m */,
+				F3347958193D5F4700D839D2 /* UIBubbleTableView.h */,
+				F3347959193D5F4700D839D2 /* UIBubbleTableView.m */,
+				F334795A193D5F4700D839D2 /* UIBubbleTableViewCell.h */,
+				F334795B193D5F4700D839D2 /* UIBubbleTableViewCell.m */,
+				F334795C193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.h */,
+				F334795D193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.m */,
+				F334795E193D5F4700D839D2 /* UIBubbleTypingTableViewCell.h */,
+				F334795F193D5F4700D839D2 /* UIBubbleTypingTableViewCell.m */,
+				F3347960193D5F4700D839D2 /* UIBubbleTableViewDataSource.h */,
+			);
+			name = UIBubbleTableView;
+			sourceTree = "<group>";
+		};
 		F3A7EA291929CA2500E31A47 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +272,8 @@
 		F3A7EA2C1929CAAC00E31A47 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F3347952193D5F1900D839D2 /* MessagesViewController.h */,
+				F3347953193D5F1900D839D2 /* MessagesViewController.m */,
 				F3A7EA2D1929CAC700E31A47 /* Controller */,
 			);
 			name = Navigation;
@@ -352,6 +421,7 @@
 		F3F2A7E118D4E266001401C0 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				F3347955193D5F2200D839D2 /* UIBubbleTableView */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -465,10 +535,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3F2A7A518D4D0D6001401C0 /* Images.xcassets in Resources */,
+				F3347989193D5F7F00D839D2 /* missingAvatar@2x.png in Resources */,
+				F3347988193D5F7F00D839D2 /* missingAvatar.png in Resources */,
 				F3CFB47F192ED68D000A8CB3 /* Coins.png in Resources */,
+				F3347985193D5F7F00D839D2 /* bubbleMine@2x.png in Resources */,
+				F334798A193D5F7F00D839D2 /* typingMine.png in Resources */,
+				F3347987193D5F7F00D839D2 /* bubbleSomeone@2x.png in Resources */,
+				F3347984193D5F7F00D839D2 /* bubbleMine.png in Resources */,
 				F3F2A79118D4D0D6001401C0 /* InfoPlist.strings in Resources */,
 				F3CFB481192ED68D000A8CB3 /* Coins3.png in Resources */,
+				F334798D193D5F7F00D839D2 /* typingSomeone@2x.png in Resources */,
+				F334798B193D5F7F00D839D2 /* typingMine@2x.png in Resources */,
+				F3347986193D5F7F00D839D2 /* bubbleSomeone.png in Resources */,
 				F3CFB480192ED68D000A8CB3 /* Coins2.png in Resources */,
+				F334798C193D5F7F00D839D2 /* typingSomeone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,27 +602,33 @@
 			files = (
 				F3E0AFAD19200D630014C610 /* CurrencyBarButtonItem.m in Sources */,
 				F3A7EA231929C3DC00E31A47 /* Message.m in Sources */,
+				F3347963193D5F4700D839D2 /* UIBubbleTableViewCell.m in Sources */,
 				F3F2A7DB18D4E05F001401C0 /* MagnetModeNavigationController.m in Sources */,
 				F3F2A7DE18D4E088001401C0 /* MagnetModeTableViewController.m in Sources */,
 				F3E0AFB7192014660014C610 /* Settings.m in Sources */,
 				F3CFB478192E36A3000A8CB3 /* ThreadsTableViewController.m in Sources */,
+				F3347954193D5F1900D839D2 /* MessagesViewController.m in Sources */,
 				F3F2A7D218D4DCF0001401C0 /* CentralTabBarController.m in Sources */,
 				F3E0AFB9192017140014C610 /* Keys.m in Sources */,
+				F3347965193D5F4700D839D2 /* UIBubbleTypingTableViewCell.m in Sources */,
 				F3F2A7E518D4E373001401C0 /* Cloud.m in Sources */,
 				F3A7EA02192967C700E31A47 /* DataModel.xcdatamodeld in Sources */,
 				F379C41B191F41F700165497 /* LimitedTextView.m in Sources */,
 				F3A7EA321929CC7600E31A47 /* QuestionTableViewCell.m in Sources */,
+				F3347964193D5F4700D839D2 /* UIBubbleHeaderTableViewCell.m in Sources */,
 				F3A7EA201929C3DB00E31A47 /* Thread.m in Sources */,
 				F3E0AFB019200E0F0014C610 /* CurrencyDashboardView.m in Sources */,
 				F3F2A7D518D4DE82001401C0 /* InboxNavigationViewController.m in Sources */,
 				F3F2A79718D4D0D6001401C0 /* AppDelegate.m in Sources */,
 				F3CFB47B192E888D000A8CB3 /* BoxTableViewController.m in Sources */,
 				F3F2A7EB18D4E3E3001401C0 /* SettingsNavigationController.m in Sources */,
+				F3347962193D5F4700D839D2 /* UIBubbleTableView.m in Sources */,
 				F3F2A7D818D4DEB7001401C0 /* InboxTableViewController.m in Sources */,
 				F3F2A79318D4D0D6001401C0 /* main.m in Sources */,
 				F3F2A7CC18D4D97D001401C0 /* OutboxNavigationViewController.m in Sources */,
 				F3F2A7F118D4E791001401C0 /* AskQuestionTableViewController.m in Sources */,
 				F3CFB484192EEA52000A8CB3 /* DeviceInformation.m in Sources */,
+				F3347961193D5F4700D839D2 /* NSBubbleData.m in Sources */,
 				F3F2A7E818D4E3CB001401C0 /* SettingsTableViewController.m in Sources */,
 				F3A7EA261929C3DC00E31A47 /* Question.m in Sources */,
 				F3F2A7C618D4D846001401C0 /* OutboxTableViewController.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "BoxTableViewController.h"
 
+
+
 @interface BoxTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -85,27 +87,75 @@
     
 	Question * question = (Question *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.question = question;
-    NSLog(@"%@", question.senderDeviceID);
     
+    /*
+    if(question.threads.count == 0){
+        
+        NSLog(@"%@", question.senderDeviceID);
+        NSEntityDescription * description = [NSEntityDescription entityForName:@"Thread" inManagedObjectContext:self.managedObjectContext];
+        Thread * t = [[Thread alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        t.responderDeviceID = @"ANOTHER_DUDE";
+        t.dateOfCreation = [NSDate date];
+        t.question = question;
+     
+        description = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:self.managedObjectContext];
+        Message * m1 = [[Message alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        m1.senderDeviceID = @"ANOTHER_DUDE";
+        m1.dateOfCreation = [NSDate date];
+        m1.content = @"I think its joe";
+        
+        Message * m2 = [[Message alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        m2.senderDeviceID = [[DeviceInformation sharedInstance] deviceID];
+        m2.dateOfCreation = [NSDate date];
+        m2.content = @"Nope, its Frank";
+        
+        Message * m3 = [[Message alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        m3.senderDeviceID = @"ANOTHER_DUDE";
+        m3.dateOfCreation = [NSDate date];
+        m3.content = @"Well how was I supposed to know?";
+        
+        Message * m4 = [[Message alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        m4.senderDeviceID = [[DeviceInformation sharedInstance] deviceID];
+        m4.dateOfCreation = [NSDate date];
+        m4.content = @"You are a jerk, you know that?";
+        
+        Message * m5 = [[Message alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
+        m5.senderDeviceID = @"ANOTHER_DUDE";
+        m5.dateOfCreation = [NSDate date];
+        m5.content = @"This got old fast";
+        
+        [t addMessagesObject:m1];
+        [t addMessagesObject:m2];
+        [t addMessagesObject:m3];
+        [t addMessagesObject:m4];
+        [t addMessagesObject:m5];
+        
+        NSError * error;
+        [self.managedObjectContext save:&error];
+        
+    }
+    */
+     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // If someone has answered the question, then we should show them the different threads that are going on
-    /*
+    
      Question * question = (Question *)[self.fetchedResultsController objectAtIndexPath:indexPath];
      if(question.threads.count == 1){ // Jump to the individual thread
-     ThreadsTableViewController * threadsTableViewController = [[ThreadsTableViewController alloc] initWithStyle:UITableViewStylePlain];
-     threadsTableViewController.managedObjectContext = self.managedObjectContext;
-     [self.navigationController pushViewController:threadsTableViewController animated:YES];
+         Thread * thread = [question.threads anyObject];
+         MessagesViewController * messagesTableViewController = [MessagesViewController messagesViewController];
+         messagesTableViewController.thread = thread;
+         messagesTableViewController.managedObjectContext = self.managedObjectContext;
+         messagesTableViewController.hidesBottomBarWhenPushed = YES;
+         [self.navigationController pushViewController:messagesTableViewController animated:YES];
      }else if(question.threads.count > 1){ // Look at all of the threads
-     ThreadsTableViewController * threadsTableViewController = [[ThreadsTableViewController alloc] initWithStyle:UITableViewStylePlain];
-     threadsTableViewController.managedObjectContext = self.managedObjectContext;
-     [self.navigationController pushViewController:threadsTableViewController animated:YES];
-     
-     
+         ThreadsTableViewController * threadsTableViewController = [[ThreadsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+         threadsTableViewController.managedObjectContext = self.managedObjectContext;
+         [self.navigationController pushViewController:threadsTableViewController animated:YES];
      }
-     */
+    
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,8 +165,6 @@
         NSError * error;
         [self.managedObjectContext save:&error];
     }
-    
-    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -164,7 +212,7 @@
         NSArray * res = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         NSLog(@"%@", res);
         
-        
+        // This is the reason Why
     }
 	return _fetchedResultsController;
 }
