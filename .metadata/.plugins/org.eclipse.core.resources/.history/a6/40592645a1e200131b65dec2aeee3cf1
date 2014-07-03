@@ -1,0 +1,26 @@
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+
+public class ThreadsDataSource {
+
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { RSpeakSQLiteHelper.THREADS_COLUMN_ID,
+			RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID,
+			RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT,
+			RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED,
+			RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE,
+			RSpeakSQLiteHelper.THREADS_COLUMN_TIME_POSTED };
+	
+	public ThreadsDataSource(Context context)
+	{
+		dbHelper = new RSpeakSQLiteHelper(context);
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+}

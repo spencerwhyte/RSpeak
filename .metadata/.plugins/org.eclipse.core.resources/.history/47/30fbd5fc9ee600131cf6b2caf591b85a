@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip" >
+
+    <TextView
+        android:id="@+id/questionLine"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_marginRight="24dp"
+        android:layout_above="@+id/latestResponseLine"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@id/latestResponseLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:singleLine="true"
+        android:textSize="14sp" />
+    
+    <TextView
+        android:id="@+id/dateLine"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:textSize="12sp" />
+
+</RelativeLayout> 

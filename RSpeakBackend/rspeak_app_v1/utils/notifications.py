@@ -29,22 +29,13 @@ class Updates():
 
 	@classmethod
 	def get_updates(cls, device_id):
+		updates = None
+
 		with cls._updates_lock:
 			if device_id in cls._updates:
-				return cls._updates[ device_id ]
-			else:
-				return None
+				updates = cls._updates.pop( device_id, None )
 
-	# This method acknowledges that the client received
-	# the set of updates, and removes them from the stack
-	@classmethod
-	def ack_updates(cls, device_id, ackd_updates):
-		with cls._updates_lock:
-			device_updates = cls._updates[ device_id ] if device_id in cls._updates else None
-
-			if device_updates is not None:
-				for update in ackd_updates:
-					device_updates.remove( update )
+		return updates
 
 
 # The method inspects the type of device and uses the corresponding service to
