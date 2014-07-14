@@ -1,0 +1,10 @@
+package com.example.android_rspeak_v1.adapters;
+
+import com.example.android_rspeak_v1.database.Response;
+
+import android.widget.ArrayAdapter;
+
+public class BrowseConversationListAdapter extends ArrayAdapter<Response>
+{
+
+}

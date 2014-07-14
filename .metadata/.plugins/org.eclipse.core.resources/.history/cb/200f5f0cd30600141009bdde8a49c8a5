@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="off_white">#E8E8E8</color>
+    <color name="scarlet">#b62445</color>
+	<color name="darker_scarlet">#911c37</color>
+	<color name="dark_sea_blue">#003A6E</color>
+	<color name="error_grey">#8C8C8C</color>
+</resources>

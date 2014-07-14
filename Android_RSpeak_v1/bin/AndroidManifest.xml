@@ -14,13 +14,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.android_rspeak_v1.BrowseQuestionsAnswers"
+            android:name="com.example.android_rspeak_v1.activities.BrowseQuestionsAnswersActivity"
             android:label="RSpeak" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.android_rspeak_v1.activities.BrowseConversationActivity"
+            android:label="@string/title_activity_browse_conversation" >
+        </activity>
+        <activity
+            android:name="com.example.android_rspeak_v1.activities.BrowseConversationActivity"
+            android:label="@string/title_activity_browse_conversation" >
         </activity>
     </application>
 

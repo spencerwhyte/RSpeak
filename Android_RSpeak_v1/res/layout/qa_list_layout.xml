@@ -7,13 +7,12 @@
     <TextView
         android:id="@+id/questionLine"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
-        android:layout_marginRight="24dp"
+        android:layout_height="fill_parent"
         android:layout_above="@+id/latestResponseLine"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:singleLine="true"
-        android:textSize="14sp" />
+        style="@style/question_line_style" />
 
     <TextView
         android:id="@id/latestResponseLine"
@@ -22,14 +21,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:singleLine="true"
-        android:textSize="14sp" />
+        style="@style/response_line_style" />
     
     <TextView
         android:id="@+id/dateLine"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/questionLine"
         android:singleLine="true"
         android:textSize="12sp" />
 

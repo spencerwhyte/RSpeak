@@ -1,0 +1,79 @@
+package com.example.android_rspeak_v1.adapters;
+
+import java.util.ArrayList;
+
+import com.example.android_rspeak_v1.R;
+import com.example.android_rspeak_v1.database.Response;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+public class BrowseConversationListAdapter extends ArrayAdapter<Response>
+{
+	private final Context context;
+	private final ArrayList<Response> responses;
+	
+	private static final int LOCAL_RESPONSE = 0;
+	private static final int FOREIGN_RESPONSE = 1;
+
+	public BrowseConversationListAdapter( Context context, ArrayList<Response> responses )
+	{
+		super( context, R.layout, responses );
+		this.context = context;
+		this.responses = responses;
+	}
+	
+	@Override
+	public int getViewTypeCount()
+	{
+		return 2;
+	}
+	
+	@Override
+	public int getItemViewType( int position )
+	{
+		// if the item originates from local device then return 0
+		// return 1 for response from foreign device
+		boolean on_responder_device = responses.get( position ).getCurrentlyOnResponderDevice();
+		
+		return ( on_responder_device ? LOCAL_RESPONSE : FOREIGN_RESPONSE );
+	}
+	
+	@Override View getView( int position, View convertView, ViewGroup parent )
+	{
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		if ( getItemViewType( position ) == LOCAL_RESPONSE )
+		{
+			convertView = inflater.inflate( R.layout.fragment_conversation_list_item_local, null );
+		}
+		else
+		{
+			convertView = inflater.inflate( R.layout.fragment_conversation_list_item_foreign, null );
+		}
+		
+		TextView verse = (TextView) convertView.findViewById( R.id.verse );
+	}
+
+	  @Override
+	  public View getView(int position, View convertView, ViewGroup parent) {
+	    LayoutInflater inflater = (LayoutInflater) context
+	        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
+	    TextView textView = (TextView) rowView.findViewById(R.id.label);
+	    ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+	    textView.setText(values[position]);
+	    // change the icon for Windows and iPhone
+	    String s = values[position];
+	    if (s.startsWith("iPhone")) {
+	      imageView.setImageResource(R.drawable.no);
+	    } else {
+	      imageView.setImageResource(R.drawable.ok);
+	    }
+
+	    return rowView;
+	  }
+}

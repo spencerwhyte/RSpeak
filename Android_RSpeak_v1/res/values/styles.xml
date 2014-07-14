@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -20,7 +20,7 @@
     </style>
     
     <style name="RSpeak.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
-	    <item name="background"><color>@color/scarlet</color></item>
+	    <item name="background">@color/scarlet</item>
 	    <item name="backgroundStacked">@color/darker_scarlet</item>
 	    <item name="titleTextStyle">@style/RSpeak.ActionBar.Title</item>
 	</style>
@@ -43,5 +43,21 @@
         <item name="android:layout_width">2dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">?android:attr/listDivider</item>
+    </style>
+    
+    <style name="question_line_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/scarlet</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="response_line_style">
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <style name="no_response_line_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/error_grey</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

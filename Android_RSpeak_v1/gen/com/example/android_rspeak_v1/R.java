@@ -858,12 +858,15 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070006;
+        public static final int abc_search_url_text_holo=0x7f070009;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
-        public static final int darker_scarlet=0x7f070005;
-        public static final int scarlet=0x7f070004;
+        public static final int dark_sea_blue=0x7f070007;
+        public static final int darker_scarlet=0x7f070006;
+        public static final int error_grey=0x7f070008;
+        public static final int off_white=0x7f070004;
+        public static final int scarlet=0x7f070005;
         public static final int white=0x7f070003;
     }
     public static final class dimen {
@@ -1085,12 +1088,12 @@ containing a value of this type.
         public static final int magnet_icon=0x7f020059;
         public static final int rspeak_logo=0x7f02005a;
         public static final int tab_indicator_ab_=0x7f02005b;
-        public static final int tab_selected_=0x7f02005c;
-        public static final int tab_selected_focused_=0x7f02005d;
-        public static final int tab_selected_pressed_=0x7f02005e;
-        public static final int tab_unselected_=0x7f02005f;
-        public static final int tab_unselected_focused_=0x7f020060;
-        public static final int tab_unselected_pressed_=0x7f020061;
+        public static final int tab_selected=0x7f02005c;
+        public static final int tab_selected_focused=0x7f02005d;
+        public static final int tab_selected_pressed=0x7f02005e;
+        public static final int tab_unselected=0x7f02005f;
+        public static final int tab_unselected_focused=0x7f020060;
+        public static final int tab_unselected_pressed=0x7f020061;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1104,15 +1107,17 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050044;
+        public static final int action_settings=0x7f050047;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
-        public static final int ask_button=0x7f05003e;
+        public static final int ask_button=0x7f05003f;
         public static final int beginning=0x7f050011;
-        public static final int bottom_action_bar=0x7f05003d;
+        public static final int bottom_action_bar=0x7f05003e;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
-        public static final int dateLine=0x7f050043;
+        public static final int container=0x7f05003c;
+        public static final int conversation_list=0x7f050041;
+        public static final int dateLine=0x7f050046;
         public static final int default_activity_button=0x7f050028;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
@@ -1126,19 +1131,19 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int latestResponseLine=0x7f050042;
+        public static final int latestResponseLine=0x7f050045;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
-        public static final int pager=0x7f05003c;
+        public static final int pager=0x7f05003d;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
-        public static final int qa_thread_list=0x7f050040;
-        public static final int questionLine=0x7f050041;
-        public static final int question_magnet_button=0x7f05003f;
+        public static final int qa_thread_list=0x7f050042;
+        public static final int questionLine=0x7f050044;
+        public static final int question_magnet_button=0x7f050040;
         public static final int radio=0x7f05002f;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
@@ -1161,6 +1166,7 @@ containing a value of this type.
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
+        public static final int verse=0x7f050043;
         public static final int withText=0x7f05000c;
     }
     public static final class integer {
@@ -1213,13 +1219,18 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_browse_questions_answers=0x7f030018;
-        public static final int fragment_browse_questions_answers=0x7f030019;
-        public static final int qa_list_layout=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int activity_browse_conversation=0x7f030018;
+        public static final int activity_browse_questions_answers=0x7f030019;
+        public static final int fragment_browse_conversation=0x7f03001a;
+        public static final int fragment_browse_questions_answers=0x7f03001b;
+        public static final int fragment_conversation_list_item_foreign=0x7f03001c;
+        public static final int fragment_conversation_list_item_local=0x7f03001d;
+        public static final int qa_list_layout=0x7f03001e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
     }
     public static final class menu {
-        public static final int browse_questions_answers=0x7f0c0000;
+        public static final int browse_conversation=0x7f0c0000;
+        public static final int browse_questions_answers=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1266,8 +1277,11 @@ containing a value of this type.
         public static final int app_name=0x7f0a000d;
         public static final int button_ask=0x7f0a0011;
         public static final int button_question_magnet=0x7f0a0012;
+        public static final int hello_world=0x7f0a0015;
+        public static final int title_activity_browse_conversation=0x7f0a0013;
         public static final int title_section1=0x7f0a000e;
         public static final int title_section2=0x7f0a000f;
+        public static final int you_label=0x7f0a0014;
     }
     public static final class style {
         /** 
@@ -1496,6 +1510,9 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
         public static final int bottom_action_bar_style=0x7f0b0090;
+        public static final int no_response_line_style=0x7f0b0094;
+        public static final int question_line_style=0x7f0b0092;
+        public static final int response_line_style=0x7f0b0093;
         public static final int vertical_divider=0x7f0b0091;
     }
     public static final class styleable {

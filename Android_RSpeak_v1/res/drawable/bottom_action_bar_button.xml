@@ -4,12 +4,12 @@
     <item 
         android:state_focused="true" 
         android:state_pressed="true"
-        android:drawable="@drawable/tab_unselected_pressed_" />
+        android:drawable="@drawable/tab_unselected_pressed" />
 	
 	<item 
         android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/tab_unselected_pressed_" />
+        android:drawable="@drawable/tab_unselected_pressed" />
 	
 	<item 
         android:state_focused="false"

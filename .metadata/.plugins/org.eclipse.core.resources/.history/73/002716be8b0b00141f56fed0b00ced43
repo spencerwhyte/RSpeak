@@ -1,0 +1,56 @@
+package com.example.android_rspeak_v1.fragments;
+
+import java.util.List;
+
+import com.example.android_rspeak_v1.adapters.QuestionsAnswersArrayAdapter;
+import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
+import com.example.android_rspeak_v1.database.Response;
+import com.example.android_rspeak_v1.database.ResponsesDataSource;
+import com.example.android_rspeak_v1.database.Thread;
+import com.example.android_rspeak_v1.database.ThreadsDataSource;
+import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.ThreadOrigin;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
+public class BrowseConversationFragment extends Fragment
+{
+	public static final BrowseConversationFragment newInstance( String thread_id )
+	{
+		BrowseConversationFragment conversation_fragment = new BrowseConversationFragment();
+		Bundle bundle = new Bundle( 1 );
+		bundle.putString( RSpeakSQLiteHelper.THREADS_COLUMN_ID, thread_id );
+		conversation_fragment.setArguments( bundle );
+		return conversation_fragment;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		
+		List<Response> responses;
+		String thread_id = getArguments().getString( RSpeakSQLiteHelper.THREADS_COLUMN_ID );
+				
+        ResponsesDataSource responsesDataSource = new ResponsesDataSource( getActivity() );
+        responsesDataSource.open();
+        responses = responsesDataSource.getResponsesFromThreadId( thread_id );
+        
+        //dbHelper.fillDatabase();
+		
+		if ( threadOrigin == ThreadOrigin.LOCAL )
+		{
+			threads = threadsDataSource.getLocallyAskedThreads();
+		}
+		else // if ( threadOrigin == ThreadOrigin.FOREIGN )
+		{
+			threads = threadsDataSource.getForeignAskedThreads();
+		}
+				
+		threadsArray = threads.toArray( new Thread[ threads.size() ] );
+		     
+		QuestionsAnswersArrayAdapter qa_adapter = new QuestionsAnswersArrayAdapter( getActivity(), threadsArray );
+  		
+        setListAdapter( qa_adapter );
+     }
+}

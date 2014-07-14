@@ -1,0 +1,6 @@
+package com.example.android_rspeak_v1.activities;
+
+public class BrowseConversationActivity extends ListActivity
+{
+
+}

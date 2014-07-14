@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="android.os.Build"/>
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteOpenHelper"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
 <fullyQualifiedTypeName name="android.database.SQLException"/>
 <fullyQualifiedTypeName name="android.content.ContentValues"/>
@@ -19,7 +18,6 @@
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
 <fullyQualifiedTypeName name="com.example.client_database_v1.ThreadsDataSource"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.example.client_database_v1.RSpeakSQLiteHelper"/>
 <fullyQualifiedTypeName name="android.support.v4.app.ListFragment"/>
 <fullyQualifiedTypeName name="android.os.Bundle"/>
@@ -28,4 +26,9 @@
 <fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.id"/>
+<fullyQualifiedTypeName name="com.example.android_rspeak_v1.QuestionsAnswersListFragment.ThreadOrigin"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.example.android_rspeak_v1.R.style"/>
+<fullyQualifiedTypeName name="android.view.Gravity"/>
 </qualifiedTypeNameHistroy>
