@@ -1,0 +1,18 @@
+package com.example.android_rspeak_v1.fragments;
+
+import android.content.Context;
+import android.support.v4.app.Fragment;
+
+public class AskQuestionFragment extends Fragment
+{
+	private Context context;
+	
+	public static AskQuestionFragment getInstance( Context context )
+	{
+		AskQuestionFragment fragment = new AskQuestionFragment();
+		
+		this.context = context;
+		
+		return fragment;
+	}
+}

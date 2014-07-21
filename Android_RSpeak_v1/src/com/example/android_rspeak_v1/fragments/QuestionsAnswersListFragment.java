@@ -2,6 +2,7 @@ package com.example.android_rspeak_v1.fragments;
 
 import java.util.List;
 
+import com.example.android_rspeak_v1.activities.AskQuestionActivity;
 import com.example.android_rspeak_v1.activities.BrowseConversationActivity;
 import com.example.android_rspeak_v1.adapters.QuestionsAnswersArrayAdapter;
 import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;

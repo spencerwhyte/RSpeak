@@ -4636,3 +4636,18 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2014-07-21 15:46:03.175
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-21 15:59:37.489
+!MESSAGE Warning: Ignoring name conflict in resource file for name hello_world
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-21 15:59:37.490
+!MESSAGE Warning: Ignoring name conflict in resource file for name action_settings
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-21 15:59:37.513
+!MESSAGE Warning: Ignoring name conflict in resource file for name activity_horizontal_margin
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-21 15:59:37.514
+!MESSAGE Warning: Ignoring name conflict in resource file for name activity_vertical_margin
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-21 15:59:37.549
+!MESSAGE Warning: Ignoring name conflict in resource file for name activity_horizontal_margin

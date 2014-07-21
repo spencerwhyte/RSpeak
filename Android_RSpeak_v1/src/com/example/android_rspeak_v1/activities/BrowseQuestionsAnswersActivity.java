@@ -12,10 +12,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -37,7 +40,7 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse_questions_answers);
+        setContentView( R.layout.activity_browse_questions_answers );
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -73,6 +76,19 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
                             .setTabListener(this));
         }
         
+        // add event handler for click on 'ask question' button
+        Button ask_button = (Button) this.findViewById( R.id.ask_button );
+        ask_button.setOnClickListener( new View.OnClickListener() 
+        {
+			
+			@Override
+			public void onClick(View v) 
+			{				
+				// start the ask question activity: it has the text field for the question
+				Intent intent = new Intent( BrowseQuestionsAnswersActivity.this, AskQuestionActivity.class );
+			    startActivity(intent); 
+			}
+		});
     }
 
 
@@ -155,5 +171,4 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
             return null;
         }
     }
-
 }

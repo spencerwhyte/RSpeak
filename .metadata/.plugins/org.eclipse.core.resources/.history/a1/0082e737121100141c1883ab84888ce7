@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android_RSpeak_v1</string>
+    <string name="title_section1">Asked</string>
+    <string name="title_section2">Answered</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_ask">Ask</string>
+    <string name="button_question_magnet">Get Questions</string>
+    <string name="title_activity_browse_conversation">BrowseConversationActivity</string>
+    <string name="you_label">YOU</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_ask_question">AskQuestionActivity</string>
+
+</resources>
