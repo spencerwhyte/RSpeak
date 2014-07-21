@@ -1,0 +1,81 @@
+package com.example.android_rspeak_v1.adapters;
+
+import java.util.List;
+
+import com.example.android_rspeak_v1.R;
+import com.example.android_rspeak_v1.database.Response;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+public class BrowseConversationListAdapter extends BaseAdapter
+{
+	private final Context context;
+	private final List<Response> responses;
+	private final Thread initial_thread;
+	
+	private static final int LOCAL_RESPONSE = 0;
+	private static final int FOREIGN_RESPONSE = 1;
+
+	public BrowseConversationListAdapter( Context context, List<Response> responses, Thread initial_thread )
+	{
+		this.context = context;
+		this.responses = responses;
+		this.initial_thread = initial_thread;
+	}
+	
+	@Override
+	public int getCount()
+	{
+		return responses.size() + 1;
+	}
+	
+	@Override 
+	public Object getItem( int position )
+	{
+		return ( position == 0 ? initial_thread : responses.get( position - 1 );
+	}
+	
+	@Override
+	public int getItemViewType( int position )
+	{
+		// if the item originates from local device then return 0
+		// return 1 for response from foreign device
+		boolean on_responder_device = responses.get( position ).getCurrentlyOnResponderDevice();
+		
+		return ( on_responder_device ? LOCAL_RESPONSE : FOREIGN_RESPONSE );
+	}
+	
+	@Override
+	public long getItemId( int position )
+	{
+		return position;
+	}
+	
+	@Override 
+	public View getView( int position, View convertView, ViewGroup parent )
+	{
+		if ( convertView == null )
+		{
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			if ( getItemViewType( position ) == LOCAL_RESPONSE )
+			{
+				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_local, null );
+			}
+			else
+			{
+				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_foreign, null );
+			}
+		}
+		
+		TextView verse = (TextView) convertView.findViewById( R.id.verse );
+		verse.setText( getItem( position ).getResponseContent() );
+		
+		return convertView;
+	}
+}

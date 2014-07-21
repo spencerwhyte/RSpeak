@@ -12,6 +12,7 @@
         -->
         <item name="actionBarStyle">@style/RSpeak.ActionBar</item>
         <item name="actionBarTabStyle">@style/RSpeak.ActionBar.Tabs</item>
+        <item name="actionBarTabTextStyle">@style/RSpeak.ActionBar.Tabs.Text</item>
     </style>
 
     <!-- Application theme. -->
@@ -20,18 +21,24 @@
     </style>
     
     <style name="RSpeak.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
-	    <item name="background">@color/scarlet</item>
-	    <item name="backgroundStacked">@color/darker_scarlet</item>
+	    <item name="background">@color/teal</item>
+	    <item name="backgroundStacked">@color/teal_dark</item>
 	    <item name="titleTextStyle">@style/RSpeak.ActionBar.Title</item>
 	</style>
 	
     <style name="RSpeak.ActionBar.Title" parent="@style/TextAppearance.AppCompat.Widget.Base.ActionBar.Title">
-    	<item name="android:textColor"><color>@color/white</color></item>
+    	<item name="android:textColor">@color/white</item>
     </style>
     
     <style name="RSpeak.ActionBar.Tabs" parent="@style/Widget.AppCompat.ActionBar.TabView">
     	<item name="android:background">@drawable/tab_indicator_ab_</item>
     </style>
+    
+    <style name="RSpeak.ActionBar.Tabs.Text">
+	    <item name="android:background">@android:color/transparent</item>
+	    <item name="android:textSize">14sp</item>
+	    <item name="android:textColor">@color/white</item>
+	</style>
     
     <style name="bottom_action_bar_style">
      	<item name="android:background">@drawable/bottom_action_bar_button</item>
@@ -47,7 +54,7 @@
     
     <style name="question_line_style">
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/scarlet</item>
+        <item name="android:textColor">@color/teal_dark</item>
         <item name="android:textStyle">bold</item>
     </style>
     

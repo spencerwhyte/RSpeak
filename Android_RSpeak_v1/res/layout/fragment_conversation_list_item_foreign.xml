@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingRight="10dp"
     android:gravity="left"
     android:orientation="horizontal" >
     
     <View
 	    android:layout_width="8dp"
 	    android:layout_height="fill_parent"
-        android:background="@color/dark_sea_blue" />
+        android:background="@color/ash_light" />
     
 	<TextView
 		android:id="@+id/verse"

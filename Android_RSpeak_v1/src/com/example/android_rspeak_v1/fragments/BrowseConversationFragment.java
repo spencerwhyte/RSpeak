@@ -6,7 +6,9 @@ import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.adapters.BrowseConversationListAdapter;
 import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
 import com.example.android_rspeak_v1.database.Response;
+import com.example.android_rspeak_v1.database.Thread;
 import com.example.android_rspeak_v1.database.ResponsesDataSource;
+import com.example.android_rspeak_v1.database.ThreadsDataSource;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,17 +32,24 @@ public class BrowseConversationFragment extends Fragment
 	@Override
 	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedBundle) 
 	{
-	    View v = inflater.inflate( R.layout.fragment_browse_conversation, container, false );
-
-	    List<Response> responses;
-		String thread_id = getArguments().getString( RSpeakSQLiteHelper.THREADS_COLUMN_ID );
-				
+		List<Response> responses;
+		Thread thread;
+	    
+		View v = inflater.inflate( R.layout.fragment_browse_conversation, container, false );
+	    String thread_id = getArguments().getString( RSpeakSQLiteHelper.THREADS_COLUMN_ID );
+			
         ResponsesDataSource responsesDataSource = new ResponsesDataSource( getActivity() );
         responsesDataSource.open();
         responses = responsesDataSource.getResponsesFromThreadId( thread_id );
+        responsesDataSource.close();
+        
+        ThreadsDataSource threadsDataSource = new ThreadsDataSource( getActivity() );
+        threadsDataSource.open();
+        thread = threadsDataSource.getThreadById( thread_id );
+        threadsDataSource.close();
         
         ListView conversation_list = (ListView) v.findViewById( R.id.conversation_list );
-        BrowseConversationListAdapter list_adapter = new BrowseConversationListAdapter( getActivity(), responses );
+        BrowseConversationListAdapter list_adapter = new BrowseConversationListAdapter( getActivity(), responses, thread );
         conversation_list.setAdapter( list_adapter );
 
 	    return v;

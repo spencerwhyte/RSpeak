@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="off_white">#EAEAEA</color>
+    <color name="teal">#42977C</color>
+    <color name="ash">#363636FF</color>
+    <color name="teal_dark">#224C3E</color>
+    <color name="ash_dark">#1E1E1E</color>
+	<color name="error_grey">#8C8C8C</color>
+	<color name="silver">#DEDEDE</color>
+	<color name="silver_shade">#CFCFCF</color>
+</resources>

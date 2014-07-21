@@ -14,7 +14,8 @@ public class ThreadsDataSource {
 	// Database Fields
 	private SQLiteDatabase database;
 	private RSpeakSQLiteHelper dbHelper;
-	private String[] allColumns = { RSpeakSQLiteHelper.THREADS_COLUMN_ID,
+	private String[] allColumns = { 
+			RSpeakSQLiteHelper.THREADS_COLUMN_ID,
 			RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID,
 			RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT,
 			RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED,
@@ -114,6 +115,15 @@ public class ThreadsDataSource {
 	public List<Thread> getAllThreads()
 	{
 		return queryAllThreads( null );
+	}
+	
+	public Thread getThreadById( String thread_id )
+	{
+		return queryAllThreads(
+				RSpeakSQLiteHelper.THREADS_COLUMN_ID +
+				" = '" +
+				thread_id + 
+				"'" ).get( 0 );
 	}
 	
 	public List<Thread> getLocallyAskedThreads()

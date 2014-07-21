@@ -2,8 +2,13 @@
 <resources>
     <color name="white">#ffffff</color>
     <color name="off_white">#EAEAEA</color>
-    <color name="scarlet">#b62445</color>
-	<color name="darker_scarlet">#911c37</color>
-	<color name="dark_sea_blue">#003A6E</color>
+    <color name="teal">#42977C</color>
+    <color name="teal_dark">#224C3E</color>
+    <color name="teal_light">#89CBB6</color>
+    <color name="ash">#363636</color>
+    <color name="ash_dark">#1E1E1E</color>
+    <color name="ash_light">#828282</color>
 	<color name="error_grey">#8C8C8C</color>
+	<color name="silver">#DEDEDE</color>
+	<color name="silver_shade">#CFCFCF</color>
 </resources>

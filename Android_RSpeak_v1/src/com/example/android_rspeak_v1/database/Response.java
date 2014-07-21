@@ -39,7 +39,7 @@ public class Response {
 		response_content = new_response_content;
 	}
 	
-	public boolean getCurrentlyOnResponderDevice()
+	public boolean isCurrentlyOnResponderDevice()
 	{
 		return currently_on_responder_device;
 	}

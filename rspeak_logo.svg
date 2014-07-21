@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="rspeak_logo.svg">
+   sodipodi:docname="rspeak_logo.svg"
+   inkscape:export-filename="/Users/hashemshawqi/Desktop/RSPEAK/RSpeak/Android_RSpeak_v1/res/drawable-xxhdpi/rspeak_logo.png"
+   inkscape:export-xdpi="180"
+   inkscape:export-ydpi="180">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="-4.5428137"
-     inkscape:cy="35.895751"
+     inkscape:zoom="2.8"
+     inkscape:cx="35.11105"
+     inkscape:cy="25.794225"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -43,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,24 +55,21 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-980.36218)">
-    <rect
-       style="fill:#b62445;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="rect2986"
-       width="49.497478"
-       height="49.497478"
-       x="10.606601"
-       y="990.99542"
-       rx="5.1739526"
-       ry="5.1739526" />
     <path
-       style="fill:#b62445;fill-opacity:1;stroke:none"
-       d="m 22.26984,1011.1532 c 0,3.8356 0,7.6713 0,11.5071 0,-5.2596 25.924075,-10.0504 25.924075,-17.1747 0,-6.02567 -4.614911,-7.31291 -12.881077,-7.31291 -15.492278,0 -13.042998,8.58571 -13.042998,12.98051 z"
+       style="fill:#b62445;fill-opacity:1;stroke:#363636;stroke-opacity:1"
+       d="m 20.13798,1010.7971 c 0,4.6494 0,9.299 0,13.9487 0,-6.3756 31.424723,-12.1829 31.424723,-20.8189 0,-7.30418 -5.594116,-8.86455 -15.614222,-8.86455 -18.779476,0 -15.810501,10.40745 -15.810501,15.73475 z"
        id="path3771"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path
-       style="fill:none;stroke:#ffffff;stroke-width:5.0938096;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 21.406513,1011.947 c 0,-0.6873 0,-3.6747 0,-5.7587 0,-6.96653 5.875674,-8.89555 13.32117,-8.89555 7.445497,0 13.439795,0.39446 13.439795,8.89555 0,7.7875 -27.041521,7.3692 -27.041521,21.8702 l 0,5.9913"
+       style="fill:#42977c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 12.271777,986.36218 47.456448,0 c 3.474564,0 6.271777,2.79722 6.271777,6.27178 l 0,8.73184 -60.0000017,28.6225 0,-37.35434 c 0,-3.47456 2.7972129,-6.27178 6.2717767,-6.27178 z"
+       id="rect2987"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sssccss" />
+    <path
+       style="fill:none;stroke:#363636;stroke-width:6.17462920999999998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 19.09147,1011.7593 c 0,-0.8331 0,-4.4544 0,-6.9806 0,-8.44468 7.122392,-10.783 16.147696,-10.783 9.025305,0 16.291491,0.47816 16.291491,10.783 0,9.4399 -32.779272,8.9328 -32.779272,26.5107 l 0,7.2626"
        id="path2995"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cszccc" />
@@ -77,7 +77,7 @@
        sodipodi:nodetypes="ccc"
        inkscape:connector-curvature="0"
        id="path3767"
-       d="m 35.048662,1014.7877 c 6.62378,2.6827 13.118884,6.2467 13.118884,13.4328 0,2.0619 0,3.8151 0,5.8293"
-       style="fill:none;stroke:#ffffff;stroke-width:5.0938096;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       d="m 35.628251,1015.2028 c 8.029234,3.2519 15.902488,7.5721 15.902488,16.283 0,2.4994 0,4.6246 0,7.0662"
+       style="fill:none;stroke:#363636;stroke-width:6.17462920999999998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
 </svg>

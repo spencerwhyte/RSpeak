@@ -858,15 +858,20 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070009;
+        public static final int abc_search_url_text_holo=0x7f07000e;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
-        public static final int dark_sea_blue=0x7f070007;
-        public static final int darker_scarlet=0x7f070006;
-        public static final int error_grey=0x7f070008;
+        public static final int ash=0x7f070008;
+        public static final int ash_dark=0x7f070009;
+        public static final int ash_light=0x7f07000a;
+        public static final int error_grey=0x7f07000b;
         public static final int off_white=0x7f070004;
-        public static final int scarlet=0x7f070005;
+        public static final int silver=0x7f07000c;
+        public static final int silver_shade=0x7f07000d;
+        public static final int teal=0x7f070005;
+        public static final int teal_dark=0x7f070006;
+        public static final int teal_light=0x7f070007;
         public static final int white=0x7f070003;
     }
     public static final class dimen {
@@ -1087,13 +1092,14 @@ containing a value of this type.
         public static final int bottom_action_bar_button=0x7f020058;
         public static final int magnet_icon=0x7f020059;
         public static final int rspeak_logo=0x7f02005a;
-        public static final int tab_indicator_ab_=0x7f02005b;
-        public static final int tab_selected=0x7f02005c;
-        public static final int tab_selected_focused=0x7f02005d;
-        public static final int tab_selected_pressed=0x7f02005e;
-        public static final int tab_unselected=0x7f02005f;
-        public static final int tab_unselected_focused=0x7f020060;
-        public static final int tab_unselected_pressed=0x7f020061;
+        public static final int rspeak_logo_actionbar=0x7f02005b;
+        public static final int tab_indicator_ab_=0x7f02005c;
+        public static final int tab_selected=0x7f02005d;
+        public static final int tab_selected_focused=0x7f02005e;
+        public static final int tab_selected_pressed=0x7f02005f;
+        public static final int tab_unselected=0x7f020060;
+        public static final int tab_unselected_focused=0x7f020061;
+        public static final int tab_unselected_pressed=0x7f020062;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1107,7 +1113,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050047;
+        public static final int action_settings=0x7f050049;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int ask_button=0x7f05003f;
@@ -1117,10 +1123,12 @@ containing a value of this type.
         public static final int collapseActionView=0x7f05000d;
         public static final int container=0x7f05003c;
         public static final int conversation_list=0x7f050041;
-        public static final int dateLine=0x7f050046;
+        public static final int date=0x7f050044;
+        public static final int dateLine=0x7f050048;
         public static final int default_activity_button=0x7f050028;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
+        public static final int divider=0x7f050045;
         public static final int dropdown=0x7f05000f;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
@@ -1131,7 +1139,7 @@ containing a value of this type.
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
-        public static final int latestResponseLine=0x7f050045;
+        public static final int latestResponseLine=0x7f050047;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
@@ -1142,7 +1150,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int qa_thread_list=0x7f050042;
-        public static final int questionLine=0x7f050044;
+        public static final int questionLine=0x7f050046;
         public static final int question_magnet_button=0x7f050040;
         public static final int radio=0x7f05002f;
         public static final int search_badge=0x7f050032;
@@ -1225,8 +1233,9 @@ containing a value of this type.
         public static final int fragment_browse_questions_answers=0x7f03001b;
         public static final int fragment_conversation_list_item_foreign=0x7f03001c;
         public static final int fragment_conversation_list_item_local=0x7f03001d;
-        public static final int qa_list_layout=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int fragment_conversation_list_item_question=0x7f03001e;
+        public static final int qa_list_layout=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int browse_conversation=0x7f0c0000;
@@ -1306,6 +1315,7 @@ containing a value of this type.
         public static final int AppTheme=0x7f0b008c;
         public static final int RSpeak_ActionBar=0x7f0b008d;
         public static final int RSpeak_ActionBar_Tabs=0x7f0b008f;
+        public static final int RSpeak_ActionBar_Tabs_Text=0x7f0b0090;
         public static final int RSpeak_ActionBar_Title=0x7f0b008e;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
@@ -1509,11 +1519,11 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar=0x7f0b000a;
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
-        public static final int bottom_action_bar_style=0x7f0b0090;
-        public static final int no_response_line_style=0x7f0b0094;
-        public static final int question_line_style=0x7f0b0092;
-        public static final int response_line_style=0x7f0b0093;
-        public static final int vertical_divider=0x7f0b0091;
+        public static final int bottom_action_bar_style=0x7f0b0091;
+        public static final int no_response_line_style=0x7f0b0095;
+        public static final int question_line_style=0x7f0b0093;
+        public static final int response_line_style=0x7f0b0094;
+        public static final int vertical_divider=0x7f0b0092;
     }
     public static final class styleable {
         /**  ============================================ 

@@ -1,9 +1,13 @@
 package com.example.android_rspeak_v1.adapters;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.database.Response;
+import com.example.android_rspeak_v1.database.Thread;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,26 +20,29 @@ public class BrowseConversationListAdapter extends BaseAdapter
 {
 	private final Context context;
 	private final List<Response> responses;
+	private final Thread initial_thread;
 	
-	private static final int LOCAL_RESPONSE = 0;
-	private static final int FOREIGN_RESPONSE = 1;
+	private static final int INITIAL_QUESTION = 0;
+	private static final int LOCAL_RESPONSE = 1;
+	private static final int FOREIGN_RESPONSE = 2;
 
-	public BrowseConversationListAdapter( Context context, List<Response> responses )
+	public BrowseConversationListAdapter( Context context, List<Response> responses, Thread initial_thread )
 	{
 		this.context = context;
 		this.responses = responses;
+		this.initial_thread = initial_thread;
 	}
 	
 	@Override
 	public int getCount()
 	{
-		return responses.size();
+		return responses.size() + 1;
 	}
 	
 	@Override 
-	public Response getItem( int position )
+	public Object getItem( int position )
 	{
-		return responses.get( position );
+		return ( position == 0 ? initial_thread : responses.get( position - 1 ) );
 	}
 	
 	@Override
@@ -43,8 +50,12 @@ public class BrowseConversationListAdapter extends BaseAdapter
 	{
 		// if the item originates from local device then return 0
 		// return 1 for response from foreign device
-		boolean on_responder_device = responses.get( position ).getCurrentlyOnResponderDevice();
-		
+		if ( position == 0 )
+		{
+			return INITIAL_QUESTION;
+		}
+		boolean on_responder_device = ( (Response) getItem( position ) ).isCurrentlyOnResponderDevice();
+				
 		return ( on_responder_device ? LOCAL_RESPONSE : FOREIGN_RESPONSE );
 	}
 	
@@ -57,22 +68,51 @@ public class BrowseConversationListAdapter extends BaseAdapter
 	@Override 
 	public View getView( int position, View convertView, ViewGroup parent )
 	{
+		int viewType = getItemViewType( position );
+		
 		if ( convertView == null )
 		{
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-			if ( getItemViewType( position ) == LOCAL_RESPONSE )
+			if ( viewType == INITIAL_QUESTION )
+			{
+				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_question, null );
+			}
+			else if ( viewType == LOCAL_RESPONSE )
 			{
 				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_local, null );
 			}
-			else
+			else if ( viewType == FOREIGN_RESPONSE )
 			{
 				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_foreign, null );
 			}
 		}
 		
 		TextView verse = (TextView) convertView.findViewById( R.id.verse );
-		verse.setText( getItem( position ).getResponseContent() );
+		
+		if ( viewType == INITIAL_QUESTION )
+		{
+			verse.setText( initial_thread.getQuestionContent() );
+			
+			TextView date = (TextView) convertView.findViewById( R.id.date );
+			DateFormat df = new SimpleDateFormat("dd/MM/yy");
+			Date postDate = new Date( initial_thread.getTimePosted() );
+			date.setText( df.format( postDate ) );
+			
+			View divider = convertView.findViewById( R.id.divider );
+			int color = ( initial_thread.isCurrentlyOnAskerDevice() ? R.color.teal_light : R.color.ash_light );
+			divider.setBackgroundResource( color );
+			
+			verse.setTextColor( context.getResources().getColor( color ) );
+		}
+		else
+		{
+			Response response = (Response) getItem( position );
+			verse.setText( response.getResponseContent() );
+			
+			int color = ( response.isCurrentlyOnResponderDevice() ? R.color.teal_light : R.color.ash_light );
+			verse.setTextColor( context.getResources().getColor( color ) );
+		}
 		
 		return convertView;
 	}

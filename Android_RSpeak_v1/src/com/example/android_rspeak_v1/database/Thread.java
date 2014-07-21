@@ -54,7 +54,7 @@ public class Thread {
 		is_stopped = new_is_stopped;
 	}
 	
-	public boolean getCurrentlyOnAskerDevice()
+	public boolean isCurrentlyOnAskerDevice()
 	{
 		return currently_on_asker_device;
 	}
