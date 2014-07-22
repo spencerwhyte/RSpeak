@@ -11,25 +11,48 @@ from rspeak_app_v1.utils.notifications import Updates
 from utils.notifications import Updates, sendSyncNotification
 
 
+# Request handler when a new device installs the app
+# We will need:
+# 1. Device id
+# 2. Device type
+# 3. Push notification id
+# these will ensure proper communication with the device
+def register_device(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			json_data = simplejson.loads( request.raw_post_data )
+
+			try:
+				device_id = json_data['device_id']
+				device_type = json_data['device_type']
+				push_notification_id = json_data['push_notification_id']
+			except KeyError:
+				print "Error: A posted question did not have a JSON object with the required properties"
+			else:
+				# First add question to database
+				device = Device( device_id=device_id, device_type=device_type, push_notification_id=push_notification_id )
+				device.save()
+
+
 # Request handler when someone posts a question
 # 1. Add question content to the database
 # 2. Select random active answerer
 # 3. Put the question in the answerer's update stack
 # 4. Send push notification to the answerer's device to retrieve updates
 def ask(request):
-	print >>sys.stderr, 'Goodbye, cruel world!'
 	if request.is_ajax():
 		if request.method == 'POST':
 			json_data = simplejson.loads( request.raw_post_data )
 
 			try:
+				question_id = json_data['question_id']
 				question_content = json_data['question_content']
 				asker_device_id = json_data['device_id']
 			except KeyError:
 				print "Error: A posted question did not have a JSON object with the required properties"
 			else:
 				# First add question to database
-				question = Question(asker_device_id=asker_device_id, question_content=question_content)
+				question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
 				question.save()
 
 				# Second select a random device to send the question to
@@ -43,7 +66,7 @@ def ask(request):
 					random_device = random.choice( all_devices )
 
 				# Start the thread between the asker device and the random device
-				response_thread = Thread( question_id=question.question_id )
+				response_thread = Thread( question_id=question.question_id, asker_device_id=asker_device_id )
 				response_thread.save()
 
 				# Create the notification object

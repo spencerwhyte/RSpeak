@@ -1,0 +1,8 @@
+package com.example.android_rspeak_v1.database;
+
+public class Question 
+{
+	private long question_id;
+	private long time_posted;
+	private String question_content;
+}

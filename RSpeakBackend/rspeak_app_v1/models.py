@@ -13,7 +13,8 @@ class  Device(models.Model):
 
 
 class Question(models.Model):
-	question_id = models.CharField(primary_key=True, max_length=16)
+	surrogate = models.AutoField(primary_key=True)
+	question_id = models.PositiveIntegerField(default=1)
 	asker_device_id = models.ForeignKey('Device', db_column='asker_device_id')
 	time_posted = models.DateTimeField(auto_now_add=True)
 	question_content = models.CharField(max_length=350)
@@ -24,7 +25,8 @@ class Question(models.Model):
 
 class Thread(models.Model):
 	thread_id = models.CharField(primary_key=True, max_length=16)
-	question_id = models.ForeignKey('Question', db_column='question_id')
+	question_id = models.PositiveIntegerField(default=1)
+	asker_device_id = models.ForeignKey('Device', db_column='asker_device_id')
 	is_stopped = models.BooleanField(default=False)
 
 	# when printing an instance of this class in python shell you will get custom output

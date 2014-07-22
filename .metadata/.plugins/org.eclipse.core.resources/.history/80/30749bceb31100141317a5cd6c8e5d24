@@ -1,0 +1,5 @@
+package com.example.android_rspeak_v1.database;
+
+public class Question {
+
+}
