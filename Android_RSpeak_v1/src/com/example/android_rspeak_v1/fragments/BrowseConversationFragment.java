@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.adapters.BrowseConversationListAdapter;
+import com.example.android_rspeak_v1.database.Question;
+import com.example.android_rspeak_v1.database.QuestionsDataSource;
 import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
 import com.example.android_rspeak_v1.database.Response;
 import com.example.android_rspeak_v1.database.Thread;
@@ -34,6 +36,7 @@ public class BrowseConversationFragment extends Fragment
 	{
 		List<Response> responses;
 		Thread thread;
+		Question question;
 	    
 		View v = inflater.inflate( R.layout.fragment_browse_conversation, container, false );
 	    String thread_id = getArguments().getString( RSpeakSQLiteHelper.THREADS_COLUMN_ID );
@@ -48,8 +51,13 @@ public class BrowseConversationFragment extends Fragment
         thread = threadsDataSource.getThreadById( thread_id );
         threadsDataSource.close();
         
+        QuestionsDataSource questionsDataSource = new QuestionsDataSource( getActivity() );
+        questionsDataSource.open();
+        question = questionsDataSource.getQuestionById( thread.getQuestionID() );
+        questionsDataSource.close();
+        
         ListView conversation_list = (ListView) v.findViewById( R.id.conversation_list );
-        BrowseConversationListAdapter list_adapter = new BrowseConversationListAdapter( getActivity(), responses, thread );
+        BrowseConversationListAdapter list_adapter = new BrowseConversationListAdapter( getActivity(), responses, question );
         conversation_list.setAdapter( list_adapter );
 
 	    return v;

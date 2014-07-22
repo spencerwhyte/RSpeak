@@ -8,13 +8,17 @@ import android.util.Log;
 public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 
 	// threads database keyterms
+	public static final String TABLE_QUESTIONS = "questions";
+	public static final String QUESTIONS_COLUMN_ID = "question_id";
+	public static final String QUESTIONS_COLUMN_CONTENT = "question_content";
+	public static final String QUESTIONS_COLUMN_TIME_POSTED = "time_posted";
+	public static final String QUESTIONS_COLUMN_ON_ASKER_DEVICE = "currently_on_asker_device";
+	
 	public static final String TABLE_THREADS = "threads";
 	public static final String THREADS_COLUMN_ID = "thread_id";
+	public static final String THREADS_COLUMN_QUESTION_ID = "question_id";
 	public static final String THREADS_COLUMN_OTHER_DEVICE_ID = "other_device_id";
-	public static final String THREADS_COLUMN_QUESTION_CONTENT = "question_content";
 	public static final String THREADS_COLUMN_IS_STOPPED = "is_stopped";
-	public static final String THREADS_COLUMN_ON_ASKER_DEVICE = "currently_on_asker_device";
-	public static final String THREADS_COLUMN_TIME_POSTED = "time_posted";
 	
 	// responses database keyterms
 	public static final String TABLE_RESPONSES = "responses";
@@ -29,14 +33,19 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	private static final int RSPEAK_DATABASE_VERSION = 1;
 	
 	// database creation statements
+	private static final String CREATE_QUESTIONS_DATABASE = "create table "
+			+ TABLE_QUESTIONS
+			+ "(" + QUESTIONS_COLUMN_ID + " integer primary key, "
+			+ QUESTIONS_COLUMN_CONTENT + " text not null, "
+			+ QUESTIONS_COLUMN_TIME_POSTED + " integer, "
+			+ QUESTIONS_COLUMN_ON_ASKER_DEVICE + " numeric);";
+			
 	private static final String CREATE_THREADS_DATABASE = "create table "
 			+ TABLE_THREADS 
 			+ "(" + THREADS_COLUMN_ID + " text primary key not null, "
+			+ THREADS_COLUMN_QUESTION_ID + " integer not null, "
 			+ THREADS_COLUMN_OTHER_DEVICE_ID + " text not null, "
-			+ THREADS_COLUMN_QUESTION_CONTENT + " text not null, "
-			+ THREADS_COLUMN_IS_STOPPED + " numeric, "
-			+ THREADS_COLUMN_ON_ASKER_DEVICE + " numeric, "
-			+ THREADS_COLUMN_TIME_POSTED + " integer);";
+			+ THREADS_COLUMN_IS_STOPPED + " numeric);";
 	
 	private static final String CREATE_RESPONSES_DATABASE = "create table "
 			+ TABLE_RESPONSES
@@ -54,6 +63,7 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database)
 	{
+		database.execSQL( CREATE_QUESTIONS_DATABASE );
 		database.execSQL( CREATE_THREADS_DATABASE );
 		database.execSQL( CREATE_RESPONSES_DATABASE );
 	}
@@ -64,6 +74,7 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 		Log.w( RSpeakSQLiteHelper.class.getName(),
 				"Upgrading database from version " + oldVersion + " to "
 		            + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_THREADS);
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_RESPONSES);
 		onCreate( database );

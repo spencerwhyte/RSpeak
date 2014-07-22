@@ -5,17 +5,17 @@
     android:padding="6dip" >
 
     <TextView
-        android:id="@+id/questionLine"
+        android:id="@+id/question_line"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/latestResponseLine"
+        android:layout_above="@+id/latest_response_line"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:singleLine="true"
         style="@style/question_line_style" />
 
     <TextView
-        android:id="@id/latestResponseLine"
+        android:id="@+id/latest_response_line"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -24,12 +24,12 @@
         style="@style/response_line_style" />
     
     <TextView
-        android:id="@+id/dateLine"
+        android:id="@+id/date_line"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/questionLine"
+        android:layout_toLeftOf="@id/question_line"
         android:singleLine="true"
         android:textSize="12sp" />
 

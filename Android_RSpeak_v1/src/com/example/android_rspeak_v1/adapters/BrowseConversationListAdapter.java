@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.android_rspeak_v1.R;
+import com.example.android_rspeak_v1.database.Question;
 import com.example.android_rspeak_v1.database.Response;
 import com.example.android_rspeak_v1.database.Thread;
 
@@ -20,17 +21,17 @@ public class BrowseConversationListAdapter extends BaseAdapter
 {
 	private final Context context;
 	private final List<Response> responses;
-	private final Thread initial_thread;
+	private final Question question;
 	
 	private static final int INITIAL_QUESTION = 0;
 	private static final int LOCAL_RESPONSE = 1;
 	private static final int FOREIGN_RESPONSE = 2;
 
-	public BrowseConversationListAdapter( Context context, List<Response> responses, Thread initial_thread )
+	public BrowseConversationListAdapter( Context context, List<Response> responses, Question question )
 	{
 		this.context = context;
 		this.responses = responses;
-		this.initial_thread = initial_thread;
+		this.question = question;
 	}
 	
 	@Override
@@ -42,7 +43,7 @@ public class BrowseConversationListAdapter extends BaseAdapter
 	@Override 
 	public Object getItem( int position )
 	{
-		return ( position == 0 ? initial_thread : responses.get( position - 1 ) );
+		return ( position == 0 ? question : responses.get( position - 1 ) );
 	}
 	
 	@Override
@@ -92,15 +93,15 @@ public class BrowseConversationListAdapter extends BaseAdapter
 		
 		if ( viewType == INITIAL_QUESTION )
 		{
-			verse.setText( initial_thread.getQuestionContent() );
+			verse.setText( question.getQuestionContent() );
 			
 			TextView date = (TextView) convertView.findViewById( R.id.date );
 			DateFormat df = new SimpleDateFormat("dd/MM/yy");
-			Date postDate = new Date( initial_thread.getTimePosted() );
+			Date postDate = new Date( question.getTimePosted() );
 			date.setText( df.format( postDate ) );
 			
 			View divider = convertView.findViewById( R.id.divider );
-			int color = ( initial_thread.isCurrentlyOnAskerDevice() ? R.color.teal_light : R.color.ash_light );
+			int color = ( question.isCurrentlyOnAskerDevice() ? R.color.teal_light : R.color.ash_light );
 			divider.setBackgroundResource( color );
 			
 			verse.setTextColor( context.getResources().getColor( color ) );

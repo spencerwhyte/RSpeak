@@ -1,0 +1,70 @@
+package com.example.android_rspeak_v1.database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+public class QuestionsDataSource 
+{
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { 
+			RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID,
+			RSpeakSQLiteHelper.QUESTIONS_COLUMN_CONTENT,
+			RSpeakSQLiteHelper.QUESTIONS_COLUMN_TIME_POSTED };
+	
+	public QuestionsDataSource( Context context )
+	{
+		dbHelper = new RSpeakSQLiteHelper( context );
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+	
+	public void close()
+	{
+		dbHelper.close();
+	}
+	
+	public Question createQuestion( String question_content, 
+			long time_posted )
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(RSpeakSQLiteHelper.QUESTIONS_COLUMN_CONTENT, question_content );
+		values.put(RSpeakSQLiteHelper.QUESTIONS_COLUMN_TIME_POSTED, time_posted );
+		
+		long question_id = database.insert(RSpeakSQLiteHelper.TABLE_QUESTIONS, null, values);
+		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_QUESTIONS,
+				allColumns, 
+				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID + " = " + question_id,
+				null,
+				null,
+				null,
+				null);
+		cursor.moveToFirst();
+		Question newQuestion = cursorToQuestion( cursor );
+		cursor.close();
+		return newQuestion;
+	}
+	
+	public void deleteThread(Thread thread)
+	{
+		String thread_id = thread.getThreadID();
+		System.out.println("Thread with id " + thread_id + " and is being deleted.");
+		
+		// First delete all responses with that thread id then delete the actual thread
+		database.delete(RSpeakSQLiteHelper.TABLE_RESPONSES, 
+				RSpeakSQLiteHelper.RESPONSES_COLUMN_THREAD_ID + " = " + thread_id,
+				null);
+		
+		database.delete(RSpeakSQLiteHelper.TABLE_THREADS, 
+				RSpeakSQLiteHelper.THREADS_COLUMN_ID + " = " + thread_id, 
+				null);
+	}
+}

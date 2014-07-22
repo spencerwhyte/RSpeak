@@ -7,9 +7,9 @@ import android.text.format.DateFormat;
 
 public class Thread {
 	private String thread_id;
+	private long question_id;
 	private String other_device_id;
 	private boolean is_stopped;
-	private boolean currently_on_asker_device;
 	List<Response> responses;
 	
 	public String getThreadID()
@@ -20,6 +20,16 @@ public class Thread {
 	public void setThreadID(String new_thread_id)
 	{
 		thread_id = new_thread_id;
+	}
+	
+	public long getQuestionID()
+	{
+		return question_id;
+	}
+	
+	public void setQuestionID( long question_id )
+	{
+		question_id = question_id;
 	}
 	
 	public String getOtherDeviceID()
@@ -40,16 +50,6 @@ public class Thread {
 	public void setIsStopped(boolean new_is_stopped)
 	{
 		is_stopped = new_is_stopped;
-	}
-	
-	public boolean isCurrentlyOnAskerDevice()
-	{
-		return currently_on_asker_device;
-	}
-	
-	public void setCurrentlyOnAskerDevice(boolean new_currently_on_asker_device)
-	{
-		currently_on_asker_device = new_currently_on_asker_device;
 	}
 	
 	public List<Response> getResponses()

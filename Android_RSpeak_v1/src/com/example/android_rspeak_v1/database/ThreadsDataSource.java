@@ -9,18 +9,17 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 
-public class ThreadsDataSource {
+public class ThreadsDataSource 
+{
 
 	// Database Fields
 	private SQLiteDatabase database;
 	private RSpeakSQLiteHelper dbHelper;
 	private String[] allColumns = { 
 			RSpeakSQLiteHelper.THREADS_COLUMN_ID,
+			RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_ID,
 			RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID,
-			RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT,
-			RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED,
-			RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE,
-			RSpeakSQLiteHelper.THREADS_COLUMN_TIME_POSTED };
+			RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED };
 	private ResponsesDataSource responsesDataSource;
 	
 	public ThreadsDataSource( Context context )
@@ -39,23 +38,20 @@ public class ThreadsDataSource {
 	public void close()
 	{
 		dbHelper.close();
+		responsesDataSource.close();
 	}
 	
-	public Thread createThread( String thread_id, 
+	public Thread createThread( String thread_id,
+			long question_id,
 			String other_device_id, 
-			String question_content, 
-			boolean is_stopped, 
-			boolean currently_on_asker_device, 
-			long time_posted )
+			boolean is_stopped)
 	{
 		ContentValues values = new ContentValues();
 		
 		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_ID, thread_id);
+		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_ID, question_id);
 		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID, other_device_id);
-		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT, question_content);
 		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED, is_stopped);
-		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE, currently_on_asker_device);
-		values.put(RSpeakSQLiteHelper.THREADS_COLUMN_TIME_POSTED, time_posted);
 		
 		database.insert(RSpeakSQLiteHelper.TABLE_THREADS, null, values);
 		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_THREADS,
@@ -126,14 +122,13 @@ public class ThreadsDataSource {
 				"'" ).get( 0 );
 	}
 	
-	public List<Thread> getLocallyAskedThreads()
+	public List<Thread> getThreadsByQuestionID( long question_id )
 	{
-		return queryAllThreads( RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE + " = 1" );
-	}
-	
-	public List<Thread> getForeignAskedThreads()
-	{
-		return queryAllThreads( RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE + " = 0" );
+		return queryAllThreads(
+				RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_ID +
+				" = '" +
+				question_id + 
+				"'" );
 	}
 	
 	private Thread cursorToThread(Cursor cursor)
@@ -143,21 +138,15 @@ public class ThreadsDataSource {
 		thread.setThreadID(
 				cursor.getString(
 						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_ID)));
+		thread.setQuestionID(
+				cursor.getLong(
+						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_ID)));
 		thread.setOtherDeviceID(
 				cursor.getString(
 						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_OTHER_DEVICE_ID)));
-		thread.setQuestionContent(
-				cursor.getString(
-						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_QUESTION_CONTENT)));
 		thread.setIsStopped(
 				cursor.getInt(
 						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_IS_STOPPED)) > 0);
-		thread.setCurrentlyOnAskerDevice(
-				cursor.getInt(
-						cursor.getColumnIndex(RSpeakSQLiteHelper.THREADS_COLUMN_ON_ASKER_DEVICE)) > 0);
-		thread.setTimePosted(
-				cursor.getLong(
-						cursor.getColumnIndex(RSpeakSQLiteHelper.RESPONSES_COLUMN_TIME_POSTED)));
 		thread.setResponses(
 				responsesDataSource.queryAllResponses(
 						RSpeakSQLiteHelper.RESPONSES_COLUMN_THREAD_ID + " = '" + thread.getThreadID() + "'" ));

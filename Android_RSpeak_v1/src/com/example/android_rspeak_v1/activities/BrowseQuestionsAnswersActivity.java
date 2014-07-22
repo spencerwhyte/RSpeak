@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment;
-import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.ThreadOrigin;
+import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.QuestionOrigin;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -145,11 +145,11 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
 
         	if ( position == 0 ) // ASKED
         	{
-        		return QuestionsAnswersListFragment.newInstance( ThreadOrigin.LOCAL );
+        		return QuestionsAnswersListFragment.newInstance( QuestionOrigin.LOCAL );
         	}
         	else // if ( position == 1 ) // ANSWERED
         	{
-        		return QuestionsAnswersListFragment.newInstance( ThreadOrigin.FOREIGN );
+        		return QuestionsAnswersListFragment.newInstance( QuestionOrigin.FOREIGN );
         	}
         }
 
