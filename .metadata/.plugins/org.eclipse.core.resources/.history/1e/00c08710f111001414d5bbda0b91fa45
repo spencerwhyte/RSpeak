@@ -7,7 +7,8 @@
     	xmlns:tools="http://schemas.android.com/tools"
 	    android:id="@+id/pager"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
 	    android:layout_marginBottom="48dp"
 	    tools:context="com.example.android_rspeak_v1.activities.BrowseQuestionsAnswersActivity" />
     

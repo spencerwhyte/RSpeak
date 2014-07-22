@@ -8,7 +8,6 @@
 	    android:id="@+id/pager"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
-	    android:layout_marginBottom="48dp"
 	    tools:context="com.example.android_rspeak_v1.activities.BrowseQuestionsAnswersActivity" />
     
 
