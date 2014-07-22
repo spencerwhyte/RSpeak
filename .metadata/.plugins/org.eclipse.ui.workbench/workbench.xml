@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="28" version="2.0">
+<workbench progressCount="29" version="2.0">
 <workbenchAdvisor/>
 <window height="768" width="1212" x="21" y="32">
 <fastViewData fastViewLocation="1024"/>
@@ -45,6 +45,7 @@
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.jdt.ui.JavaSearchResultPage" org.eclipse.jdt.search.resultpage.grouping="3" org.eclipse.jdt.search.resultpage.limit="1000" org.eclipse.jdt.search.resultpage.limit_enabled="TRUE" org.eclipse.jdt.search.resultpage.sorting="1" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
@@ -76,7 +77,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (5 items)"/>
+<category IMemento.internal.id="Warnings (25 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="86" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -416,50 +417,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AskQuestionTransaction.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/AskQuestionTransaction.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/AskQuestionTransaction.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="Android_RSpeak_v1/AndroidManifest.xml">
-<persistable path="/Android_RSpeak_v1/AndroidManifest.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="strings.xml" tooltip="Android_RSpeak_v1/res/values/strings.xml">
-<persistable path="/Android_RSpeak_v1/res/values/strings.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="click_animated_button.xml" tooltip="Android_RSpeak_v1/res/drawable/click_animated_button.xml">
-<persistable path="/Android_RSpeak_v1/res/drawable/click_animated_button.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="colors.xml" tooltip="Android_RSpeak_v1/res/values/colors.xml">
-<persistable path="/Android_RSpeak_v1/res/values/colors.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_ask_question.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_ask_question.xml">
-<persistable path="/Android_RSpeak_v1/res/layout/fragment_ask_question.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_browse_questions_answers.xml" tooltip="Android_RSpeak_v1/res/layout/activity_browse_questions_answers.xml">
-<persistable path="/Android_RSpeak_v1/res/layout/activity_browse_questions_answers.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseConversationFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseConversationFragment.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseConversationFragment.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseQuestionsAnswersActivity.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/activities/BrowseQuestionsAnswersActivity.java">
 <persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/activities/BrowseQuestionsAnswersActivity.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="QuestionsAnswersArrayAdapter.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/QuestionsAnswersArrayAdapter.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/QuestionsAnswersArrayAdapter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RSpeakSQLiteHelper.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/RSpeakSQLiteHelper.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/RSpeakSQLiteHelper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ThreadsDataSource.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/ThreadsDataSource.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/ThreadsDataSource.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_browse_threads.xml" tooltip="Android_RSpeak_v1/res/layout/activity_browse_threads.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/activity_browse_threads.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseConversationListAdapter.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseConversationListAdapter.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseConversationListAdapter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseThreadsActivity.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/activities/BrowseThreadsActivity.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/activities/BrowseThreadsActivity.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_conversation_list_item_question.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_conversation_list_item_question.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/fragment_conversation_list_item_question.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="styles.xml" tooltip="Android_RSpeak_v1/res/values/styles.xml">
+<persistable path="/Android_RSpeak_v1/res/values/styles.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="thread_list_layout.xml" tooltip="Android_RSpeak_v1/res/layout/thread_list_layout.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/thread_list_layout.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseThreadsListAdapter.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseThreadsListAdapter.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseThreadsListAdapter.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="QuestionsAnswersListFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/QuestionsAnswersListFragment.java">
 <persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/QuestionsAnswersListFragment.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AskQuestionFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/AskQuestionFragment.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/AskQuestionFragment.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_browse_questions_answers.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_browse_questions_answers.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/fragment_browse_questions_answers.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AskQuestionActivity.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/AskQuestionActivity.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/AskQuestionActivity.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_browse_threads.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_browse_threads.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/fragment_browse_threads.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_conversation_list_item_local.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_conversation_list_item_local.xml">
-<persistable path="/Android_RSpeak_v1/res/layout/fragment_conversation_list_item_local.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_conversation_list_item_foreign.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_conversation_list_item_foreign.xml">
-<persistable path="/Android_RSpeak_v1/res/layout/fragment_conversation_list_item_foreign.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="styles.xml" tooltip="Android_RSpeak_v1/res/values-v14/styles.xml">
-<persistable path="/Android_RSpeak_v1/res/values-v14/styles.xml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseThreadsFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseThreadsFragment.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseThreadsFragment.java"/>
 </file>
 </mruList>
 </workbench>

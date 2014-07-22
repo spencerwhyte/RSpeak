@@ -45,8 +45,6 @@ public class QuestionsAnswersListFragment extends ListFragment
 			
         QuestionsDataSource questionsDataSource = new QuestionsDataSource( getActivity() );
         questionsDataSource.open();
-        
-        //dbHelper.fillDatabase();
 		
 		if ( questionOrigin == QuestionOrigin.LOCAL )
 		{

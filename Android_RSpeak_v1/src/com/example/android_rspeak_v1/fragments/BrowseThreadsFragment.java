@@ -42,7 +42,7 @@ public class BrowseThreadsFragment extends ListFragment
         ThreadsDataSource threadsDataSource = new ThreadsDataSource( getActivity() );
         threadsDataSource.open();
         
-        threads = threadsDataSource.getThreadsByQuestionID(question_id);
+        threads = threadsDataSource.getThreadsByQuestionID( question_id );
         threadsArray = threads.toArray( new Thread[ threads.size() ] );
 		     
 		BrowseThreadsListAdapter threads_adapter = new BrowseThreadsListAdapter( getActivity(), threadsArray );

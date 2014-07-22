@@ -54,7 +54,7 @@ public class QuestionsAnswersArrayAdapter extends ArrayAdapter<Question>
 	    	dateLine.setText( df.format( questionDate ) );
 		    
 	    	// if there is only one thread we'll show the information from that thread
-		    if ( threads.size() <= 1 )
+		    if ( threads.size() == 1 )
 		    {
 		    	Thread threadInstance = threads.get( 0 );
 		    	List<Response> responses = threadInstance.getResponses();

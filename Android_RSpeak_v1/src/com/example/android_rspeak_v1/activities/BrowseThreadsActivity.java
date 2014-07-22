@@ -4,6 +4,8 @@ import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.R.id;
 import com.example.android_rspeak_v1.R.layout;
 import com.example.android_rspeak_v1.R.menu;
+import com.example.android_rspeak_v1.database.Question;
+import com.example.android_rspeak_v1.database.QuestionsDataSource;
 import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
 import com.example.android_rspeak_v1.fragments.BrowseThreadsFragment;
 
@@ -17,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.os.Build;
 
 public class BrowseThreadsActivity extends ActionBarActivity {
@@ -28,6 +31,15 @@ public class BrowseThreadsActivity extends ActionBarActivity {
 		
 		Intent intent = getIntent();
 	    long question_id = intent.getLongExtra( RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID, 1 );
+	    
+	    // set up the question atop the threads list
+	    QuestionsDataSource qSource = new QuestionsDataSource( this );
+	    qSource.open();
+	    Question question = qSource.getQuestionById( question_id );
+	    
+	    TextView verse = (TextView) findViewById( R.id.verse );
+	    verse.setText( question.getQuestionContent() );
+	    qSource.close();
 
 		if (savedInstanceState == null) 
 		{

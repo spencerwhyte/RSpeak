@@ -108,11 +108,13 @@ public class QuestionsDataSource
 	
 	public Question getQuestionById( long question_id )
 	{
-		return queryAllQuestions(
+		List<Question> questions = queryAllQuestions(
 				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID +
 				" = '" +
 				question_id + 
-				"'" ).get( 0 );
+				"'" );
+		
+		return ( questions.size() == 0 ? null : questions.get( 0 ));
 	}
 	
 	public List<Question> getLocallyAskedQuestions()

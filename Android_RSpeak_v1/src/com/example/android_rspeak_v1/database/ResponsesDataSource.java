@@ -50,7 +50,7 @@ public class ResponsesDataSource {
 		long response_id = database.insert(RSpeakSQLiteHelper.TABLE_RESPONSES, null, values);
 		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_RESPONSES,
 				allColumns,
-				RSpeakSQLiteHelper.RESPONSES_COLUMN_RESPONSE_ID + " = " + response_id,
+				RSpeakSQLiteHelper.RESPONSES_COLUMN_RESPONSE_ID + " = '" + response_id + "'",
 				null,
 				null,
 				null,

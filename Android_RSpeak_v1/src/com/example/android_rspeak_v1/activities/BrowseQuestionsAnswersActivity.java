@@ -3,6 +3,7 @@ package com.example.android_rspeak_v1.activities;
 import java.util.Locale;
 
 import com.example.android_rspeak_v1.R;
+import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
 import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment;
 import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.QuestionOrigin;
 
@@ -80,10 +81,10 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
         Button ask_button = (Button) this.findViewById( R.id.ask_button );
         ask_button.setOnClickListener( new View.OnClickListener() 
         {
-			
+            
 			@Override
 			public void onClick(View v) 
-			{				
+			{			
 				// start the ask question activity: it has the text field for the question
 				Intent intent = new Intent( BrowseQuestionsAnswersActivity.this, AskQuestionActivity.class );
 			    startActivity(intent); 

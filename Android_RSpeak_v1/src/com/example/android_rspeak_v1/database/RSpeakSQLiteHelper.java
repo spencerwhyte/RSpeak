@@ -17,7 +17,6 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	public static final String TABLE_THREADS = "threads";
 	public static final String THREADS_COLUMN_ID = "thread_id";
 	public static final String THREADS_COLUMN_QUESTION_ID = "question_id";
-	public static final String THREADS_COLUMN_OTHER_DEVICE_ID = "other_device_id";
 	public static final String THREADS_COLUMN_IS_STOPPED = "is_stopped";
 	
 	// responses database keyterms
@@ -35,7 +34,7 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	// database creation statements
 	private static final String CREATE_QUESTIONS_DATABASE = "create table "
 			+ TABLE_QUESTIONS
-			+ "(" + QUESTIONS_COLUMN_ID + " integer primary key, "
+			+ "(" + QUESTIONS_COLUMN_ID + " integer primary key autoincrement, "
 			+ QUESTIONS_COLUMN_CONTENT + " text not null, "
 			+ QUESTIONS_COLUMN_TIME_POSTED + " integer, "
 			+ QUESTIONS_COLUMN_ON_ASKER_DEVICE + " numeric);";
@@ -44,7 +43,6 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 			+ TABLE_THREADS 
 			+ "(" + THREADS_COLUMN_ID + " text primary key not null, "
 			+ THREADS_COLUMN_QUESTION_ID + " integer not null, "
-			+ THREADS_COLUMN_OTHER_DEVICE_ID + " text not null, "
 			+ THREADS_COLUMN_IS_STOPPED + " numeric);";
 	
 	private static final String CREATE_RESPONSES_DATABASE = "create table "
@@ -55,9 +53,12 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 			+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + " numeric, "
 			+ RESPONSES_COLUMN_TIME_POSTED + " integer);";
 	
+	private Context context;
+	
 	public RSpeakSQLiteHelper(Context context)
 	{
 		super(context, RSPEAK_DATABASE_NAME, null, RSPEAK_DATABASE_VERSION);
+		this.context = context;
 	}
 	
 	@Override
@@ -82,92 +83,216 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	
 	public void fillDatabase()
 	{
-//		SQLiteDatabase db = this.getWritableDatabase();
-//		
-//		// THREADS WHERE YOU WERE THE ASKER
-//		// THREAD 1
-//		db.execSQL( "insert into " + TABLE_THREADS + "(" 
-//		+ THREADS_COLUMN_ID + ","  
-//		+ THREADS_COLUMN_OTHER_DEVICE_ID + "," 
-//		+ THREADS_COLUMN_QUESTION_CONTENT + "," 
-//		+ THREADS_COLUMN_IS_STOPPED + "," 
-//		+ THREADS_COLUMN_ON_ASKER_DEVICE + ","  
-//		+ THREADS_COLUMN_TIME_POSTED 
-//		+ ") values('thread 1', 'other_device_1', 'when will the sun set on the 23rd of april?', 0, 1, 1401292063000)");
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 1', 'who knows? it might not set at all.', 0, 1401292063000)" );
-//
-//		// THREAD 2
-//		db.execSQL( "insert into " + TABLE_THREADS + "(" 
-//		+ THREADS_COLUMN_ID + ","  
-//		+ THREADS_COLUMN_OTHER_DEVICE_ID + "," 
-//		+ THREADS_COLUMN_QUESTION_CONTENT + "," 
-//		+ THREADS_COLUMN_IS_STOPPED + "," 
-//		+ THREADS_COLUMN_ON_ASKER_DEVICE + ","  
-//		+ THREADS_COLUMN_TIME_POSTED 
-//		+ ") values('thread 2', 'other_device_2', 'what is your favourite eatery in Ottawa?', 1, 1, 1401292063000)");
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 2', 'I myself prefer Bread and Sons. They have great breakfast croissants.', 0, 1401292099000)" );
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 2', 'Ooo. Totally forgot about that place. Yes, fantastic sandwiches. Will be going there later today. Thanks!', 1, 1401299900000)" );
-//
-//
-//		// THREADS WHERE YOU WERE THE ANSWERER
-//		// THREAD 1
-//		db.execSQL( "insert into " + TABLE_THREADS + "(" 
-//		+ THREADS_COLUMN_ID + ","  
-//		+ THREADS_COLUMN_OTHER_DEVICE_ID + "," 
-//		+ THREADS_COLUMN_QUESTION_CONTENT + "," 
-//		+ THREADS_COLUMN_IS_STOPPED + "," 
-//		+ THREADS_COLUMN_ON_ASKER_DEVICE + ","  
-//		+ THREADS_COLUMN_TIME_POSTED 
-//		+ ") values('thread 3', 'other_device_1', 'when will the sun set on the 23rd of april?', 0, 0, 1401292063000)");
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 3', 'who knows? it might not set at all.', 1, 1401292063000)" );
-//
-//		// THREAD 2
-//		db.execSQL( "insert into " + TABLE_THREADS + "(" 
-//		+ THREADS_COLUMN_ID + ","  
-//		+ THREADS_COLUMN_OTHER_DEVICE_ID + "," 
-//		+ THREADS_COLUMN_QUESTION_CONTENT + "," 
-//		+ THREADS_COLUMN_IS_STOPPED + "," 
-//		+ THREADS_COLUMN_ON_ASKER_DEVICE + ","  
-//		+ THREADS_COLUMN_TIME_POSTED 
-//		+ ") values('thread 4', 'other_device_2', 'what is your favourite eatery in Ottawa?', 1, 0, 1401292063000)");
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 4', 'I myself prefer Bread and Sons. They have great breakfast croissants.', 1, 1401292099000)" );
-//
-//		db.execSQL( "insert into " + TABLE_RESPONSES + "("
-//		+ RESPONSES_COLUMN_THREAD_ID + ","
-//		+ RESPONSES_COLUMN_RESPONSE_CONTENT + ","
-//		+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + ","
-//		+ RESPONSES_COLUMN_TIME_POSTED
-//		+ ") values('thread 4', 'Ooo. Totally forgot about that place. Yes, fantastic sandwiches. Will be going there later today. Thanks!', 0, 1401299900000)" );
+		QuestionsDataSource qSource = new QuestionsDataSource( context );
+		ThreadsDataSource tSource = new ThreadsDataSource( context );
+		ResponsesDataSource rSource = new ResponsesDataSource( context );
+		
+		qSource.open();
+		tSource.open();
+		rSource.open();
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		// Questions WHERE YOU WERE THE ASKER
+		// Question 1	
+		qSource.createQuestion(
+				"when will the sun set on the 23rd of april?", 
+				1401292063000L, 
+				true );
+		
+		tSource.createThread(
+				"thread 1", 
+				1, 
+				false );
+		
+		tSource.createThread(
+				"thread 2", 
+				1, 
+				false );
+		
+		rSource.createResponse(
+				"thread 2", 
+				"who knows? it might not set at all.", 
+				false, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 2", 
+				"Now youre starting to scare me!", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 2", 
+				"Boo!!", 
+				false, 
+				1401292063000L);
+		
+		// Question 2
+		qSource.createQuestion(
+				"These bed bugs are killing me? Do I really need to throw out my mattress? How on earth did I get bed bugs on a 3 minute old mattress?", 
+				1401292063000L, 
+				true );
+		
+		// Question 3
+		qSource.createQuestion(
+				"Hey! Scream and Shout! Let it all out! Scream and Shout! Let it all out!", 
+				1401292063000L, 
+				true );
+		
+		tSource.createThread(
+				"thread 3", 
+				3, 
+				false );
+		
+		rSource.createResponse(
+				"thread 3", 
+				"AAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaAAaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!", 
+				false, 
+				1401292063000L);
+		
+		// Question 4
+		qSource.createQuestion(
+				"Ey baby want sum fuk?", 
+				1401292063000L, 
+				true );
+		
+		tSource.createThread(
+				"thread 4", 
+				4, 
+				false );
+		
+		// Question 5
+		qSource.createQuestion(
+				"How do I program dis shit?", 
+				1401292063000L, 
+				true );
+		
+		tSource.createThread(
+				"thread 5", 
+				5, 
+				false );
+		
+		rSource.createResponse(
+				"thread 5", 
+				"What are you talking about?", 
+				false, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 5", 
+				"Oh! Uhm, I was just trying to cut straight into a conversation. How are you doing?", 
+				true, 
+				1401292063000L);
+
+		rSource.createResponse(
+				"thread 5", 
+				"ok?! Not bad. You?", 
+				false, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 5", 
+				"Long programming homework! :<", 
+				true, 
+				1401292063000L);
+				
+		// Question 6
+		qSource.createQuestion(
+				"How much do Ottawans tip at a high-end restaurant?", 
+				1401292063000L, 
+				true );
+		
+		tSource.createThread(
+				"thread 6", 
+				6, 
+				false );
+		
+		rSource.createResponse(
+				"thread 6", 
+				"15% if it was decent service, 25% if it was superb, more than that if you are expecting something more in return..", 
+				false, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 6", 
+				"ok. Creepy. Bye!", 
+				true, 
+				1401292063000L);
+		
+		// Questions from FOREIGN devices
+		// Question 7
+		qSource.createQuestion(
+				"How do you use a plunger?", 
+				1401292063000L, 
+				false );
+		
+		tSource.createThread(
+				"thread 7", 
+				7, 
+				false );
+		
+		rSource.createResponse(
+				"thread 7", 
+				"step 1: block toilet.", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 7", 
+				"step 2: place plunger onto the toilet hole.", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 7", 
+				"step 3: push relentlessly.", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 7", 
+				"step 4: shit everywhere.", 
+				true, 
+				1401292063000L);
+		
+		// Question 8
+		qSource.createQuestion(
+				"Does anyone want to play soccer this evening?", 
+				1401292063000L, 
+				false );
+		
+		tSource.createThread(
+				"thread 8", 
+				8, 
+				false );
+		
+		rSource.createResponse(
+				"thread 8", 
+				"Ill check with my brother.", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 8", 
+				"Wait! Really? Cool.", 
+				false, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 8", 
+				"He says hes ok. Where at?", 
+				true, 
+				1401292063000L);
+		
+		rSource.createResponse(
+				"thread 8", 
+				"Holy shit! Carlington Park. Never thought this would work!", 
+				false, 
+				1401292063000L);
+		
+		qSource.close();
+		tSource.close();
+		rSource.close();
 	}
 		
 }
