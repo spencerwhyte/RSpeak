@@ -47,13 +47,7 @@ public class RegisterDeviceTransaction
 	public void beginTransaction()
 	{	
 		// first create a random 16 character String
-		Random random = new Random();
-		char[] id = new char[ 16 ];
-		for ( int i = 0; i < 16; i++ )
-		{
-			id[ i ] = symbols[ random.nextInt( symbols.length ) ];
-		}
-		String idString = new String( id );
+		String idString = getRandomIDString();
 		
 		// then create the JSON object for the http request
 		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
@@ -92,15 +86,16 @@ public class RegisterDeviceTransaction
 					Log.e( "error", "The JSON response received after registering the device couldn't be parsed" );
 				}
 				
-				// Remove the request from the database
-				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-				requestSource.open();
-				requestSource.deleteRequest( request.getID() );
-				requestSource.close();
-				
-				if ( !valid_id ) // start a new request with a new random ID
+				if ( valid_id ) // Remove the request from the database
 				{
-					beginTransaction();
+					HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+					requestSource.open();
+					requestSource.deleteRequest( request.getID() );
+					requestSource.close();
+				}
+				else // create another ID
+				{
+					
 				}
 			}
 		};
@@ -114,8 +109,21 @@ public class RegisterDeviceTransaction
 			@Override
 			public void onErrorResponse( VolleyError error )
 			{
-				Log.e( "error", "failed to register the device with the server" );
+				Log.e( "error", "failed to send the question to the server" );
 			}
 		};
+	}
+	
+	public String getRandomIDString()
+	{
+		Random random = new Random();
+		char[] id = new char[ 16 ];
+		
+		for ( int i = 0; i < 16; i++ )
+		{
+			id[ i ] = symbols[ random.nextInt( symbols.length ) ];
+		}
+		
+		return new String( id );
 	}
 }

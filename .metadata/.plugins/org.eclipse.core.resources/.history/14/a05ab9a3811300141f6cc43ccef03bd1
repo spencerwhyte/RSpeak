@@ -100,9 +100,8 @@ public class RegisterDeviceTransaction
 				
 				if ( !valid_id ) // start a new request with a new random ID
 				{
-					beginTransaction();
+					
 				}
-			}
 		};
 	}
 
@@ -114,7 +113,7 @@ public class RegisterDeviceTransaction
 			@Override
 			public void onErrorResponse( VolleyError error )
 			{
-				Log.e( "error", "failed to register the device with the server" );
+				Log.e( "error", "failed to send the question to the server" );
 			}
 		};
 	}

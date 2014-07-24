@@ -1,9 +1,7 @@
 package com.example.android_rspeak_v1.transactions;
 
 import java.util.HashMap;
-import java.util.Random;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -46,21 +44,15 @@ public class RegisterDeviceTransaction
 	
 	public void beginTransaction()
 	{	
-		// first create a random 16 character String
-		Random random = new Random();
-		char[] id = new char[ 16 ];
-		for ( int i = 0; i < 16; i++ )
-		{
-			id[ i ] = symbols[ random.nextInt( symbols.length ) ];
-		}
-		String idString = new String( id );
+		// first create a random 60 character String
+		
 		
 		// then create the JSON object for the http request
 		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
 		HashMap<String, String> params = new HashMap<String, String>();
-	    params.put( HTTPRequest.DATA_DEVICE_ID, idString );
-	    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
-	    params.put( HTTPRequest.DATA_PUSH_NOTIFICATION_ID,  );
+	    params.put( HTTPRequest.DATA_DEVICE_ID, device_properties.getString( "device_id", "null" ));
+	    params.put( HTTPRequest.DATA_QUESTION_ID, String.valueOf( question.getID() ));
+	    params.put( HTTPRequest.DATA_CONTENT, question_content );
 	    JSONObject request_data = new JSONObject(params);
 		
 		// then add the question request to the database
@@ -74,48 +66,32 @@ public class RegisterDeviceTransaction
 	}
 	
 	// if the request is successful
-	private Response.Listener<JSONObject> successListener()
-	{
-		return new Response.Listener<JSONObject>() 
+		private Response.Listener<JSONObject> successListener()
 		{
-			@Override
-			public void onResponse( JSONObject response )
+			return new Response.Listener<JSONObject>() 
 			{
-				boolean valid_id = false;
-				
-				try
+				@Override
+				public void onResponse( JSONObject response )
 				{
-					valid_id = response.getBoolean( HTTPRequest.DATA_VALID_ID );
+					// Remove the request from the database
+					HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+					requestSource.open();
+					requestSource.deleteRequest( request.getID() );
+					requestSource.close();
 				}
-				catch( JSONException e )
-				{
-					Log.e( "error", "The JSON response received after registering the device couldn't be parsed" );
-				}
-				
-				// Remove the request from the database
-				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-				requestSource.open();
-				requestSource.deleteRequest( request.getID() );
-				requestSource.close();
-				
-				if ( !valid_id ) // start a new request with a new random ID
-				{
-					beginTransaction();
-				}
-			}
-		};
-	}
+			};
+		}
 
-	// if the request is successful
-	private Response.ErrorListener errorListener()
-	{
-		return new Response.ErrorListener() 
+		// if the request is successful
+		private Response.ErrorListener errorListener()
 		{
-			@Override
-			public void onErrorResponse( VolleyError error )
+			return new Response.ErrorListener() 
 			{
-				Log.e( "error", "failed to register the device with the server" );
-			}
-		};
-	}
+				@Override
+				public void onErrorResponse( VolleyError error )
+				{
+					Log.e( "error", "failed to send the question to the server" );
+				}
+			};
+		}
 }

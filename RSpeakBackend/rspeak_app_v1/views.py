@@ -29,9 +29,14 @@ def register_device(request):
 			except KeyError:
 				print "Error: A posted question did not have a JSON object with the required properties"
 			else:
-				# First add question to database
-				device = Device( device_id=device_id, device_type=device_type, push_notification_id=push_notification_id )
-				device.save()
+				# See if the device id already exists
+				try:
+					device = Device.objects.get( device_id=device_id )
+					return HttpResponse( json.dumps({ 'valid_id' : False }), mimetype="application/json" )
+				else:
+					device = Device( device_id=device_id, device_type=device_type, push_notification_id=push_notification_id )
+					device.save()
+					return HttpResponse( json.dumps({ 'valid_id' : True }), mimetype="application/json" )
 
 
 # Request handler when someone posts a question

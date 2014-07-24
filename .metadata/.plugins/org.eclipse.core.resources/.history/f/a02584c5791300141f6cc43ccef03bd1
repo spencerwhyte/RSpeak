@@ -1,0 +1,6 @@
+package com.example.android_rspeak_v1.transactions;
+
+public class RegisterDeviceTransaction 
+{
+
+}

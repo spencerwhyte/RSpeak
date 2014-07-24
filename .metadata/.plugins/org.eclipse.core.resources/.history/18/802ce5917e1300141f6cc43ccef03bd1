@@ -3,7 +3,6 @@ package com.example.android_rspeak_v1.transactions;
 import java.util.HashMap;
 import java.util.Random;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -74,48 +73,32 @@ public class RegisterDeviceTransaction
 	}
 	
 	// if the request is successful
-	private Response.Listener<JSONObject> successListener()
-	{
-		return new Response.Listener<JSONObject>() 
+		private Response.Listener<JSONObject> successListener()
 		{
-			@Override
-			public void onResponse( JSONObject response )
+			return new Response.Listener<JSONObject>() 
 			{
-				boolean valid_id = false;
-				
-				try
+				@Override
+				public void onResponse( JSONObject response )
 				{
-					valid_id = response.getBoolean( HTTPRequest.DATA_VALID_ID );
+					// Remove the request from the database
+					HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+					requestSource.open();
+					requestSource.deleteRequest( request.getID() );
+					requestSource.close();
 				}
-				catch( JSONException e )
-				{
-					Log.e( "error", "The JSON response received after registering the device couldn't be parsed" );
-				}
-				
-				// Remove the request from the database
-				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-				requestSource.open();
-				requestSource.deleteRequest( request.getID() );
-				requestSource.close();
-				
-				if ( !valid_id ) // start a new request with a new random ID
-				{
-					beginTransaction();
-				}
-			}
-		};
-	}
+			};
+		}
 
-	// if the request is successful
-	private Response.ErrorListener errorListener()
-	{
-		return new Response.ErrorListener() 
+		// if the request is successful
+		private Response.ErrorListener errorListener()
 		{
-			@Override
-			public void onErrorResponse( VolleyError error )
+			return new Response.ErrorListener() 
 			{
-				Log.e( "error", "failed to register the device with the server" );
-			}
-		};
-	}
+				@Override
+				public void onErrorResponse( VolleyError error )
+				{
+					Log.e( "error", "failed to send the question to the server" );
+				}
+			};
+		}
 }
