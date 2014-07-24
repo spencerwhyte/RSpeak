@@ -14,7 +14,6 @@ import java.util.HashMap;
 import org.json.JSONObject;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
 import com.example.android_rspeak_v1.database.Question;
@@ -22,7 +21,6 @@ import com.example.android_rspeak_v1.database.QuestionsDataSource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class AskQuestionTransaction 
 {
@@ -34,7 +32,7 @@ public class AskQuestionTransaction
 		this.context = context;
 	}
 	
-	public void beginTransaction( String question_content )
+	public void beginQuestionTransaction( String question_content )
 	{
 		// first add the question to the database
 		QuestionsDataSource questionSource = new QuestionsDataSource( context );
@@ -57,7 +55,7 @@ public class AskQuestionTransaction
 		requestSource.close();
 		
 		// then try to send the request to the server
-		request.startRequest( successListener(), errorListener() );
+		request.startRequest( successListener(), errorListener );
 	}
 	
 	// if the request is successful
@@ -85,7 +83,11 @@ public class AskQuestionTransaction
 			@Override
 			public void onErrorResponse( VolleyError error )
 			{
-				Log.e( "error", "failed to send the question to the server" );
+				// Remove the request from the database
+				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+				requestSource.open();
+				requestSource.deleteRequest( request.getID() );
+				requestSource.close();
 			}
 		};
 	}

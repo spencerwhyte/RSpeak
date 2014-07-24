@@ -6,10 +6,8 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 public class HTTPRequest 
 {
@@ -19,7 +17,6 @@ public class HTTPRequest
 	public static final String URL_ASK = "/ask";
 	public static final String URL_RESPOND = "/respond";
 	public static final String URL_UPDATE_THREAD = "/update/thread";
-	
 	// JSON data constants
 	public static final String DATA_DEVICE_ID = "device_id";
 	public static final String DATA_DEVICE_TYPE = "device_type";
@@ -30,7 +27,6 @@ public class HTTPRequest
 	
 	public enum Type { GET, POST };
 	
-	// variables that change form instance to instance
 	private int request_id;
 	private Type type;
 	private String url;

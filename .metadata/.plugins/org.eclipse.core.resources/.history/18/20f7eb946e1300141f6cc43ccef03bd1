@@ -14,7 +14,6 @@ import java.util.HashMap;
 import org.json.JSONObject;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
 import com.example.android_rspeak_v1.database.Question;
@@ -22,19 +21,17 @@ import com.example.android_rspeak_v1.database.QuestionsDataSource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class AskQuestionTransaction 
 {
 	private Context context;
-	private HTTPRequest request;
 	
 	public AskQuestionTransaction( Context context )
 	{
 		this.context = context;
 	}
 	
-	public void beginTransaction( String question_content )
+	public void beginQuestionTransaction( String question_content )
 	{
 		// first add the question to the database
 		QuestionsDataSource questionSource = new QuestionsDataSource( context );
@@ -53,14 +50,13 @@ public class AskQuestionTransaction
 		// then add the question request to the database
 		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
 		requestSource.open();
-		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_ASK, request_data.toString() );
+		HTTPRequest request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_ASK, request_data.toString() );
 		requestSource.close();
 		
 		// then try to send the request to the server
-		request.startRequest( successListener(), errorListener() );
+		request.startRequest( successListener, errorListener );
 	}
 	
-	// if the request is successful
 	private Response.Listener<JSONObject> successListener()
 	{
 		return new Response.Listener<JSONObject>() 
@@ -68,25 +64,9 @@ public class AskQuestionTransaction
 			@Override
 			public void onResponse( JSONObject response )
 			{
-				// Remove the request from the database
-				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-				requestSource.open();
-				requestSource.deleteRequest( request.getID() );
-				requestSource.close();
+				}
 			}
 		};
 	}
 
-	// if the request is successful
-	private Response.ErrorListener errorListener()
-	{
-		return new Response.ErrorListener() 
-		{
-			@Override
-			public void onErrorResponse( VolleyError error )
-			{
-				Log.e( "error", "failed to send the question to the server" );
-			}
-		};
-	}
 }

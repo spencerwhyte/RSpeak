@@ -60,8 +60,10 @@ public class HTTPRequestsDataSource
 		return newRequest;
 	}
 	
-	public void deleteRequest( int request_id )
-	{		
+	public void deleteRequest( HTTPRequest request )
+	{
+		int request_id = request.getID();
+		
 		database.delete( RSpeakSQLiteHelper.TABLE_HTTPREQUESTS, 
 				RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_REQUEST_ID + " = " + request_id, 
 				null );

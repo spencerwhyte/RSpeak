@@ -34,7 +34,7 @@ public class AskQuestionTransaction
 		this.context = context;
 	}
 	
-	public void beginTransaction( String question_content )
+	public void beginQuestionTransaction( String question_content )
 	{
 		// first add the question to the database
 		QuestionsDataSource questionSource = new QuestionsDataSource( context );
