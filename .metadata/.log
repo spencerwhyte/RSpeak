@@ -6439,3 +6439,79 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2014-07-23 13:50:40.585
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2014-07-24 10:30:02.761 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_22
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/hashemshawqi/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/hashemshawqi/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2014-07-24 10:30:32.192
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-24 11:37:09.387
+!MESSAGE Failed converting ECJ parse tree to Lombok for file /Users/hashemshawqi/Desktop/RSPEAK/RSpeak/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/HTTPRequestsDataSource.java
+!STACK 0
+java.lang.NullPointerException: returnTypeReference is mandatory
+	at lombok.ast.MethodDeclaration.astReturnTypeReference(MethodDeclaration.java:75)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitMethodDeclaration(EcjTreeConverter.java:1236)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:152)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at lombok.ast.ecj.EcjTreeConverter.toTree(EcjTreeConverter.java:236)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:282)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:252)
+	at lombok.ast.ecj.EcjTreeConverter.access$100(EcjTreeConverter.java:141)
+	at lombok.ast.ecj.EcjTreeConverter$2.createNormalTypeBody(EcjTreeConverter.java:562)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitTypeDeclaration(EcjTreeConverter.java:485)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:48)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at lombok.ast.ecj.EcjTreeConverter.toTree(EcjTreeConverter.java:236)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:282)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:252)
+	at lombok.ast.ecj.EcjTreeConverter.access$100(EcjTreeConverter.java:141)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitCompilationUnitDeclaration(EcjTreeConverter.java:440)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:264)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at com.android.ide.eclipse.adt.internal.lint.EclipseLintClient$EclipseJavaParser.parseJava(EclipseLintClient.java:1144)
+	at com.android.tools.lint.client.api.JavaVisitor.visitFile(JavaVisitor.java:197)
+	at com.android.tools.lint.client.api.LintDriver.checkIndividualJavaFiles(LintDriver.java:1571)
+	at com.android.tools.lint.client.api.LintDriver.runFileDetectors(LintDriver.java:968)
+	at com.android.tools.lint.client.api.LintDriver.checkProject(LintDriver.java:845)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:419)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:363)
+	at com.android.ide.eclipse.adt.internal.lint.LintJob.run(LintJob.java:163)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-07-24 11:37:27.972
+!MESSAGE Failed converting ECJ parse tree to Lombok for file /Users/hashemshawqi/Desktop/RSPEAK/RSpeak/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/HTTPRequestsDataSource.java
+!STACK 0
+java.lang.NullPointerException: returnTypeReference is mandatory
+	at lombok.ast.MethodDeclaration.astReturnTypeReference(MethodDeclaration.java:75)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitMethodDeclaration(EcjTreeConverter.java:1236)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:152)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at lombok.ast.ecj.EcjTreeConverter.toTree(EcjTreeConverter.java:236)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:282)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:252)
+	at lombok.ast.ecj.EcjTreeConverter.access$100(EcjTreeConverter.java:141)
+	at lombok.ast.ecj.EcjTreeConverter$2.createNormalTypeBody(EcjTreeConverter.java:562)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitTypeDeclaration(EcjTreeConverter.java:485)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:48)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at lombok.ast.ecj.EcjTreeConverter.toTree(EcjTreeConverter.java:236)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:282)
+	at lombok.ast.ecj.EcjTreeConverter.fillList(EcjTreeConverter.java:252)
+	at lombok.ast.ecj.EcjTreeConverter.access$100(EcjTreeConverter.java:141)
+	at lombok.ast.ecj.EcjTreeConverter$2.visitCompilationUnitDeclaration(EcjTreeConverter.java:440)
+	at lombok.ast.ecj.EcjTreeVisitor.visitEcjNode(EcjTreeVisitor.java:264)
+	at lombok.ast.ecj.EcjTreeConverter.visit(EcjTreeConverter.java:295)
+	at com.android.ide.eclipse.adt.internal.lint.EclipseLintClient$EclipseJavaParser.parseJava(EclipseLintClient.java:1144)
+	at com.android.tools.lint.client.api.JavaVisitor.visitFile(JavaVisitor.java:197)
+	at com.android.tools.lint.client.api.LintDriver.checkIndividualJavaFiles(LintDriver.java:1571)
+	at com.android.tools.lint.client.api.LintDriver.runFileDetectors(LintDriver.java:968)
+	at com.android.tools.lint.client.api.LintDriver.checkProject(LintDriver.java:845)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:419)
+	at com.android.tools.lint.client.api.LintDriver.analyze(LintDriver.java:363)
+	at com.android.ide.eclipse.adt.internal.lint.LintJob.run(LintJob.java:163)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

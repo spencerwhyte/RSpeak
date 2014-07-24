@@ -1,0 +1,25 @@
+package com.example.android_rspeak_v1.database;
+
+public class HTTPRequest 
+{
+	public static enum HTTP_TYPE = { GET, POST };
+	private int request_id;
+	private String type;
+	private String url;
+	private String data;
+	
+	public int getID()
+	{
+		return request_id;
+	}
+	
+	public void setID( int request_id )
+	{
+		this.request_id = request_id;
+	}
+	
+	public String getType()
+	{
+		
+	}
+}

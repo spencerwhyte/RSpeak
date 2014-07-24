@@ -26,6 +26,13 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 	public static final String RESPONSES_COLUMN_RESPONSE_CONTENT = "response_content";
 	public static final String RESPONSES_COLUMN_ON_RESPONDER_DEVICE = "currently_on_responder_device";
 	public static final String RESPONSES_COLUMN_TIME_POSTED = "time_posted";
+	
+	// HTTPRequests database keyterms
+	public static final String TABLE_HTTPREQUESTS = "http_requests";
+	public static final String HTTPREQUESTS_COLUMN_REQUEST_ID = "request_id";
+	public static final String HTTPREQUESTS_COLUMN_TYPE = "type";
+	public static final String HTTPREQUESTS_COLUMN_URL = "url";
+	public static final String HTTPREQUESTS_COLUMN_DATA = "data";
 
 	// further helper keyterms
 	private static final String RSPEAK_DATABASE_NAME = "rspeak.db";
@@ -53,6 +60,13 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 			+ RESPONSES_COLUMN_ON_RESPONDER_DEVICE + " numeric, "
 			+ RESPONSES_COLUMN_TIME_POSTED + " integer);";
 	
+	private static final String CREATE_HTTPREQUESTS_DATABASE = "create table "
+			+ TABLE_HTTPREQUESTS
+			+ "(" + HTTPREQUESTS_COLUMN_REQUEST_ID + " integer primary key autoincrement, "
+			+ HTTPREQUESTS_COLUMN_TYPE + " integer not null, "
+			+ HTTPREQUESTS_COLUMN_URL + " text not null, "
+			+ HTTPREQUESTS_COLUMN_DATA + " text not null);";
+	
 	private Context context;
 	
 	public RSpeakSQLiteHelper(Context context)
@@ -67,6 +81,7 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 		database.execSQL( CREATE_QUESTIONS_DATABASE );
 		database.execSQL( CREATE_THREADS_DATABASE );
 		database.execSQL( CREATE_RESPONSES_DATABASE );
+		database.execSQL( CREATE_HTTPREQUESTS_DATABASE );
 	}
 	
 	@Override

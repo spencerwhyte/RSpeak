@@ -101,7 +101,7 @@ public class QuestionsDataSource
 		return questions;
 	}
 	
-	public List<Question> getAllThreads()
+	public List<Question> getAllQuestions()
 	{
 		return queryAllQuestions( null );
 	}

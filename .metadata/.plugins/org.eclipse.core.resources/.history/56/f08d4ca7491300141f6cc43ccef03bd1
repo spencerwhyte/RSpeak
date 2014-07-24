@@ -1,0 +1,68 @@
+package com.example.android_rspeak_v1.database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+public class HTTPRequestsDataSource 
+{
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { 
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_REQUEST_ID,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA };
+	
+	public HTTPRequestsDataSource( Context context )
+	{
+		dbHelper = new RSpeakSQLiteHelper( context );
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+	
+	public void close()
+	{
+		dbHelper.close();
+	}
+
+	public Question createQuestion( int type, 
+			String url,
+			String data )
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE, type );
+		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL, url );
+		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA, data );
+		
+		
+		int request_id = (int) database.insert( RSpeakSQLiteHelper.TABLE_HTTPREQUESTS, null, values );
+		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_QUESTIONS,
+				allColumns, 
+				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID + " = " + request_id,
+				null,
+				null,
+				null,
+				null);
+		cursor.moveToFirst();
+		HTTPRequest newRequest = cursorToHTTPRequest( cursor );
+		cursor.close();
+		return newRequest;
+	}
+	
+	public void deleteQuestion(Question question)
+	{
+		long question_id = question.getQuestionID();
+		
+		database.delete(RSpeakSQLiteHelper.TABLE_QUESTIONS, 
+				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID + " = " + question_id, 
+				null);
+	}
+}

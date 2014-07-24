@@ -1,0 +1,37 @@
+package com.example.android_rspeak_v1.database;
+
+import android.content.Context;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+public class HTTPRequestsDataSource 
+{
+	// Database Fields
+	private SQLiteDatabase database;
+	private RSpeakSQLiteHelper dbHelper;
+	private String[] allColumns = { 
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_REQUEST_ID,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL,
+			RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA };
+	
+	public QuestionsDataSource( Context context )
+	{
+		dbHelper = new RSpeakSQLiteHelper( context );
+		
+		threadsDataSource = new ThreadsDataSource( context );
+		threadsDataSource.open();
+	}
+	
+	public void open() throws SQLException
+	{
+		database = dbHelper.getWritableDatabase();
+	}
+	
+	public void close()
+	{
+		dbHelper.close();
+		threadsDataSource.close();
+	}
+
+}
