@@ -77,7 +77,7 @@ public class QuestionsAnswersListFragment extends ListFragment
 		}
 		else // show a list of the available threads
 		{
-			long question_id = questionsArray[ position ].getQuestionID();
+			long question_id = questionsArray[ position ].getID();
 			
 			Intent intent = new Intent( getActivity(), BrowseThreadsActivity.class );
 		    intent.putExtra( RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID, question_id );

@@ -10,12 +10,12 @@ public class Question
 	private boolean currently_on_asker_device;
 	private List<Thread> threads;
 	
-	public long getQuestionID()
+	public long getID()
 	{
 		return question_id;
 	}
 	
-	public void setQuestionID( long question_id )
+	public void setID( long question_id )
 	{
 		this.question_id = question_id;
 	}

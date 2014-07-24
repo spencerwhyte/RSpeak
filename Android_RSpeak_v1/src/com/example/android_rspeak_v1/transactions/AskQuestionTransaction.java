@@ -9,10 +9,50 @@
 
 package com.example.android_rspeak_v1.transactions;
 
+import java.util.HashMap;
+
+import org.json.JSONObject;
+
+import com.example.android_rspeak_v1.database.HTTPRequest;
+import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
+import com.example.android_rspeak_v1.database.Question;
+import com.example.android_rspeak_v1.database.QuestionsDataSource;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 public class AskQuestionTransaction 
 {
-	public static void beginQuestionTransaction( String question )
+	private Context context;
+	
+	public AskQuestionTransaction( Context context )
 	{
+		this.context = context;
+	}
+	
+	public void beginQuestionTransaction( String question_content )
+	{
+		// first add the question to the database
+		QuestionsDataSource questionSource = new QuestionsDataSource( context );
+		questionSource.open();
+		Question question = questionSource.createQuestion( question_content, System.currentTimeMillis(), true );
+		questionSource.close();
 		
+		// then create the JSON object for the http request
+		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+
+		HashMap<String, String> params = new HashMap<String, String>();
+	    params.put( HTTPRequest.DATA_DEVICE_ID, device_properties.getString( "device_id", "null" ));
+	    params.put( HTTPRequest.DATA_QUESTION_ID, String.valueOf( question.getID() ));
+	    params.put( HTTPRequest.DATA_CONTENT, question_content );
+	    JSONObject request_data = new JSONObject(params);
+		
+		// then add the question request to the database
+		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+		requestSource.open();
+		HTTPRequest request = requestSource.createRequest( HTTPRequest.Type.POST, "127.0.0.1", request_data.toString() );
+		requestSource.close();
+		
+		// then try to send the request to the server
 	}
 }

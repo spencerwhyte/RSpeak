@@ -35,13 +35,13 @@ public class HTTPRequestsDataSource
 		dbHelper.close();
 	}
 
-	public HTTPRequest createRequest( int type, 
+	public HTTPRequest createRequest( HTTPRequest.Type type, 
 			String url,
 			String data )
 	{
 		ContentValues values = new ContentValues();
 		
-		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE, type );
+		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE, type.ordinal() );
 		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL, url );
 		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA, data );
 		

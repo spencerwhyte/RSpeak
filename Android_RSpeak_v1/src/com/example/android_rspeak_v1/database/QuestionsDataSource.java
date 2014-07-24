@@ -70,7 +70,7 @@ public class QuestionsDataSource
 	
 	public void deleteQuestion(Question question)
 	{
-		long question_id = question.getQuestionID();
+		long question_id = question.getID();
 		
 		database.delete(RSpeakSQLiteHelper.TABLE_QUESTIONS, 
 				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID + " = " + question_id, 
@@ -131,7 +131,7 @@ public class QuestionsDataSource
 	{
 		Question question = new Question();
 		
-		question.setQuestionID(
+		question.setID(
 				cursor.getLong(
 						cursor.getColumnIndex(RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID)));
 		question.setQuestionContent(
@@ -144,7 +144,7 @@ public class QuestionsDataSource
 				cursor.getInt(
 						cursor.getColumnIndex(RSpeakSQLiteHelper.QUESTIONS_COLUMN_ON_ASKER_DEVICE)) == ON_ASKER_DEVICE_TRUE );
 		question.setThreads(
-				threadsDataSource.getThreadsByQuestionID( question.getQuestionID() ));
+				threadsDataSource.getThreadsByQuestionID( question.getID() ));
 		
 		return question;
 	}

@@ -46,7 +46,7 @@ def ask(request):
 
 			try:
 				question_id = json_data['question_id']
-				question_content = json_data['question_content']
+				question_content = json_data['content']
 				asker_device_id = json_data['device_id']
 			except KeyError:
 				print "Error: A posted question did not have a JSON object with the required properties"
@@ -90,8 +90,8 @@ def respond(request):
 
 			try:
 				thread = json_data['thread_id']
-				response_content = json_data['response_content']
-				responder_device_id = json_data['responder_device_id']
+				response_content = json_data['content']
+				device_id = json_data['device_id']
 			except KeyError:
 				print "Error: A posted response did not have a JSON object with the required properties"
 			else:
