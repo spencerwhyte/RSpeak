@@ -106,8 +106,8 @@ public class HTTPRequestsDataSource
 				cursor.getInt(
 						cursor.getColumnIndex( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_REQUEST_ID )));
 		request.setType(
-				cursor.getInt(
-						cursor.getColumnIndex( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE )));
+				HTTPRequest.Type.values()[ cursor.getInt(
+						cursor.getColumnIndex( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE ))]);
 		request.setURL(
 				cursor.getString(
 						cursor.getColumnIndex( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL )));

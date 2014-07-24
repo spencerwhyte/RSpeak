@@ -50,9 +50,10 @@ public class AskQuestionTransaction
 		// then add the question request to the database
 		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
 		requestSource.open();
-		HTTPRequest request = requestSource.createRequest( HTTPRequest.Type.POST, "127.0.0.1", request_data.toString() );
+		HTTPRequest request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_ASK, request_data.toString() );
 		requestSource.close();
 		
 		// then try to send the request to the server
+		request.startRequest( successListener, errorListener );
 	}
 }

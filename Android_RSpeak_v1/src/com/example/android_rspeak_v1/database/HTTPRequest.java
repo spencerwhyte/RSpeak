@@ -1,7 +1,23 @@
 package com.example.android_rspeak_v1.database;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 public class HTTPRequest 
 {
+	// URL constants
+	public static final String BASE_URL = "127.0.0.1/v1";
+	public static final String URL_REGISTER = "/register_device";
+	public static final String URL_ASK = "/ask";
+	public static final String URL_RESPOND = "/respond";
+	public static final String URL_UPDATE_THREAD = "/update/thread";
+	// JSON data constants
 	public static final String DATA_DEVICE_ID = "device_id";
 	public static final String DATA_DEVICE_TYPE = "device_type";
 	public static final String DATA_PUSH_NOTIFICATION_ID = "push_notification_id";
@@ -12,7 +28,7 @@ public class HTTPRequest
 	public enum Type { GET, POST };
 	
 	private int request_id;
-	private int type;
+	private Type type;
 	private String url;
 	private String data;
 	
@@ -26,14 +42,14 @@ public class HTTPRequest
 		this.request_id = request_id;
 	}
 	
-	public int getType()
+	public Type getType()
 	{
 		return type;
 	}
 	
-	public void setType( int type )
+	public void setType( Type type )
 	{
-		this.type =type;
+		this.type = type;
 	}
 	
 	public String getURL()
@@ -56,14 +72,33 @@ public class HTTPRequest
 		this.data = data;
 	}
 	
-	public void startRequest()
+	public void startRequest( Response.Listener<JSONObject> successListener, Response.ErrorListener errorListener )
 	{
-		JsonObjectRequest request = new JsonObjectRequest(
-			Request.Method.POST,
-			Constants.BASE_URL+"register",
-			new JSONObject(params),
-			createSuccessListener(),
-			createErrorListener());
+		JSONObject data_object = null;
+		
+		if ( type == Type.GET )
+		{
+
+		}
+		
+		else if( type == Type.POST )
+		{	
+			try
+			{
+				data_object = new JSONObject( data );
+			}
+			catch( JSONException e )
+			{
+				Log.e( "error", "The data string from the database couldn't be converted to a JSON Ojbect." );
+			}
+			
+			JsonObjectRequest request = new JsonObjectRequest(
+					Request.Method.POST,
+					url,
+					data_object,
+					successListener,
+					errorListener );
+		}
 
 	}
 }
