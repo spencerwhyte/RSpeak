@@ -1,0 +1,17 @@
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+import android.app.Application;
+
+
+public class RSpeakApplication extends Application
+{
+	public static RequestQueue mRequestQueue;
+
+    @Override
+    public void onCreate() 
+    {
+        super.onCreate();
+        mRequestQueue = Volley.newRequestQueue( getApplicationContext() );
+    }
+}

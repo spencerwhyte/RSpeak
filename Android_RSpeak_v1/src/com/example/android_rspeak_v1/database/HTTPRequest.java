@@ -3,6 +3,7 @@ package com.example.android_rspeak_v1.database;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -10,6 +11,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import com.example.android_rspeak_v1.RSpeakApplication;
 
 public class HTTPRequest 
 {
@@ -79,6 +82,7 @@ public class HTTPRequest
 	public void startRequest( Response.Listener<JSONObject> successListener, Response.ErrorListener errorListener )
 	{
 		JSONObject data_object = null;
+		JsonObjectRequest request = null;
 		
 		if ( type == Type.GET )
 		{
@@ -96,7 +100,7 @@ public class HTTPRequest
 				Log.e( "error", "The data string from the database couldn't be converted to a JSON Ojbect." );
 			}
 			
-			JsonObjectRequest request = new JsonObjectRequest(
+			request = new JsonObjectRequest(
 					Request.Method.POST,
 					url,
 					data_object,
@@ -104,5 +108,7 @@ public class HTTPRequest
 					errorListener );
 		}
 
+		RequestQueue requestQueue = RSpeakApplication.getRequestQueue();
+		requestQueue.add( request );
 	}
 }

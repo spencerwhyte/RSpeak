@@ -13,6 +13,6 @@
     <string name="title_activity_ask_question">Question</string>
     <string name="question_hint">Ask Someone Something</string>
     <string name="send_question">Send Question</string>
-    <string name="title_activity_browse_threads">BrowseThreadsActivity</string>
+    <string name="title_activity_browse_threads">Threads</string>
 
 </resources>
