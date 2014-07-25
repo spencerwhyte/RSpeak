@@ -3,9 +3,14 @@ package com.example.android_rspeak_v1.activities;
 import java.util.Locale;
 
 import com.example.android_rspeak_v1.R;
+import com.example.android_rspeak_v1.RSpeakApplication;
+import com.example.android_rspeak_v1.adapters.QuestionsAnswersPagerAdapter;
 import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
 import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment;
 import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.QuestionOrigin;
+import com.example.android_rspeak_v1.transactions.GCMManager;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -13,35 +18,48 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements ActionBar.TabListener {
-
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements ActionBar.TabListener 
+{
+	QuestionsAnswersPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
+    GCMManager gcmManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_browse_questions_answers );
+        
+    	// check if this device's version matches the Play requirements
+        gcmManager = new GCMManager( this );
+        
+    	if ( gcmManager.checkPlayServices() )
+    	{
+    		// now check if there already exists a push_notification ID
+    		String push_notification_id = gcmManager.getRegistrationId( this );
+    		if ( push_notification_id == null ) // register a new ID
+    		{
+    			
+    		}
+    	}
+    	else
+    	{
+    		finish();
+    	}
+        	
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -49,7 +67,7 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new QuestionsAnswersPagerAdapter( getSupportFragmentManager(), this );
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -91,6 +109,13 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
 			}
 		});
     }
+    
+    @Override
+    public void onResume()
+    {
+    	super.onResume();
+    	gcmManager.checkPlayServices();
+    }
 
 
     @Override
@@ -128,48 +153,5 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-
-        	if ( position == 0 ) // ASKED
-        	{
-        		return QuestionsAnswersListFragment.newInstance( QuestionOrigin.LOCAL );
-        	}
-        	else // if ( position == 1 ) // ANSWERED
-        	{
-        		return QuestionsAnswersListFragment.newInstance( QuestionOrigin.FOREIGN );
-        	}
-        }
-
-        @Override
-        public int getCount() {
-            // Show 2 total pages.
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-            }
-            return null;
-        }
-    }
+    
 }

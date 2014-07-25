@@ -1,0 +1,28 @@
+package com.example.android_rspeak_v1;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+
+public class RSpeakApplication extends Application
+{
+	public static RequestQueue requestQueue;
+
+    @Override
+    public void onCreate() 
+    {
+        super.onCreate();
+        requestQueue = Volley.newRequestQueue( getApplicationContext() );
+        
+    }
+    
+    public static RequestQueue getRequestQueue()
+    {
+    	return requestQueue;
+    }
+}

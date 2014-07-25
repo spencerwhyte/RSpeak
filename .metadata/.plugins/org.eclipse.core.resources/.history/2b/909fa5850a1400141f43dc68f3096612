@@ -1,0 +1,59 @@
+package com.example.android_rspeak_v1;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+
+public class RSpeakApplication extends Application
+{
+	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+	public static RequestQueue requestQueue;
+
+    @Override
+    public void onCreate() 
+    {
+        super.onCreate();
+        requestQueue = Volley.newRequestQueue( getApplicationContext() );
+        
+        // check if this app instance already has a play services ID
+        SharedPreferences device_properties = getApplicationContext().getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+        String device_id = device_properties.getString( "device_id", null );
+        
+        if ( device_id == null )
+        {
+        	// first check if this device's version matches the Play requirements
+        	int playAvailable = isGooglePlayServicesAvailable(); 
+        	
+        }
+    }
+    
+    public static RequestQueue getRequestQueue()
+    {
+    	return requestQueue;
+    }
+    
+    private boolean checkPlayServices() 
+    {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable( this );
+        if ( resultCode != ConnectionResult.SUCCESS ) 
+        {
+            if ( GooglePlayServicesUtil.isUserRecoverableError( resultCode )) 
+            {
+                GooglePlayServicesUtil.getErrorDialog( resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST ).show();
+            } 
+            else 
+            {
+                Log.i( "notification", "This device is not supported." );
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+}

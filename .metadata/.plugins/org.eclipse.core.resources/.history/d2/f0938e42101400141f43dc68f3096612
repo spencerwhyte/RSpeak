@@ -1,0 +1,92 @@
+package com.example.android_rspeak_v1.transactions;
+
+import com.example.android_rspeak_v1.RSpeakApplication;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.util.Log;
+
+public class GCMManager 
+{
+	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+	private Context context;
+	
+	public GCMManager( Context context )
+	{
+		this.context = context;
+	}
+	
+	private boolean checkPlayServices() 
+    {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable( this );
+        if ( resultCode != ConnectionResult.SUCCESS ) 
+        {
+            if ( GooglePlayServicesUtil.isUserRecoverableError( resultCode )) 
+            {
+                GooglePlayServicesUtil.getErrorDialog( resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST ).show();
+            } 
+            else 
+            {
+                Log.i( "notification", "This device is not supported." );
+            }
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Gets the current registration ID for application on GCM service.
+     * <p>
+     * If result is empty, the app needs to register.
+     *
+     * @return registration ID, or empty string if there is no existing
+     *         registration ID.
+     */
+    private String getRegistrationId( Context context ) 
+    {
+        final SharedPreferences prefs = ((RSpeakApplication) context.getApplicationContext() ).getGCMPreferences();
+        String registrationId = prefs.getString( RSpeakApplication.PROPERTY_PUSH_NOTIFICATION_ID, null );
+        
+        if ( registrationId == null ) 
+        {
+            Log.i( "info", "Registration not found." );
+            return null;
+        }
+        
+        // Check if app was updated; if so, it must clear the registration ID
+        // since the existing regID is not guaranteed to work with the new
+        // app version.
+        int registeredVersion = prefs.getInt( RSpeakApplication.PROPERTY_APP_VERSION, Integer.MIN_VALUE );
+        int currentVersion = getAppVersion( context );
+        if ( registeredVersion != currentVersion ) 
+        {
+            Log.i( "info", "App version changed." );
+            return null;
+        }
+        
+        return registrationId;
+    }
+
+    /**
+     * @return Application's version code from the {@code PackageManager}.
+     */
+    private static int getAppVersion( Context context ) 
+    {
+        try 
+        {
+            PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo( context.getPackageName(), 0 );
+            return packageInfo.versionCode;
+        } 
+        catch ( NameNotFoundException e ) 
+        {
+            // should never happen
+            throw new RuntimeException( "Could not get package name: " + e );
+        }
+    }
+}

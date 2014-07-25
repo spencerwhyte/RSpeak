@@ -24,6 +24,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.android_rspeak_v1.RSpeakApplication;
+
 public class AskQuestionTransaction 
 {
 	private Context context;
@@ -43,9 +45,9 @@ public class AskQuestionTransaction
 		questionSource.close();
 		
 		// then create the JSON object for the http request
-		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+		SharedPreferences gcm_preferences = ((RSpeakApplication) context.getApplicationContext()).getGCMPreferences();
 		HashMap<String, String> params = new HashMap<String, String>();
-	    params.put( HTTPRequest.DATA_DEVICE_ID, device_properties.getString( "device_id", "null" ));
+	    params.put( HTTPRequest.DATA_DEVICE_ID, gcm_preferences.getString( RSpeakApplication.PROPERTY_DEVICE_ID, "" ));
 	    params.put( HTTPRequest.DATA_QUESTION_ID, String.valueOf( question.getID() ));
 	    params.put( HTTPRequest.DATA_CONTENT, question_content );
 	    JSONObject request_data = new JSONObject(params);
