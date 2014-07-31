@@ -31,13 +31,7 @@ public class RegisterPushNotificationTransaction
 		String device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
 		String push_notification_id = gcmManager.getRegistrationId( context );
 		
-		// if there is no device id then register a new one
-		if ( device_id == null )
-		{
-			RegisterDeviceTransaction register_device_transaction = new RegisterDeviceTransaction( context );
-			register_device_transaction.beginTransaction();
-		}
-		else if ( push_notification_id != null )
+		if ( device_id != null && push_notification_id != null )
 		{
 			// then create the JSON object for the http request
 			HashMap<String, String> params = new HashMap<String, String>();

@@ -15,7 +15,7 @@ import com.example.android_rspeak_v1.RSpeakApplication;
 public class HTTPRequest 
 {
 	// URL constants
-	public static final String BASE_URL = "192.168.0.10/v1";
+	public static final String BASE_URL = "127.0.0.1/v1";
 	public static final String URL_REGISTER_DEVICE = "/register/device/";
 	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "register/push_notification_id/";
 	public static final String URL_ASK = "/ask/";

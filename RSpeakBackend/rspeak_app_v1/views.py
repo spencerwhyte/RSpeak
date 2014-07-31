@@ -24,7 +24,6 @@ def register_device(request):
 			try:
 				device_id = json_data['device_id']
 				device_type = json_data['device_type']
-				push_notification_id = json_data['push_notification_id']
 			except KeyError:
 				print "Error: A posted question did not have a JSON object with the required properties"
 			else:
@@ -33,7 +32,7 @@ def register_device(request):
 					device = Device.objects.get( device_id=device_id )
 					return HttpResponse( json.dumps({ 'valid_id' : False }), mimetype="application/json" )
 				else:
-					device = Device( device_id=device_id, device_type=device_type, push_notification_id=push_notification_id )
+					device = Device( device_id=device_id, device_type=device_type )
 					device.save()
 					return HttpResponse( json.dumps({ 'valid_id' : True }), mimetype="application/json" )
 

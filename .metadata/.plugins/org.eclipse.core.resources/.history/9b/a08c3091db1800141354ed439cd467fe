@@ -46,6 +46,7 @@ public class RegisterDeviceTransaction
 	public void beginTransaction()
 	{	
 		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+		GCMManager gcmManager = new GCMManager( context );
 		Random random = new Random();
 		device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
 		
@@ -94,7 +95,6 @@ public class RegisterDeviceTransaction
 				catch( JSONException e )
 				{
 					Log.e( "error", "The JSON response received after registering the device couldn't be parsed" );
-					return;
 				}
 				
 				// Remove the request from the database
@@ -111,15 +111,6 @@ public class RegisterDeviceTransaction
 				{
 					SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
 					device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
-					
-					// check if there's a push notification id, if not then try to create one
-					GCMManager gcmManager = new GCMManager( context );
-					String push_notification_id = gcmManager.getRegistrationId( context );
-					if ( push_notification_id == null )
-					{
-						RegisterPushNotificationTransaction register_push_notificaiton_transaction = new RegisterPushNotificationTransaction( context );
-						register_push_notificaiton_transaction.beginTransaction();
-					}
 				}
 			}
 		};

@@ -141,7 +141,6 @@ public class GCMManager
             {
             	Log.i( "info", "completed gcm task with message:\n" + msg );
             	
-            	// register the push_notification_id with the server
             	RegisterPushNotificationTransaction register_push_notificaiton_transaction = new RegisterPushNotificationTransaction( context );
 				register_push_notificaiton_transaction.beginTransaction();
             }
