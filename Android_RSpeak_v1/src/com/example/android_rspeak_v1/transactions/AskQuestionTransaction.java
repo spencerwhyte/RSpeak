@@ -79,7 +79,7 @@ public class AskQuestionTransaction
 		};
 	}
 
-	// if the request is successful
+	// if the request is not successful
 	private Response.ErrorListener errorListener()
 	{
 		return new Response.ErrorListener() 

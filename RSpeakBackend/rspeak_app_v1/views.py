@@ -5,7 +5,6 @@ import random
 import json
 
 from django.http import HttpResponse
-from django.utils import simplejson
 from rspeak_app_v1.models import Device, Question, Response
 from rspeak_app_v1.utils.notifications import Updates
 from utils.notifications import Updates, sendSyncNotification
@@ -20,7 +19,7 @@ from utils.notifications import Updates, sendSyncNotification
 def register_device(request):
 	if request.is_ajax():
 		if request.method == 'POST':
-			json_data = simplejson.loads( request.raw_post_data )
+			json_data = json.loads( request.raw_post_data )
 
 			try:
 				device_id = json_data['device_id']
@@ -38,6 +37,29 @@ def register_device(request):
 					device.save()
 					return HttpResponse( json.dumps({ 'valid_id' : True }), mimetype="application/json" )
 
+# If the device didn't have the push notification id ready
+# when registering then 
+def register_push_notification_id(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			json_data = json.loads( request.raw_post_data )
+
+			try:
+				device_id = json_data['device_id']
+				push_notification_id = json_data['push_notification_id']
+			except KeyError:
+				print "Error: A posted question did not have a JSON object with the required properties"
+			else:
+				# See if the device id already exists
+				try:
+					device = Device.objects.get( device_id=device_id )
+					device.push_notification_id = push_notification_id
+					device.save()
+
+				# 	return HttpResponse( json.dumps({ 'valid_id' : True }), mimetype="application/json" )
+				# else:
+				# 	return HttpResponse( json.dumps({ 'valid_id' : False }), mimetype="application/json" )
+
 
 # Request handler when someone posts a question
 # 1. Add question content to the database
@@ -47,7 +69,7 @@ def register_device(request):
 def ask(request):
 	if request.is_ajax():
 		if request.method == 'POST':
-			json_data = simplejson.loads( request.raw_post_data )
+			json_data = json.loads( request.raw_post_data )
 
 			try:
 				question_id = json_data['question_id']
@@ -91,7 +113,7 @@ def ask(request):
 def respond(request):
 	if request.is_ajax():
 		if request.method == 'POST':
-			json_data = simplejson.loads( request.raw_post_data )
+			json_data = json.loads( request.raw_post_data )
 
 			try:
 				thread = json_data['thread_id']
@@ -113,7 +135,7 @@ def respond(request):
 def update_thread(request):
 	if request.is_ajax():
 		if request.method == 'POST':
-			json_data = simplejson.loads( request.raw_post_data )
+			json_data = json.loads( request.raw_post_data )
 
 			try:
 				device_id = json_data['device_id']

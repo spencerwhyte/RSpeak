@@ -166,50 +166,50 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 				1401292063000L);
 		
 		// Question 4
-		qSource.createQuestion(
-				"Ey baby want sum fuk?", 
-				1401292063000L, 
-				true );
-		
-		tSource.createThread(
-				"thread 4", 
-				4, 
-				false );
+//		qSource.createQuestion(
+//				"Ey baby want sum fuk?", 
+//				1401292063000L, 
+//				true );
+//		
+//		tSource.createThread(
+//				"thread 4", 
+//				4, 
+//				false );
 		
 		// Question 5
-		qSource.createQuestion(
-				"How do I program dis shit?", 
-				1401292063000L, 
-				true );
-		
-		tSource.createThread(
-				"thread 5", 
-				5, 
-				false );
-		
-		rSource.createResponse(
-				"thread 5", 
-				"What are you talking about?", 
-				false, 
-				1401292063000L);
-		
-		rSource.createResponse(
-				"thread 5", 
-				"Oh! Uhm, I was just trying to cut straight into a conversation. How are you doing?", 
-				true, 
-				1401292063000L);
-
-		rSource.createResponse(
-				"thread 5", 
-				"ok?! Not bad. You?", 
-				false, 
-				1401292063000L);
-		
-		rSource.createResponse(
-				"thread 5", 
-				"Long programming homework! :<", 
-				true, 
-				1401292063000L);
+//		qSource.createQuestion(
+//				"How do I program dis shit?", 
+//				1401292063000L, 
+//				true );
+//		
+//		tSource.createThread(
+//				"thread 5", 
+//				5, 
+//				false );
+//		
+//		rSource.createResponse(
+//				"thread 5", 
+//				"What are you talking about?", 
+//				false, 
+//				1401292063000L);
+//		
+//		rSource.createResponse(
+//				"thread 5", 
+//				"Oh! Uhm, I was just trying to cut straight into a conversation. How are you doing?", 
+//				true, 
+//				1401292063000L);
+//
+//		rSource.createResponse(
+//				"thread 5", 
+//				"ok?! Not bad. You?", 
+//				false, 
+//				1401292063000L);
+//		
+//		rSource.createResponse(
+//				"thread 5", 
+//				"Long programming homework! :<", 
+//				true, 
+//				1401292063000L);
 				
 		// Question 6
 		qSource.createQuestion(
@@ -264,11 +264,11 @@ public class RSpeakSQLiteHelper extends SQLiteOpenHelper {
 				true, 
 				1401292063000L);
 		
-		rSource.createResponse(
-				"thread 7", 
-				"step 4: shit everywhere.", 
-				true, 
-				1401292063000L);
+//		rSource.createResponse(
+//				"thread 7", 
+//				"step 4: shit everywhere.", 
+//				true, 
+//				1401292063000L);
 		
 		// Question 8
 		qSource.createQuestion(

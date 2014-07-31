@@ -1,7 +1,6 @@
 package com.example.android_rspeak_v1.transactions;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import com.example.android_rspeak_v1.RSpeakApplication;
 import com.google.android.gms.common.ConnectionResult;
@@ -106,7 +105,7 @@ public class GCMManager
      * Stores the registration ID and app versionCode in the application's
      * shared preferences.
      */
-    private void registerInBackground() 
+    public void registerInBackground() 
     {
         new AsyncTask<Void, Void, String>() 
         {

@@ -3,14 +3,12 @@ package com.example.android_rspeak_v1.database;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import com.example.android_rspeak_v1.RSpeakApplication;
 
@@ -18,10 +16,11 @@ public class HTTPRequest
 {
 	// URL constants
 	public static final String BASE_URL = "127.0.0.1/v1";
-	public static final String URL_REGISTER = "/register_device";
-	public static final String URL_ASK = "/ask";
-	public static final String URL_RESPOND = "/respond";
-	public static final String URL_UPDATE_THREAD = "/update/thread";
+	public static final String URL_REGISTER_DEVICE = "/register/device/";
+	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "register/push_notification_id/";
+	public static final String URL_ASK = "/ask/";
+	public static final String URL_RESPOND = "/respond/";
+	public static final String URL_UPDATE_THREAD = "/update/thread/";
 	
 	// JSON data constants
 	public static final String DATA_DEVICE_ID = "device_id";

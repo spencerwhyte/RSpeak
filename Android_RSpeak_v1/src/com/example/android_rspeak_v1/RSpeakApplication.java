@@ -19,7 +19,6 @@ public class RSpeakApplication extends Application
     {
         super.onCreate();
         requestQueue = Volley.newRequestQueue( getApplicationContext() );
-        
     }
     
     public static RequestQueue getRequestQueue()

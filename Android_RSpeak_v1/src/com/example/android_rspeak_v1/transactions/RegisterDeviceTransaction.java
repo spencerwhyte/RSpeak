@@ -14,8 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
-import com.example.android_rspeak_v1.database.Question;
-import com.example.android_rspeak_v1.database.QuestionsDataSource;
 
 public class RegisterDeviceTransaction 
 {
@@ -38,6 +36,7 @@ public class RegisterDeviceTransaction
  
 	private Context context;
 	private HTTPRequest request;
+	private String device_id;
 	
 	public RegisterDeviceTransaction( Context context )
 	{
@@ -46,31 +45,41 @@ public class RegisterDeviceTransaction
 	
 	public void beginTransaction()
 	{	
-		// first create a random 16 character String
-		Random random = new Random();
-		char[] id = new char[ 16 ];
-		for ( int i = 0; i < 16; i++ )
-		{
-			id[ i ] = symbols[ random.nextInt( symbols.length ) ];
-		}
-		String idString = new String( id );
-		
-		// then create the JSON object for the http request
 		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-		HashMap<String, String> params = new HashMap<String, String>();
-	    params.put( HTTPRequest.DATA_DEVICE_ID, idString );
-	    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
-	    params.put( HTTPRequest.DATA_PUSH_NOTIFICATION_ID,  );
-	    JSONObject request_data = new JSONObject(params);
+		GCMManager gcmManager = new GCMManager( context );
+		Random random = new Random();
+		device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
 		
-		// then add the question request to the database
-		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-		requestSource.open();
-		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER, request_data.toString() );
-		requestSource.close();
-		
-		// then try to send the request to the server
-		request.startRequest( successListener(), errorListener() );
+		// only go through with the transaction if there is no device id already registered
+		if ( device_id == null )
+		{
+			// first create a random 16 character String
+			char[] id = new char[ 16 ];
+			for ( int i = 0; i < 16; i++ )
+			{
+				id[ i ] = symbols[ random.nextInt( symbols.length ) ];
+			}
+			device_id = new String( id );
+			
+			// get the push_notification_id
+			String push_notification_id = gcmManager.getRegistrationId( context );
+			
+			// then create the JSON object for the http request
+			HashMap<String, String> params = new HashMap<String, String>();
+		    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
+		    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
+		    params.put( HTTPRequest.DATA_PUSH_NOTIFICATION_ID, push_notification_id );
+		    JSONObject request_data = new JSONObject(params);
+			
+			// then add the question request to the database
+			HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+			requestSource.open();
+			this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_DEVICE, request_data.toString() );
+			requestSource.close();
+			
+			// then try to send the request to the server
+			request.startRequest( successListener(), errorListener() );
+		}
 	}
 	
 	// if the request is successful
@@ -102,11 +111,16 @@ public class RegisterDeviceTransaction
 				{
 					beginTransaction();
 				}
+				else // put the id in the shared preferences
+				{
+					SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+					device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
+				}
 			}
 		};
 	}
 
-	// if the request is successful
+	// if the request is not successful
 	private Response.ErrorListener errorListener()
 	{
 		return new Response.ErrorListener() 

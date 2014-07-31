@@ -1,28 +1,15 @@
 package com.example.android_rspeak_v1.activities;
 
-import java.util.Locale;
-
 import com.example.android_rspeak_v1.R;
-import com.example.android_rspeak_v1.RSpeakApplication;
 import com.example.android_rspeak_v1.adapters.QuestionsAnswersPagerAdapter;
-import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
-import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment;
-import com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.QuestionOrigin;
 import com.example.android_rspeak_v1.transactions.GCMManager;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+//import com.google.android.gms.common.ConnectionResult;
+//import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -52,7 +39,7 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     		String push_notification_id = gcmManager.getRegistrationId( this );
     		if ( push_notification_id == null ) // register a new ID
     		{
-    			
+    			gcmManager.registerInBackground();
     		}
     	}
     	else

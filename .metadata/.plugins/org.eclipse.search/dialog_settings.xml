@@ -15,8 +15,8 @@
 	<section name="DialogBounds_SearchDialog">
 		<item value="716" key="DIALOG_WIDTH"/>
 		<item value="90" key="DIALOG_Y_ORIGIN"/>
-		<item value="248" key="DIALOG_X_ORIGIN"/>
 		<item value="442" key="DIALOG_HEIGHT"/>
+		<item value="248" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">
