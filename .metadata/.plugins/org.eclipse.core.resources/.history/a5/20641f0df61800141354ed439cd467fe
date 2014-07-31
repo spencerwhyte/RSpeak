@@ -44,7 +44,6 @@ public class AskQuestionFragment extends Fragment
 	}
 	
 	// When send is clicked create an http request with their question
-	// then go back to previous activity
 	public OnClickListener getSendButtonListener()
 	{
 		return new OnClickListener() 
@@ -57,8 +56,6 @@ public class AskQuestionFragment extends Fragment
 				
 				AskQuestionTransaction ask_question_transaction = new AskQuestionTransaction( getActivity() );
 				ask_question_transaction.beginTransaction( questionString );
-				
-				getActivity().finish();
 			}
 		};
 	}

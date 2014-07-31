@@ -57,8 +57,6 @@ public class AskQuestionFragment extends Fragment
 				
 				AskQuestionTransaction ask_question_transaction = new AskQuestionTransaction( getActivity() );
 				ask_question_transaction.beginTransaction( questionString );
-				
-				getActivity().finish();
 			}
 		};
 	}

@@ -9,7 +9,6 @@ import com.example.android_rspeak_v1.database.Response;
 import com.example.android_rspeak_v1.database.ResponsesDataSource;
 import com.example.android_rspeak_v1.database.Thread;
 import com.example.android_rspeak_v1.database.ThreadsDataSource;
-import com.example.android_rspeak_v1.transactions.AskQuestionTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -43,8 +41,6 @@ public class AskQuestionFragment extends Fragment
 	    return v;
 	}
 	
-	// When send is clicked create an http request with their question
-	// then go back to previous activity
 	public OnClickListener getSendButtonListener()
 	{
 		return new OnClickListener() 
@@ -52,13 +48,7 @@ public class AskQuestionFragment extends Fragment
 			@Override
 			public void onClick( final View v )
 			{
-				EditText question = (EditText) v.findViewById( R.id.question );
-				String questionString = question.getText().toString();
 				
-				AskQuestionTransaction ask_question_transaction = new AskQuestionTransaction( getActivity() );
-				ask_question_transaction.beginTransaction( questionString );
-				
-				getActivity().finish();
 			}
 		};
 	}
