@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 public class AskQuestionFragment extends Fragment
 {
+	View fragmentView;
 	
 	public static AskQuestionFragment newInstance()
 	{
@@ -35,12 +36,12 @@ public class AskQuestionFragment extends Fragment
 	@Override
 	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedBundle) 
 	{
-		View v = inflater.inflate( R.layout.fragment_ask_question, container, false );
-		ImageButton send_question =  (ImageButton) v.findViewById( R.id.send_question );
+		fragmentView = inflater.inflate( R.layout.fragment_ask_question, container, false );
+		ImageButton send_question =  (ImageButton) fragmentView.findViewById( R.id.send_question );
 
 		send_question.setOnClickListener( getSendButtonListener() );
 		
-	    return v;
+	    return fragmentView;
 	}
 	
 	// When send is clicked create an http request with their question
@@ -52,13 +53,16 @@ public class AskQuestionFragment extends Fragment
 			@Override
 			public void onClick( final View v )
 			{
-				EditText question = (EditText) v.findViewById( R.id.question );
+				EditText question = (EditText) fragmentView.findViewById( R.id.question );
 				String questionString = question.getText().toString();
 				
-				AskQuestionTransaction ask_question_transaction = new AskQuestionTransaction( getActivity() );
-				ask_question_transaction.beginTransaction( questionString );
-				
-				getActivity().finish();
+				if ( questionString != null )
+				{
+					AskQuestionTransaction ask_question_transaction = new AskQuestionTransaction( getActivity() );
+					ask_question_transaction.beginTransaction( questionString );
+					
+					getActivity().finish();
+				}
 			}
 		};
 	}

@@ -4,8 +4,11 @@ import java.util.HashMap;
 
 import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Build;
 import android.util.Log;
 
 import com.android.volley.Response;
@@ -62,6 +65,7 @@ public class RegisterPushNotificationTransaction
 	{
 		return new Response.Listener<JSONObject>() 
 		{
+			@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 			@Override
 			public void onResponse( JSONObject response )
 			{
@@ -70,6 +74,17 @@ public class RegisterPushNotificationTransaction
 				requestSource.open();
 				requestSource.deleteRequest( request.getID() );
 				requestSource.close();
+				
+				SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+				Editor editor = device_properties.edit().putBoolean( HTTPRequest.DATA_PUSH_NOTIFICATION_ID_SET, true );
+				if ( Build.VERSION.SDK_INT < 9 )
+				{
+					editor.commit();
+				} 
+				else 
+				{
+					editor.apply();
+				}
 			}
 		};
 	}
@@ -82,7 +97,7 @@ public class RegisterPushNotificationTransaction
 			@Override
 			public void onErrorResponse( VolleyError error )
 			{
-				Log.e( "error", "failed to register GCM push notification" );
+				Log.e( "error", "failed to register GCM push notification id" );
 			}
 		};
 	}

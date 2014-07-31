@@ -6,8 +6,11 @@ import java.util.Random;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Build;
 import android.util.Log;
 
 import com.android.volley.Response;
@@ -82,6 +85,7 @@ public class RegisterDeviceTransaction
 	{
 		return new Response.Listener<JSONObject>() 
 		{
+			@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 			@Override
 			public void onResponse( JSONObject response )
 			{
@@ -110,7 +114,17 @@ public class RegisterDeviceTransaction
 				else // put the id in the shared preferences
 				{
 					SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-					device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
+					Editor editor = device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
+					editor.putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, true );
+					if ( Build.VERSION.SDK_INT < 9 )
+					{
+						editor.commit();
+					} 
+					else 
+					{
+						editor.apply();
+					}
+
 					
 					// check if there's a push notification id, if not then try to create one
 					GCMManager gcmManager = new GCMManager( context );

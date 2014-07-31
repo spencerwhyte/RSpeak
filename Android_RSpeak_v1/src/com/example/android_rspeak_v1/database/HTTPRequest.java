@@ -1,10 +1,14 @@
 package com.example.android_rspeak_v1.database;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,7 +19,7 @@ import com.example.android_rspeak_v1.RSpeakApplication;
 public class HTTPRequest 
 {
 	// URL constants
-	public static final String BASE_URL = "192.168.0.10/v1";
+	public static final String BASE_URL = "http://192.168.0.10:8000/v1";
 	public static final String URL_REGISTER_DEVICE = "/register/device/";
 	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "register/push_notification_id/";
 	public static final String URL_ASK = "/ask/";
@@ -24,8 +28,10 @@ public class HTTPRequest
 	
 	// JSON data constants
 	public static final String DATA_DEVICE_ID = "device_id";
-	public static final String DATA_DEVICE_TYPE = "device_type";
 	public static final String DATA_PUSH_NOTIFICATION_ID = "push_notification_id";
+	public static final String DATA_DEVICE_ID_SET = "device_id_set";
+	public static final String DATA_PUSH_NOTIFICATION_ID_SET = "push_notification_id_set";
+	public static final String DATA_DEVICE_TYPE = "device_type";
 	public static final String DATA_QUESTION_ID = "question_id";
 	public static final String DATA_THREAD_ID = "thread_id";
 	public static final String DATA_CONTENT = "content";
@@ -105,7 +111,25 @@ public class HTTPRequest
 					url,
 					data_object,
 					successListener,
-					errorListener );
+					errorListener )
+			{
+				@Override
+                public Map<String, String> getHeaders() throws AuthFailureError 
+                {
+                	HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("TOKEN", "99KI9Gj68CgCf70deM22Ka64chef2C40Gm2lFJ2J0G9JkDaaDAcbFfd19MfacGf3FFm8CM1hG0eDiIk8");
+
+                    return headers;
+                }
+
+                @Override 
+                protected Map<String, String> getParams() 
+                {
+                	Map<String, String> params = new HashMap<String, String>();
+
+                	return params;
+                }
+			};
 		}
 
 		RequestQueue requestQueue = RSpeakApplication.getRequestQueue();

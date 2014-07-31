@@ -41,15 +41,15 @@ public class HTTPRequestsDataSource
 	{
 		ContentValues values = new ContentValues();
 		
-		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE, type.ordinal() );
-		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL, url );
-		values.put(RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA, data );
+		values.put( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_TYPE, type.ordinal() );
+		values.put( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_URL, url );
+		values.put( RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_DATA, data );
 		
 		
 		int request_id = (int) database.insert( RSpeakSQLiteHelper.TABLE_HTTPREQUESTS, null, values );
-		Cursor cursor = database.query(RSpeakSQLiteHelper.TABLE_QUESTIONS,
+		Cursor cursor = database.query( RSpeakSQLiteHelper.TABLE_HTTPREQUESTS,
 				allColumns, 
-				RSpeakSQLiteHelper.QUESTIONS_COLUMN_ID + " = " + request_id,
+				RSpeakSQLiteHelper.HTTPREQUESTS_COLUMN_REQUEST_ID + " = " + request_id,
 				null,
 				null,
 				null,

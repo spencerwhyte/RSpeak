@@ -2,7 +2,10 @@ package com.example.android_rspeak_v1.activities;
 
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.adapters.QuestionsAnswersPagerAdapter;
+import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.transactions.GCMManager;
+import com.example.android_rspeak_v1.transactions.RegisterDeviceTransaction;
+import com.example.android_rspeak_v1.transactions.RegisterPushNotificationTransaction;
 //import com.google.android.gms.common.ConnectionResult;
 //import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -10,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -46,7 +50,8 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     	{
     		finish();
     	}
-        	
+    	
+    	ensureIDsAreRegisteredWithServer();
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -96,6 +101,26 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
 			}
 		});
     }
+    
+    // check if push notification id and device id are registered with server
+	// and register them if not
+    public void ensureIDsAreRegisteredWithServer()
+    {
+    	SharedPreferences device_properties = getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+    	boolean registeredDeviceId = device_properties.getBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
+    	boolean registeredPushNotificaitonId = device_properties.getBoolean( HTTPRequest.DATA_PUSH_NOTIFICATION_ID_SET, false );
+    	
+    	if ( !registeredDeviceId )
+    	{
+    		RegisterDeviceTransaction registerDeviceTransaction = new RegisterDeviceTransaction( this );
+    		registerDeviceTransaction.beginTransaction();
+    	}
+    	if ( !registeredPushNotificaitonId )
+    	{
+    		RegisterPushNotificationTransaction registerPushNotificationTransaction = new RegisterPushNotificationTransaction( this );
+    		registerPushNotificationTransaction.beginTransaction();
+    	}
+    } 
     
     @Override
     public void onResume()

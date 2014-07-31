@@ -8,6 +8,13 @@ from django.http import HttpResponse
 from rspeak_app_v1.models import Device, Question, Response
 from rspeak_app_v1.utils.notifications import Updates
 from utils.notifications import Updates, sendSyncNotification
+from django.views.decorators.csrf import csrf_exempt
+
+# returns csrf token
+def retrieve_csrf(request):
+	t = Template("{% csrf_token %}")
+	c = Context({})
+	return t.render(c)
 
 
 # Request handler when a new device installs the app
@@ -16,6 +23,7 @@ from utils.notifications import Updates, sendSyncNotification
 # 2. Device type
 # 3. Push notification id
 # these will ensure proper communication with the device
+@csrf_exempt
 def register_device(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -38,6 +46,7 @@ def register_device(request):
 
 # If the device didn't have the push notification id ready
 # when registering then 
+@csrf_exempt
 def register_push_notification_id(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -62,6 +71,7 @@ def register_push_notification_id(request):
 # 2. Select random active answerer
 # 3. Put the question in the answerer's update stack
 # 4. Send push notification to the answerer's device to retrieve updates
+@csrf_exempt
 def ask(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -106,6 +116,7 @@ def ask(request):
 # 1. Add response content to the database
 # 2. Send push notification to client device
 # 3. Update the credit of the responder
+@csrf_exempt
 def respond(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -128,6 +139,7 @@ def respond(request):
 # 2. Send the client their update
 # 3. Get ack from client
 # 4. Empty the queue
+@csrf_exempt
 def update_thread(request):
 	if request.is_ajax():
 		if request.method == 'POST':
