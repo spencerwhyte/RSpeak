@@ -89,7 +89,17 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
         
         // add event handler for click on 'ask question' button
         Button ask_button = (Button) this.findViewById( R.id.ask_button );
-        ask_button.setOnClickListener( getAskClickListener() );
+        ask_button.setOnClickListener( new View.OnClickListener() 
+        {
+            
+			@Override
+			public void onClick(View v) 
+			{			
+				// start the ask question activity: it has the text field for the question
+				Intent intent = new Intent( BrowseQuestionsAnswersActivity.this, AskQuestionActivity.class );
+			    startActivity(intent); 
+			}
+		});
     }
     
     // check if push notification id and device id are registered with server
@@ -112,30 +122,11 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     	}
     } 
     
-    // Go to ask question activity when ask quesiton is clicked
-    public View.OnClickListener getAskClickListener()
-    {
-    	return new View.OnClickListener() 
-        {
-            
-			@Override
-			public void onClick(View v) 
-			{			
-				// start the ask question activity: it has the text field for the question
-				Intent intent = new Intent( BrowseQuestionsAnswersActivity.this, AskQuestionActivity.class );
-			    startActivity(intent); 
-			}
-        };
-    }
-    
     @Override
     public void onResume()
     {
     	super.onResume();
     	gcmManager.checkPlayServices();
-    	
-    	// refresh the q/a list
-    	mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
 

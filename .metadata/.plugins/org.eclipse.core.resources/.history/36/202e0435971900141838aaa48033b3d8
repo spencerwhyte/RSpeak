@@ -29,7 +29,7 @@ public class RegisterDeviceTransaction
 		{
 			tmp.append( ch );
 		}
-		for ( char ch = 'A'; ch <= 'z'; ++ch )
+		for ( char ch = 'a'; ch <= 'Z'; ++ch )
 		{
 			tmp.append( ch );
 		}

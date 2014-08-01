@@ -133,9 +133,6 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     {
     	super.onResume();
     	gcmManager.checkPlayServices();
-    	
-    	// refresh the q/a list
-    	mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
 

@@ -87,7 +87,7 @@ public class QuestionsDataSource
 				null,
 				null,
 				null,
-				RSpeakSQLiteHelper.QUESTIONS_COLUMN_TIME_POSTED + " DESC" );
+				null);
 		
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) 

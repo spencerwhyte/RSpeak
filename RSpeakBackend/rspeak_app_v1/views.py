@@ -5,10 +5,11 @@ import random
 import json
 
 from django.http import HttpResponse
-from rspeak_app_v1.models import Device, Question, Thread, Response
-from rspeak_app_v1.utils.notifications import Updates
-from utils.notifications import Updates, sendSyncNotification
 from django.views.decorators.csrf import csrf_exempt
+from models import Device, Question, Thread, Response
+from notifications import Updates, sendSyncNotification
+from utils import random_alphanumeric
+
 
 # returns csrf token
 def retrieve_csrf(request):
@@ -87,13 +88,9 @@ def ask(request):
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
-			# Find device with the assigned id
-			device = Device.objects.get( device_id=asker_device_id )
-
 			# then add question to database
-			question = Question( question_id=question_id, asker_device_id=device, question_content=question_content )
+			question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
 			question.save()
-			print "added question to db"
 
 			# then select a random device to send the question to
 			all_devices = Device.objects.all().values()
@@ -104,12 +101,18 @@ def ask(request):
 				return
 			while len( all_devices ) > 1 and random_device['device_id'] is asker_device_id:
 				random_device = random.choice( all_devices )
-			print "Found random device: " + str(random_device)
 
-			# Start the thread between the asker device and the random device
-			print "getting response thread"
-			response_thread = Thread( question_id=question.question_id, asker_device_id=device )
+			# find a unique thread id
+			thread_id = random_alphanumeric( 16 )
+			response_thread = Thread.objects.filter( thread_id=thread_id )
+			while response_thread.exists():
+				thread_id = random_alphanumeric( 16 )
+				response_thread = Thread.objects.filter( thread_id=thread_id )
+
+			# Start the thread between the asker device and the random device	
+			response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device_id=asker_device_id )
 			response_thread.save()
+			print "response thread with id: " + str(response_thread.thread_id)
 
 			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
 

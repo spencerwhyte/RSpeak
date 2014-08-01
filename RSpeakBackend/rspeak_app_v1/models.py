@@ -35,7 +35,7 @@ class Thread(models.Model):
 
 class Response(models.Model):
 	response_id = models.CharField(primary_key=True, max_length=16)
-	thread = models.ForeignKey('Thread', db_column='thread_id')
+	thread = models.ForeignKey('Thread')
 	responder_device = models.ForeignKey('Device')
 	time_posted = models.DateTimeField(auto_now_add=True)
 	response_content = models.CharField(max_length=350)
