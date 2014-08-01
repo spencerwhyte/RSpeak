@@ -25,45 +25,49 @@ def retrieve_csrf(request):
 # these will ensure proper communication with the device
 @csrf_exempt
 def register_device(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			json_data = json.loads( request.raw_post_data )
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
 
+		try:
+			device_id = json_data['device_id']
+			device_type = json_data['device_type']
+		except KeyError:
+			print "Error: A posted question did not have a JSON object with the required properties"
+		else:
+			# See if the device id already exists
+			print "looking for preexisting id in db"
 			try:
-				device_id = json_data['device_id']
-				device_type = json_data['device_type']
-			except KeyError:
-				print "Error: A posted question did not have a JSON object with the required properties"
-			else:
-				# See if the device id already exists
 				device = Device.objects.get( device_id=device_id )
-				if len(device) is not 0:
-					return HttpResponse( json.dumps({ 'valid_id' : False }), mimetype="application/json" )
-				else:
-					device = Device( device_id=device_id, device_type=device_type )
-					device.save()
-					return HttpResponse( json.dumps({ 'valid_id' : True }), mimetype="application/json" )
+			except Device.DoesNotExist:
+				device = None
+			if device:
+				print "found pre-existing id"
+				return HttpResponse( json.dumps({ 'valid_id' : False }), content_type="application/json" )
+			else:
+				print "didn't find pre-existing id"
+				device = Device( device_id=device_id, device_type=device_type )
+				device.save()
+				return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
 
 # If the device didn't have the push notification id ready
 # when registering then 
 @csrf_exempt
 def register_push_notification_id(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			json_data = json.loads( request.raw_post_data )
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
 
-			try:
-				device_id = json_data['device_id']
-				push_notification_id = json_data['push_notification_id']
-			except KeyError:
-				print "Error: A posted question did not have a JSON object with the required properties"
-			else:
-				# See if the device id already exists
-				device = Device.objects.get( device_id=device_id )
+		try:
+			device_id = json_data['device_id']
+			push_notification_id = json_data['push_notification_id']
+		except KeyError:
+			print "Error: A posted question did not have a JSON object with the required properties"
+		else:
+			# See if the device id already exists
+			device = Device.objects.get( device_id=device_id )
 
-				if len(device) is not 0:
-					device[0].push_notification_id = push_notification_id
-					device[0].save()
+			if len(device) is not 0:
+				device[0].push_notification_id = push_notification_id
+				device[0].save()
 
 
 # Request handler when someone posts a question
@@ -73,43 +77,35 @@ def register_push_notification_id(request):
 # 4. Send push notification to the answerer's device to retrieve updates
 @csrf_exempt
 def ask(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			json_data = json.loads( request.raw_post_data )
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
 
-			try:
-				question_id = json_data['question_id']
-				question_content = json_data['content']
-				asker_device_id = json_data['device_id']
-			except KeyError:
-				print "Error: A posted question did not have a JSON object with the required properties"
-			else:
-				# First add question to database
-				question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
-				question.save()
+		try:
+			question_id = json_data['question_id']
+			question_content = json_data['content']
+			asker_device_id = json_data['device_id']
+		except KeyError:
+			print "Error: A posted question did not have a JSON object with the required properties"
+		else:
+			# First add question to database
+			question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
+			question.save()
 
-				# Second select a random device to send the question to
-				all_devices = Device.objects.all().values()
-				random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
+			# Second select a random device to send the question to
+			all_devices = Device.objects.all().values()
+			random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
 
-				# ensure that we've a valid device
-				if random_device is None:
-					return
-				while random_device['device_id'] is asker_device_id:
-					random_device = random.choice( all_devices )
+			# ensure that we've a valid device
+			if random_device is None:
+				return
+			while random_device['device_id'] is asker_device_id:
+				random_device = random.choice( all_devices )
 
-				# Start the thread between the asker device and the random device
-				response_thread = Thread( question_id=question.question_id, asker_device_id=asker_device_id )
-				response_thread.save()
+			# Start the thread between the asker device and the random device
+			response_thread = Thread( question_id=question.question_id, asker_device_id=asker_device_id )
+			response_thread.save()
 
-				# Create the notification object
-				notification = { 'type' : 'question', 'thread_id' : response_thread.thread_id, 'question_content' : question_content }
-
-				# Push the question to the device's update stack
-				Updates.add_update( random_device.push_notification_id, notification )
-
-				# Send push notification to the client device
-				sendSyncNotification( random_device )
+			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
 
 
 # Request handler when someone posts a response
@@ -118,20 +114,19 @@ def ask(request):
 # 3. Update the credit of the responder
 @csrf_exempt
 def respond(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			json_data = json.loads( request.raw_post_data )
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
 
-			try:
-				thread = json_data['thread_id']
-				response_content = json_data['content']
-				device_id = json_data['device_id']
-			except KeyError:
-				print "Error: A posted response did not have a JSON object with the required properties"
-			else:
-				# First, add response to database
-				response = Response(thread_id=thread_id, responder_device_id=responder_device_id, response_content=response_content)
-				response.save()
+		try:
+			thread = json_data['thread_id']
+			response_content = json_data['content']
+			device_id = json_data['device_id']
+		except KeyError:
+			print "Error: A posted response did not have a JSON object with the required properties"
+		else:
+			# First, add response to database
+			response = Response(thread_id=thread_id, responder_device_id=responder_device_id, response_content=response_content)
+			response.save()
 
 
 # Request handler to update client model after receiving a push notification
@@ -141,31 +136,30 @@ def respond(request):
 # 4. Empty the queue
 @csrf_exempt
 def update_thread(request):
-	if request.is_ajax():
-		if request.method == 'POST':
-			json_data = json.loads( request.raw_post_data )
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
 
+		try:
+			device_id = json_data['device_id']
+		except KeyError:
+			print "Error: A posted response did not have a JSON object with the required properties"
+		else:
+
+			# try sending the updates to the user
+			# if this fails in any way (IOError) then make sure the updates
+			# are back on the updates stack (else they won't reach the client).
 			try:
-				device_id = json_data['device_id']
-			except KeyError:
-				print "Error: A posted response did not have a JSON object with the required properties"
+				# retrieve updates and send them to the client device
+				updates = Updates.get_updates( device_id )
+
+				if updates is not None:
+					return HttpResponse( json.dumps({ 'updates' : updates }), content_type="application/json" )
+			except IOError:
+				print "Error: The update_thread HTTP request was aborted"
 			else:
+				# put the updates back in the stack
+				if updates is not None:
+					for update in updates:
+						Updates.add_update( device_id, update )
 
-				# try sending the updates to the user
-				# if this fails in any way (IOError) then make sure the updates
-				# are back on the updates stack (else they won't reach the client).
-				try:
-					# retrieve updates and send them to the client device
-					updates = Updates.get_updates( device_id )
-
-					if updates is not None:
-						return HttpResponse( json.dumps({ 'updates' : updates }), mimetype="application/json" )
-				except IOError:
-					print "Error: The update_thread HTTP request was aborted"
-				else:
-					# put the updates back in the stack
-					if updates is not None:
-						for update in updates:
-							Updates.add_update( device_id, update )
-
-	return HttpResponse( json.dumps({ 'updates' : None }), mimetype="application/json" )
+				return HttpResponse( json.dumps({ 'updates' : None }), content_type="application/json" )

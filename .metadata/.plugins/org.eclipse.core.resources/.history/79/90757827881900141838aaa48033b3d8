@@ -97,14 +97,10 @@ public class AskQuestionTransaction
 				
 				if ( question_id != null && thread_id != null )
 				{
-					ThreadsDataSource tSource = new ThreadsDataSource( context );
-					tSource.open();
-					
-					tSource.createThread( thread_id,
-							Long.parseLong( question_id ),
-							false );
-
-					tSource.close();
+					ThreadsDataSource tSource = new ThreadsDataSource();
+					createThread( String thread_id,
+							long question_id,
+							boolean is_stopped)
 				}
 			}
 		};

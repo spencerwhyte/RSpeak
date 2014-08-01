@@ -100,8 +100,8 @@ public class AskQuestionTransaction
 					ThreadsDataSource tSource = new ThreadsDataSource( context );
 					tSource.open();
 					
-					tSource.createThread( thread_id,
-							Long.parseLong( question_id ),
+					createThread( thread_id,
+							question_id,
 							false );
 
 					tSource.close();

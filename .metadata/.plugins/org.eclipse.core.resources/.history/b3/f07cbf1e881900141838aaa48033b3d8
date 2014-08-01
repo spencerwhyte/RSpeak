@@ -20,7 +20,6 @@ import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
 import com.example.android_rspeak_v1.database.Question;
 import com.example.android_rspeak_v1.database.QuestionsDataSource;
-import com.example.android_rspeak_v1.database.ThreadsDataSource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -97,14 +96,7 @@ public class AskQuestionTransaction
 				
 				if ( question_id != null && thread_id != null )
 				{
-					ThreadsDataSource tSource = new ThreadsDataSource( context );
-					tSource.open();
 					
-					tSource.createThread( thread_id,
-							Long.parseLong( question_id ),
-							false );
-
-					tSource.close();
 				}
 			}
 		};

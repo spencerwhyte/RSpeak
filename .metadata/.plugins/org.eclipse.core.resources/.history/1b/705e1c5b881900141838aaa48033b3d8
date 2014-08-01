@@ -101,7 +101,7 @@ public class AskQuestionTransaction
 					tSource.open();
 					
 					tSource.createThread( thread_id,
-							Long.parseLong( question_id ),
+							question_id,
 							false );
 
 					tSource.close();

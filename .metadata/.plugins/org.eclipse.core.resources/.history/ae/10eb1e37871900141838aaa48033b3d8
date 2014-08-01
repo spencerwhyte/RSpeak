@@ -11,7 +11,6 @@ package com.example.android_rspeak_v1.transactions;
 
 import java.util.HashMap;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.android.volley.Response;
@@ -20,7 +19,6 @@ import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
 import com.example.android_rspeak_v1.database.Question;
 import com.example.android_rspeak_v1.database.QuestionsDataSource;
-import com.example.android_rspeak_v1.database.ThreadsDataSource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -80,32 +78,6 @@ public class AskQuestionTransaction
 				requestSource.open();
 				requestSource.deleteRequest( request.getID() );
 				requestSource.close();
-				
-				// get the question id and the thread id from the json response
-				String question_id = null;
-				String thread_id = null;
-				try
-				{
-					question_id = response.getString( HTTPRequest.DATA_QUESTION_ID );
-					thread_id = response.getString( HTTPRequest.DATA_THREAD_ID );
-				}
-				catch ( JSONException e )
-				{
-					Log.e( "error", "Error: couldn't read either question or thread id after sending question to server: " + e.toString() );
-					return;
-				}
-				
-				if ( question_id != null && thread_id != null )
-				{
-					ThreadsDataSource tSource = new ThreadsDataSource( context );
-					tSource.open();
-					
-					tSource.createThread( thread_id,
-							Long.parseLong( question_id ),
-							false );
-
-					tSource.close();
-				}
 			}
 		};
 	}
