@@ -5,7 +5,7 @@ import random
 import json
 
 from django.http import HttpResponse
-from rspeak_app_v1.models import Device, Question, Response
+from rspeak_app_v1.models import Device, Question, Thread, Response
 from rspeak_app_v1.utils.notifications import Updates
 from utils.notifications import Updates, sendSyncNotification
 from django.views.decorators.csrf import csrf_exempt
@@ -87,22 +87,28 @@ def ask(request):
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
-			# First add question to database
-			question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
-			question.save()
+			# Find device with the assigned id
+			device = Device.objects.get( device_id=asker_device_id )
 
-			# Second select a random device to send the question to
+			# then add question to database
+			question = Question( question_id=question_id, asker_device_id=device, question_content=question_content )
+			question.save()
+			print "added question to db"
+
+			# then select a random device to send the question to
 			all_devices = Device.objects.all().values()
 			random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
 
 			# ensure that we've a valid device
 			if random_device is None:
 				return
-			while random_device['device_id'] is asker_device_id:
+			while len( all_devices ) > 1 and random_device['device_id'] is asker_device_id:
 				random_device = random.choice( all_devices )
+			print "Found random device: " + str(random_device)
 
 			# Start the thread between the asker device and the random device
-			response_thread = Thread( question_id=question.question_id, asker_device_id=asker_device_id )
+			print "getting response thread"
+			response_thread = Thread( question_id=question.question_id, asker_device_id=device )
 			response_thread.save()
 
 			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
