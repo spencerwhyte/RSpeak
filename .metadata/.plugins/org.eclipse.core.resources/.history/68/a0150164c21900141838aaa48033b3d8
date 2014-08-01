@@ -21,7 +21,7 @@ public class HTTPRequest
 	// URL constants
 	public static final String BASE_URL = "http://192.168.0.10:8000/v1";
 	public static final String URL_REGISTER_DEVICE = "/register/device/";
-	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "/register/push_notification_id/";
+	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "register/push_notification_id/";
 	public static final String URL_ASK = "/ask/";
 	public static final String URL_RESPOND = "/respond/";
 	public static final String URL_UPDATE_THREAD = "/update/thread/";

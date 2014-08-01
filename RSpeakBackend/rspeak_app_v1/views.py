@@ -36,16 +36,13 @@ def register_device(request):
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
 			# See if the device id already exists
-			print "looking for preexisting id in db"
 			try:
 				device = Device.objects.get( device_id=device_id )
 			except Device.DoesNotExist:
 				device = None
 			if device:
-				print "found pre-existing id"
 				return HttpResponse( json.dumps({ 'valid_id' : False }), content_type="application/json" )
 			else:
-				print "didn't find pre-existing id"
 				device = Device( device_id=device_id, device_type=device_type )
 				device.save()
 				return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
@@ -64,11 +61,14 @@ def register_push_notification_id(request):
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
 			# See if the device id already exists
-			device = Device.objects.get( device_id=device_id )
+			device = Device.objects.filter( device_id=device_id )
 
-			if len(device) is not 0:
+			if device.exists():
 				device[0].push_notification_id = push_notification_id
 				device[0].save()
+				return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
+			else:
+				return HttpResponse( json.dumps({ 'valid_id' : False }), content_type="application/json" )
 
 
 # Request handler when someone posts a question

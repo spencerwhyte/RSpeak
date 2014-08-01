@@ -76,7 +76,7 @@ public class QuestionsAnswersArrayAdapter extends ArrayAdapter<Question>
 			    else
 			    {	
 			    	// put no response message and style
-			    	latestResponseLine.setText( "No Answer Yet" );
+			    	latestResponseLine.setText( "No Response Yet" );
 			    	latestResponseLine.setTextAppearance( context, R.style.no_response_line_style );
 			    	latestResponseLine.setGravity( Gravity.CENTER );
 			    }	

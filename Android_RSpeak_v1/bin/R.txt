@@ -137,7 +137,7 @@ int bool abc_config_actionMenuItemAllCaps 0x7f090005
 int bool abc_config_allowActionMenuItemTextWithIcon 0x7f090004
 int bool abc_config_showMenuShortcutsWhenKeyboardPresent 0x7f090003
 int bool abc_split_action_bar_is_narrow 0x7f090002
-int color abc_search_url_text_holo 0x7f050018
+int color abc_search_url_text_holo 0x7f050019
 int color abc_search_url_text_normal 0x7f05000a
 int color abc_search_url_text_pressed 0x7f05000c
 int color abc_search_url_text_selected 0x7f05000b
@@ -154,12 +154,13 @@ int color common_signin_btn_light_text_default 0x7f050004
 int color common_signin_btn_light_text_disabled 0x7f050006
 int color common_signin_btn_light_text_focused 0x7f050007
 int color common_signin_btn_light_text_pressed 0x7f050005
-int color common_signin_btn_text_dark 0x7f050019
-int color common_signin_btn_text_light 0x7f05001a
+int color common_signin_btn_text_dark 0x7f05001a
+int color common_signin_btn_text_light 0x7f05001b
 int color error_grey 0x7f050015
+int color error_red 0x7f050016
 int color off_white 0x7f05000e
-int color silver 0x7f050016
-int color silver_shade 0x7f050017
+int color silver 0x7f050017
+int color silver_shade 0x7f050018
 int color teal 0x7f05000f
 int color teal_dark 0x7f050010
 int color teal_light 0x7f050011
@@ -636,8 +637,9 @@ int style Widget_AppCompat_ProgressBar 0x7f0b000a
 int style Widget_AppCompat_ProgressBar_Horizontal 0x7f0b0009
 int style Widget_AppCompat_Spinner_DropDown_ActionBar 0x7f0b0022
 int style bottom_action_bar_style 0x7f0b0091
-int style no_response_line_style 0x7f0b0095
+int style no_response_line_style 0x7f0b0096
 int style question_line_style 0x7f0b0093
+int style response_hasnt_reached_server_style 0x7f0b0095
 int style response_line_style 0x7f0b0094
 int style vertical_divider 0x7f0b0092
 int[] styleable ActionBar { 0x7f010036, 0x7f010037, 0x7f010038, 0x7f010039, 0x7f01003a, 0x7f01003b, 0x7f01003c, 0x7f01003d, 0x7f01003e, 0x7f01003f, 0x7f010040, 0x7f010041, 0x7f010042, 0x7f010043, 0x7f010044, 0x7f010045, 0x7f010046, 0x7f010047, 0x7f010048 }

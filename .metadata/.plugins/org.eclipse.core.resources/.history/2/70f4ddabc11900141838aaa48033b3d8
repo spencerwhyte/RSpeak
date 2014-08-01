@@ -62,12 +62,6 @@
         <item name="android:textSize">14sp</item>
     </style>
     
-    <style name="response_hasnt_reached_server_style">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/error_red</item>
-        <item name="android:gravity">center</item>
-    </style>
-    
     <style name="no_response_line_style">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/error_grey</item>

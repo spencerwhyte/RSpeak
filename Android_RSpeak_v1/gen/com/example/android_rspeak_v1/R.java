@@ -1011,7 +1011,7 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f090002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f050018;
+        public static final int abc_search_url_text_holo=0x7f050019;
         public static final int abc_search_url_text_normal=0x7f05000a;
         public static final int abc_search_url_text_pressed=0x7f05000c;
         public static final int abc_search_url_text_selected=0x7f05000b;
@@ -1030,12 +1030,13 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050006;
         public static final int common_signin_btn_light_text_focused=0x7f050007;
         public static final int common_signin_btn_light_text_pressed=0x7f050005;
-        public static final int common_signin_btn_text_dark=0x7f050019;
-        public static final int common_signin_btn_text_light=0x7f05001a;
+        public static final int common_signin_btn_text_dark=0x7f05001a;
+        public static final int common_signin_btn_text_light=0x7f05001b;
         public static final int error_grey=0x7f050015;
+        public static final int error_red=0x7f050016;
         public static final int off_white=0x7f05000e;
-        public static final int silver=0x7f050016;
-        public static final int silver_shade=0x7f050017;
+        public static final int silver=0x7f050017;
+        public static final int silver_shade=0x7f050018;
         public static final int teal=0x7f05000f;
         public static final int teal_dark=0x7f050010;
         public static final int teal_light=0x7f050011;
@@ -1829,8 +1830,9 @@ containing a value of this type.
         public static final int Widget_AppCompat_ProgressBar_Horizontal=0x7f0b0009;
         public static final int Widget_AppCompat_Spinner_DropDown_ActionBar=0x7f0b0022;
         public static final int bottom_action_bar_style=0x7f0b0091;
-        public static final int no_response_line_style=0x7f0b0095;
+        public static final int no_response_line_style=0x7f0b0096;
         public static final int question_line_style=0x7f0b0093;
+        public static final int response_hasnt_reached_server_style=0x7f0b0095;
         public static final int response_line_style=0x7f0b0094;
         public static final int vertical_divider=0x7f0b0092;
     }

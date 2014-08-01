@@ -9,7 +9,6 @@
     <color name="ash_dark">#1E1E1E</color>
     <color name="ash_light">#828282</color>
 	<color name="error_grey">#8C8C8C</color>
-	<color name="error_red">#E35252</color>
 	<color name="silver">#DEDEDE</color>
 	<color name="silver_shade">#CFCFCF</color>
 </resources>

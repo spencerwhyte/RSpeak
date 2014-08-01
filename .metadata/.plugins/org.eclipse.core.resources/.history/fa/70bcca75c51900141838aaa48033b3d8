@@ -135,9 +135,8 @@ public class BrowseQuestionsAnswersActivity extends ActionBarActivity implements
     	gcmManager.checkPlayServices();
     	
     	// refresh the q/a list
-//    	mSectionsPagerAdapter = new QuestionsAnswersPagerAdapter( getSupportFragmentManager(), this );
-//    	mViewPager = (ViewPager) findViewById(R.id.pager);
-//    	mViewPager.setAdapter( mSectionsPagerAdapter );
+    	mSectionsPagerAdapter = new QuestionsAnswersPagerAdapter( getSupportFragmentManager(), this );
+    	mViewPager.setAdapter( mSectionsPagerAdapter );
     }
 
 
