@@ -10,22 +10,51 @@ from models import Device, Question, Thread, Response
 from notifications import Updates, sendSyncNotification
 from utils import random_alphanumeric
 
-
-# returns csrf token
+ 
 def retrieve_csrf(request):
+	"""
+	returns csrf token
+	"""
 	t = Template("{% csrf_token %}")
 	c = Context({})
 	return t.render(c)
 
 
-# Request handler when a new device installs the app
-# We will need:
-# 1. Device id
-# 2. Device type
-# 3. Push notification id
-# these will ensure proper communication with the device
+@csrf_exempt
+def retrieve_credit_score(request):
+	"""
+	When a device wants to retrieve its current credit
+	We will need:
+	1. Only the device id
+	"""
+	if request.method == 'POST':
+		json_data = json.loads( request.body )
+
+		try:
+			device_id = json_data['device_id']
+		except KeyError:
+			print "Error: A posted question did not have a JSON object with the required properties"
+		else:
+			# See if the device id already exists
+			try:
+				device = Device.objects.get( device_id=device_id )
+			except Device.DoesNotExist:
+				device = None
+			if device:
+				return HttpResponse( json.dumps({ 'credit_points' : device.credit_points }), content_type="application/json" )
+			else:
+				return HttpResponse( json.dumps({ 'credit_points' : -1 }), content_type="application/json" )
+
 @csrf_exempt
 def register_device(request):
+	"""
+	Request handler when a new device installs the app
+	We will need:
+	1. Device id
+	2. Device type
+	3. Push notification id
+	these will ensure proper communication with the device
+	"""
 	if request.method == 'POST':
 		json_data = json.loads( request.body )
 
@@ -47,10 +76,13 @@ def register_device(request):
 				device.save()
 				return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
 
-# If the device didn't have the push notification id ready
-# when registering then 
+
 @csrf_exempt
 def register_push_notification_id(request):
+	"""
+	If the device didn't have the push notification id ready
+	when registering then 
+	"""
 	if request.method == 'POST':
 		json_data = json.loads( request.body )
 
@@ -71,13 +103,15 @@ def register_push_notification_id(request):
 				return HttpResponse( json.dumps({ 'valid_id' : False }), content_type="application/json" )
 
 
-# Request handler when someone posts a question
-# 1. Add question content to the database
-# 2. Select random active answerer
-# 3. Put the question in the answerer's update stack
-# 4. Send push notification to the answerer's device to retrieve updates
 @csrf_exempt
 def ask(request):
+	"""
+	Request handler when someone posts a question
+	1. Add question content to the database
+	2. Select random active answerer
+	3. Put the question in the answerer's update stack
+	4. Send push notification to the answerer's device to retrieve updates
+	"""
 	if request.method == 'POST':
 		json_data = json.loads( request.body )
 
@@ -117,12 +151,14 @@ def ask(request):
 			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
 
 
-# Request handler when someone posts a response
-# 1. Add response content to the database
-# 2. Send push notification to client device
-# 3. Update the credit of the responder
 @csrf_exempt
 def respond(request):
+	"""
+	Request handler when someone posts a response
+	1. Add response content to the database
+	2. Send push notification to client device
+	3. Update the credit of the responder
+	"""
 	if request.method == 'POST':
 		json_data = json.loads( request.body )
 
@@ -138,13 +174,15 @@ def respond(request):
 			response.save()
 
 
-# Request handler to update client model after receiving a push notification
-# 1. Check queue to see if the client has any updates on standby
-# 2. Send the client their update
-# 3. Get ack from client
-# 4. Empty the queue
 @csrf_exempt
 def update_thread(request):
+	"""
+	Request handler to update client model after receiving a push notification
+	1. Check queue to see if the client has any updates on standby
+	2. Send the client their update
+	3. Get ack from client
+	4. Empty the queue
+	"""
 	if request.method == 'POST':
 		json_data = json.loads( request.body )
 

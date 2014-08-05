@@ -23,6 +23,7 @@ public class HTTPRequest
 	public static final String URL_REGISTER_DEVICE = "/register/device/";
 	public static final String URL_REGISTER_PUSH_NOTIFICATION_ID = "/register/push_notification_id/";
 	public static final String URL_ASK = "/ask/";
+	public static final String URL_GET_CREDIT_SCORE = "/retrieve/credit_score/";
 	public static final String URL_RESPOND = "/respond/";
 	public static final String URL_UPDATE_THREAD = "/update/thread/";
 	
@@ -36,6 +37,7 @@ public class HTTPRequest
 	public static final String DATA_THREAD_ID = "thread_id";
 	public static final String DATA_CONTENT = "content";
 	public static final String DATA_VALID_ID = "valid_id";
+	public static final String DATA_CREDIT_POINTS = "credit_points";
 	
 	public enum Type { GET, POST };
 	

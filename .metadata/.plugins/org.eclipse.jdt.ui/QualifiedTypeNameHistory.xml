@@ -40,7 +40,6 @@
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.R.id"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.AskQuestionTransaction"/>
-<fullyQualifiedTypeName name="org.json.JSONException"/>
 <fullyQualifiedTypeName name="com.android.volley.toolbox.JsonObjectRequest"/>
 <fullyQualifiedTypeName name="com.android.volley.Request"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="android.os.Build"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.RegisterDeviceTransaction"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.RegisterPushNotificationTransaction"/>
+<fullyQualifiedTypeName name="org.json.JSONException"/>
 </qualifiedTypeNameHistroy>

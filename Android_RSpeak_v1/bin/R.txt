@@ -328,7 +328,7 @@ int id action_context_bar 0x7f060020
 int id action_menu_divider 0x7f060019
 int id action_menu_presenter 0x7f06001a
 int id action_mode_close_button 0x7f060027
-int id action_settings 0x7f06004e
+int id action_settings 0x7f06004f
 int id activity_chooser_view_content 0x7f060028
 int id always 0x7f06000f
 int id ask_button 0x7f060042
@@ -337,13 +337,14 @@ int id bottom_action_bar 0x7f060041
 int id checkbox 0x7f060030
 int id collapseActionView 0x7f060011
 int id container 0x7f06003f
-int id conversation_list 0x7f060048
-int id date 0x7f060049
-int id date_line 0x7f06004b
+int id conversation_list 0x7f060049
+int id credit 0x7f060044
+int id date 0x7f06004a
+int id date_line 0x7f06004c
 int id default_activity_button 0x7f06002b
 int id dialog 0x7f060012
 int id disableHome 0x7f06000c
-int id divider 0x7f060045
+int id divider 0x7f060046
 int id dropdown 0x7f060013
 int id edit_query 0x7f060033
 int id end 0x7f060016
@@ -355,8 +356,8 @@ int id hybrid 0x7f060004
 int id icon 0x7f06002d
 int id ifRoom 0x7f06000e
 int id image 0x7f06002a
-int id index_line 0x7f06004d
-int id latest_response_line 0x7f06004c
+int id index_line 0x7f06004e
+int id latest_response_line 0x7f06004d
 int id listMode 0x7f060005
 int id list_item 0x7f06002c
 int id middle 0x7f060015
@@ -366,8 +367,8 @@ int id normal 0x7f060001
 int id pager 0x7f060040
 int id progress_circular 0x7f06001b
 int id progress_horizontal 0x7f06001c
-int id question 0x7f060046
-int id question_line 0x7f06004a
+int id question 0x7f060047
+int id question_line 0x7f06004b
 int id question_magnet_button 0x7f060043
 int id radio 0x7f060032
 int id satellite 0x7f060002
@@ -381,7 +382,7 @@ int id search_mag_icon 0x7f060038
 int id search_plate 0x7f060039
 int id search_src_text 0x7f06003a
 int id search_voice_btn 0x7f06003e
-int id send_question 0x7f060047
+int id send_question 0x7f060048
 int id shortcut 0x7f060031
 int id showCustom 0x7f06000b
 int id showHome 0x7f060008
@@ -394,7 +395,7 @@ int id title 0x7f06002e
 int id top_action_bar 0x7f060023
 int id up 0x7f060024
 int id useLogo 0x7f060007
-int id verse 0x7f060044
+int id verse 0x7f060045
 int id withText 0x7f060010
 int integer abc_max_action_buttons 0x7f080001
 int integer google_play_services_version 0x7f080000
