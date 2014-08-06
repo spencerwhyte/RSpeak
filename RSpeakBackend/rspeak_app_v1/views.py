@@ -175,7 +175,7 @@ def respond(request):
 
 			if thread.exists() and device.exists():
 				# add response to database
-				response = Response( thread_id=thread_id, responder_device_id=device_id, response_content=response_content )
+				response = Response( thread=thread[0], responder_device=device[0], response_content=response_content )
 				response.save()
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
