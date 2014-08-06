@@ -113,25 +113,25 @@ public class HTTPRequest
 					url,
 					data_object,
 					successListener,
-					errorListener )
-			{
-				@Override
-                public Map<String, String> getHeaders() throws AuthFailureError 
-                {
-                	HashMap<String, String> headers = new HashMap<String, String>();
-                    headers.put("TOKEN", "99KI9Gj68CgCf70deM22Ka64chef2C40Gm2lFJ2J0G9JkDaaDAcbFfd19MfacGf3FFm8CM1hG0eDiIk8");
-
-                    return headers;
-                }
-
-                @Override 
-                protected Map<String, String> getParams() 
-                {
-                	Map<String, String> params = new HashMap<String, String>();
-
-                	return params;
-                }
-			};
+					errorListener );
+//			{
+//				@Override
+//                public Map<String, String> getHeaders() throws AuthFailureError 
+//                {
+//                	HashMap<String, String> headers = new HashMap<String, String>();
+//                    headers.put("TOKEN", "99KI9Gj68CgCf70deM22Ka64chef2C40Gm2lFJ2J0G9JkDaaDAcbFfd19MfacGf3FFm8CM1hG0eDiIk8");
+//
+//                    return headers;
+//                }
+//
+//                @Override 
+//                protected Map<String, String> getParams() 
+//                {
+//                	Map<String, String> params = new HashMap<String, String>();
+//
+//                	return params;
+//                }
+//			};
 		}
 
 		RequestQueue requestQueue = RSpeakApplication.getRequestQueue();

@@ -38,37 +38,46 @@ public class AskQuestionTransaction
 		this.context = context;
 	}
 	
+	public AskQuestionTransaction( Context context, HTTPRequest request )
+	{
+		this.context = context;
+		this.request = request;
+	}
+	
 	public void beginTransaction( String question_content )
 	{
-		// first add the question to the database
-		QuestionsDataSource questionSource = new QuestionsDataSource( context );
-		questionSource.open();
-		Question question = questionSource.createQuestion( question_content, System.currentTimeMillis(), true );
-		questionSource.close();
-		
-		// get the device id
-		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-		String device_id = device_properties.getString( RSpeakApplication.PROPERTY_DEVICE_ID, null );
-		
-		// then create the JSON object for the http request
-		HashMap<String, String> params = new HashMap<String, String>();
-	    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
-	    params.put( HTTPRequest.DATA_QUESTION_ID, String.valueOf( question.getID() ));
-	    params.put( HTTPRequest.DATA_CONTENT, question_content );
-	    JSONObject request_data = new JSONObject(params);
-		
-		// then add the question request to the database
-		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-		requestSource.open();
-		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_ASK, request_data.toString() );
-		requestSource.close();
+		if ( request == null )
+	    {
+			// first add the question to the database
+			QuestionsDataSource questionSource = new QuestionsDataSource( context );
+			questionSource.open();
+			Question question = questionSource.createQuestion( question_content, System.currentTimeMillis(), true );
+			questionSource.close();
+			
+			// get the device id
+			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+			String device_id = device_properties.getString( RSpeakApplication.PROPERTY_DEVICE_ID, null );
+			
+			// then create the JSON object for the http request
+			HashMap<String, String> params = new HashMap<String, String>();
+		    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
+		    params.put( HTTPRequest.DATA_QUESTION_ID, String.valueOf( question.getID() ));
+		    params.put( HTTPRequest.DATA_CONTENT, question_content );
+		    JSONObject request_data = new JSONObject(params);
+			
+			// then add the question request to the database
+			HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+			requestSource.open();
+			this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_ASK, request_data.toString() );
+			requestSource.close();
+	    }
 		
 		// then try to send the request to the server
 		request.startRequest( successListener(), errorListener() );
 	}
 	
 	// if the request is successful
-	private Response.Listener<JSONObject> successListener()
+	public Response.Listener<JSONObject> successListener()
 	{
 		return new Response.Listener<JSONObject>() 
 		{
@@ -111,7 +120,7 @@ public class AskQuestionTransaction
 	}
 
 	// if the request is not successful
-	private Response.ErrorListener errorListener()
+	public Response.ErrorListener errorListener()
 	{
 		return new Response.ErrorListener() 
 		{

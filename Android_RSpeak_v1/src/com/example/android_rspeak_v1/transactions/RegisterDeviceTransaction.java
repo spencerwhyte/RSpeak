@@ -46,42 +46,58 @@ public class RegisterDeviceTransaction
 		this.context = context;
 	}
 	
+	public RegisterDeviceTransaction( Context context, HTTPRequest request )
+	{
+		this.context = context;
+		this.request = request;
+	}
+	
 	public void beginTransaction()
 	{	
-		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-		Random random = new Random();
-		device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
-		
-		// only go through with the transaction if there is no device id already registered
-		if ( device_id == null )
+		if ( request == null )
 		{
-			// first create a random 16 character String
-			char[] id = new char[ 16 ];
-			for ( int i = 0; i < 16; i++ )
+			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+			Random random = new Random();
+			device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
+			
+			// only go through with the transaction if there is no device id already registered
+			if ( device_id == null )
 			{
-				id[ i ] = symbols[ random.nextInt( symbols.length ) ];
+				// first create a random 16 character String
+				char[] id = new char[ 16 ];
+				for ( int i = 0; i < 16; i++ )
+				{
+					id[ i ] = symbols[ random.nextInt( symbols.length ) ];
+				}
+				device_id = new String( id );
+				
+				// then create the JSON object for the http request
+				HashMap<String, String> params = new HashMap<String, String>();
+			    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
+			    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
+			    JSONObject request_data = new JSONObject(params);
+				
+				// then add the question request to the database
+			    if ( request == null )
+			    {
+					HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+					requestSource.open();
+					this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_DEVICE, request_data.toString() );
+					requestSource.close();
+			    }
+					
+				// then try to send the request to the server
+				request.startRequest( successListener(), errorListener() );
 			}
-			device_id = new String( id );
-			
-			// then create the JSON object for the http request
-			HashMap<String, String> params = new HashMap<String, String>();
-		    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
-		    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
-		    JSONObject request_data = new JSONObject(params);
-			
-			// then add the question request to the database
-			HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-			requestSource.open();
-			this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_DEVICE, request_data.toString() );
-			requestSource.close();
-			
-			// then try to send the request to the server
+		}
+		else
+		{
 			request.startRequest( successListener(), errorListener() );
 		}
 	}
 	
 	// if the request is successful
-	private Response.Listener<JSONObject> successListener()
+	public Response.Listener<JSONObject> successListener()
 	{
 		return new Response.Listener<JSONObject>() 
 		{
@@ -140,7 +156,7 @@ public class RegisterDeviceTransaction
 	}
 
 	// if the request is not successful
-	private Response.ErrorListener errorListener()
+	public Response.ErrorListener errorListener()
 	{
 		return new Response.ErrorListener() 
 		{

@@ -28,40 +28,54 @@ public class RegisterPushNotificationTransaction
 		this.gcmManager = new GCMManager( context );
 	}
 	
+	public RegisterPushNotificationTransaction( Context context, HTTPRequest request )
+	{
+		this.context = context;
+		this.request = request;
+		this.gcmManager = new GCMManager( context );
+	}
+	
 	public void beginTransaction()
 	{
-		SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-		String device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
-		String push_notification_id = gcmManager.getRegistrationId( context );
-		
-		// if there is no device id then register a new one
-		if ( device_id == null )
+		if ( request == null )
 		{
-			RegisterDeviceTransaction register_device_transaction = new RegisterDeviceTransaction( context );
-			register_device_transaction.beginTransaction();
+			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+			String device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
+			String push_notification_id = gcmManager.getRegistrationId( context );
+			
+			// if there is no device id then register a new one
+			if ( device_id == null )
+			{
+				RegisterDeviceTransaction register_device_transaction = new RegisterDeviceTransaction( context );
+				register_device_transaction.beginTransaction();
+			}
+			else if ( push_notification_id != null )
+			{
+				// then create the JSON object for the http request
+				HashMap<String, String> params = new HashMap<String, String>();
+			    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
+			    params.put( HTTPRequest.DATA_PUSH_NOTIFICATION_ID, push_notification_id );
+			    JSONObject request_data = new JSONObject(params);
+				
+				// then add the question request to the database
+				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+				requestSource.open();
+				this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_PUSH_NOTIFICATION_ID, request_data.toString() );
+				requestSource.close();
+				
+				// then try to send the request to the server
+				request.startRequest( successListener(), errorListener() );
+			}
 		}
-		else if ( push_notification_id != null )
+		else
 		{
-			// then create the JSON object for the http request
-			HashMap<String, String> params = new HashMap<String, String>();
-		    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
-		    params.put( HTTPRequest.DATA_PUSH_NOTIFICATION_ID, push_notification_id );
-		    JSONObject request_data = new JSONObject(params);
-			
-			// then add the question request to the database
-			HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
-			requestSource.open();
-			this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_PUSH_NOTIFICATION_ID, request_data.toString() );
-			requestSource.close();
-			
-			// then try to send the request to the server
 			request.startRequest( successListener(), errorListener() );
 		}
 	}
 	
 	// if the request is successful remove the HTTP request
 	// from the database
-	private Response.Listener<JSONObject> successListener()
+	public Response.Listener<JSONObject> successListener()
 	{
 		return new Response.Listener<JSONObject>() 
 		{
@@ -90,7 +104,7 @@ public class RegisterPushNotificationTransaction
 	}
 
 	// if the request is not successful
-	private Response.ErrorListener errorListener()
+	public Response.ErrorListener errorListener()
 	{
 		return new Response.ErrorListener() 
 		{
