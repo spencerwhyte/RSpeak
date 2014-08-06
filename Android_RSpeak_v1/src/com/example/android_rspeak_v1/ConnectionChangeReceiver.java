@@ -10,6 +10,7 @@ import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
 import com.example.android_rspeak_v1.transactions.AskQuestionTransaction;
 import com.example.android_rspeak_v1.transactions.RegisterDeviceTransaction;
 import com.example.android_rspeak_v1.transactions.RegisterPushNotificationTransaction;
+import com.example.android_rspeak_v1.transactions.RespondToQuestionTransaction;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -57,6 +58,13 @@ public class ConnectionChangeReceiver extends BroadcastReceiver
 					RegisterPushNotificationTransaction registerPushNotificationTransaction = new RegisterPushNotificationTransaction( context, request );
 					successListener = registerPushNotificationTransaction.successListener();
 					errorListener = registerPushNotificationTransaction.errorListener();
+				}
+				
+				else if ( url.equals( HTTPRequest.BASE_URL + HTTPRequest.URL_RESPOND ) )
+				{
+					RespondToQuestionTransaction respondToQuestionTransaction = new RespondToQuestionTransaction( context, request );
+					successListener = respondToQuestionTransaction.successListener();
+					errorListener = respondToQuestionTransaction.errorListener();
 				}
 				
 				request.startRequest( successListener, errorListener );

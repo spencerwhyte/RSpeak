@@ -1,14 +1,12 @@
 package com.example.android_rspeak_v1.adapters;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.database.Question;
 import com.example.android_rspeak_v1.database.Response;
-import com.example.android_rspeak_v1.database.Thread;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +18,7 @@ import android.widget.TextView;
 public class BrowseConversationListAdapter extends BaseAdapter
 {
 	private final Context context;
-	private final List<Response> responses;
+	private List<Response> responses;
 	private final Question question;
 	
 	private static final int INITIAL_QUESTION = 0;
@@ -32,6 +30,11 @@ public class BrowseConversationListAdapter extends BaseAdapter
 		this.context = context;
 		this.responses = responses;
 		this.question = question;
+	}
+	
+	public void updateResponses( List<Response> responses )
+	{
+		this.responses = responses;
 	}
 	
 	@Override
@@ -70,23 +73,20 @@ public class BrowseConversationListAdapter extends BaseAdapter
 	public View getView( int position, View convertView, ViewGroup parent )
 	{
 		int viewType = getItemViewType( position );
+	
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-		if ( convertView == null )
+		if ( viewType == INITIAL_QUESTION )
 		{
-			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			
-			if ( viewType == INITIAL_QUESTION )
-			{
-				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_question, null );
-			}
-			else if ( viewType == LOCAL_RESPONSE )
-			{
-				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_local, null );
-			}
-			else if ( viewType == FOREIGN_RESPONSE )
-			{
-				convertView = inflater.inflate( R.layout.fragment_conversation_list_item_foreign, null );
-			}
+			convertView = inflater.inflate( R.layout.fragment_conversation_list_item_question, null );
+		}
+		else if ( viewType == LOCAL_RESPONSE )
+		{
+			convertView = inflater.inflate( R.layout.fragment_conversation_list_item_local, null );
+		}
+		else if ( viewType == FOREIGN_RESPONSE )
+		{
+			convertView = inflater.inflate( R.layout.fragment_conversation_list_item_foreign, null );
 		}
 		
 		TextView verse = (TextView) convertView.findViewById( R.id.verse );
@@ -96,7 +96,7 @@ public class BrowseConversationListAdapter extends BaseAdapter
 			verse.setText( question.getQuestionContent() );
 			
 			TextView date = (TextView) convertView.findViewById( R.id.date );
-			DateFormat df = new SimpleDateFormat("dd/MM/yy");
+			DateFormat df = DateFormat.getDateInstance();
 			Date postDate = new Date( question.getTimePosted() );
 			date.setText( df.format( postDate ) );
 			

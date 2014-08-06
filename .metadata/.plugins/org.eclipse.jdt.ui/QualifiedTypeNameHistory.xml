@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.support.v4.app.ListFragment"/>
-<fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
-<fullyQualifiedTypeName name="com.example.android_rspeak_v1.database.ThreadsDataSource"/>
-<fullyQualifiedTypeName name="com.example.android_rspeak_v1.adapters.BrowseThreadsListAdapter"/>
-<fullyQualifiedTypeName name="com.example.android_rspeak_v1.activities.BrowseThreadsActivity"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.fragments.QuestionsAnswersListFragment.QuestionOrigin"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.fragments.BrowseThreadsFragment"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.database.QuestionsDataSource"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.database.HTTPRequestsDataSource"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.database.Question"/>
@@ -37,27 +31,33 @@
 <fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.widget.ImageButton"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
-<fullyQualifiedTypeName name="com.example.android_rspeak_v1.R.id"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
-<fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.AskQuestionTransaction"/>
 <fullyQualifiedTypeName name="com.android.volley.toolbox.JsonObjectRequest"/>
 <fullyQualifiedTypeName name="com.android.volley.Request"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.android.volley.AuthFailureError"/>
-<fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpGet"/>
 <fullyQualifiedTypeName name="java.net.CookieStore"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.http.cookie.Cookie"/>
 <fullyQualifiedTypeName name="android.provider.SyncStateContract.Constants"/>
 <fullyQualifiedTypeName name="org.apache.http.client.ClientProtocolException"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.database.HTTPRequest"/>
 <fullyQualifiedTypeName name="android.content.SharedPreferences.Editor"/>
 <fullyQualifiedTypeName name="android.os.Build"/>
+<fullyQualifiedTypeName name="org.json.JSONException"/>
+<fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.GetCreditScoreTransaction"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.example.android_rspeak_v1.R.id"/>
+<fullyQualifiedTypeName name="android.content.BroadcastReceiver"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="android.net.ConnectivityManager"/>
+<fullyQualifiedTypeName name="android.net.NetworkInfo"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.AskQuestionTransaction"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.RegisterDeviceTransaction"/>
 <fullyQualifiedTypeName name="com.example.android_rspeak_v1.transactions.RegisterPushNotificationTransaction"/>
-<fullyQualifiedTypeName name="org.json.JSONException"/>
 </qualifiedTypeNameHistroy>

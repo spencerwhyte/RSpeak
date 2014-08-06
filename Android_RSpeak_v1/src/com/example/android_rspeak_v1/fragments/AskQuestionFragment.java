@@ -1,17 +1,9 @@
 package com.example.android_rspeak_v1.fragments;
 
-import java.util.List;
 
 import com.example.android_rspeak_v1.R;
-import com.example.android_rspeak_v1.adapters.BrowseConversationListAdapter;
-import com.example.android_rspeak_v1.database.RSpeakSQLiteHelper;
-import com.example.android_rspeak_v1.database.Response;
-import com.example.android_rspeak_v1.database.ResponsesDataSource;
-import com.example.android_rspeak_v1.database.Thread;
-import com.example.android_rspeak_v1.database.ThreadsDataSource;
 import com.example.android_rspeak_v1.transactions.AskQuestionTransaction;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 public class AskQuestionFragment extends Fragment
 {
@@ -38,7 +29,11 @@ public class AskQuestionFragment extends Fragment
 	{
 		fragmentView = inflater.inflate( R.layout.fragment_ask_question, container, false );
 		ImageButton send_question =  (ImageButton) fragmentView.findViewById( R.id.send_question );
-
+		
+		// set the focus on the edit text box by default
+		EditText question = (EditText) fragmentView.findViewById( R.id.question );
+		question.requestFocus();
+		
 		send_question.setOnClickListener( getSendButtonListener() );
 		
 	    return fragmentView;

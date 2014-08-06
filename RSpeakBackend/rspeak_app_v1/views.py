@@ -163,15 +163,22 @@ def respond(request):
 		json_data = json.loads( request.body )
 
 		try:
-			thread = json_data['thread_id']
+			thread_id = json_data['thread_id']
 			response_content = json_data['content']
 			device_id = json_data['device_id']
 		except KeyError:
 			print "Error: A posted response did not have a JSON object with the required properties"
 		else:
-			# First, add response to database
-			response = Response(thread_id=thread_id, responder_device_id=responder_device_id, response_content=response_content)
-			response.save()
+			# check that the thread id and the device ids are valid
+			thread = Thread.objects.filter( thread_id=thread_id )
+			device = Device.objects.filter( device_id=device_id )
+
+			if thread.exists() and device.exists():
+				# add response to database
+				response = Response( thread_id=thread_id, responder_device_id=device_id, response_content=response_content )
+				response.save()
+
+				return HttpResponse( json.dumps({}), content_type="application/json" )
 
 
 @csrf_exempt
