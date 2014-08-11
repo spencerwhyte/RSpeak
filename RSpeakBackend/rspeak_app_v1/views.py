@@ -196,6 +196,16 @@ def respond(request):
 				response = Response( thread=thread[0], responder_device=device[0], response_content=response_content )
 				response.save()
 
+				# add update to the other device
+				asker_device = thread[0].asker_device
+				answerer_device = thread[0].answerer_device
+
+				if asker_device.device_id is device.device_id:
+					Updates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content } )
+				
+				elif answerer_device.device_id is device.device_id:
+					Updates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content } )
+
 				return HttpResponse( json.dumps({}), content_type="application/json" )
 
 
@@ -224,14 +234,4 @@ def update_thread(request):
 				# retrieve updates and send them to the client device
 				updates = Updates.get_updates( device_id )
 
-				if updates is not None:
-					return HttpResponse( json.dumps({ 'updates' : updates }), content_type="application/json" )
-			except IOError:
-				print "Error: The update_thread HTTP request was aborted"
-			else:
-				# put the updates back in the stack
-				if updates is not None:
-					for update in updates:
-						Updates.add_update( device_id, update )
-
-				return HttpResponse( json.dumps({ 'updates' : None }), content_type="application/json" )
+				return HttpResponse( json.dumps({ 'updates' : updates }), content_type="application/json" )
