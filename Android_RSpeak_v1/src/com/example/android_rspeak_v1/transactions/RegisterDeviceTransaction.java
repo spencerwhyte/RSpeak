@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
+import com.example.android_rspeak_v1.gcm.GCMManager;
 
 public class RegisterDeviceTransaction 
 {
@@ -29,7 +30,11 @@ public class RegisterDeviceTransaction
 		{
 			tmp.append( ch );
 		}
-		for ( char ch = 'A'; ch <= 'z'; ++ch )
+		for ( char ch = 'A'; ch <= 'Z'; ++ch )
+		{
+			tmp.append( ch );
+		}
+		for ( char ch = 'a'; ch <= 'z'; ++ch )
 		{
 			tmp.append( ch );
 		}
@@ -39,7 +44,6 @@ public class RegisterDeviceTransaction
  
 	private Context context;
 	private HTTPRequest request;
-	private String device_id;
 	
 	public RegisterDeviceTransaction( Context context )
 	{
@@ -52,16 +56,17 @@ public class RegisterDeviceTransaction
 		this.request = request;
 	}
 	
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void beginTransaction()
 	{	
 		if ( request == null )
 		{
 			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
 			Random random = new Random();
-			device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
+			boolean device_id_is_set = device_properties.getBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
 			
 			// only go through with the transaction if there is no device id already registered
-			if ( device_id == null )
+			if ( !device_id_is_set )
 			{
 				// first create a random 16 character String
 				char[] id = new char[ 16 ];
@@ -69,7 +74,19 @@ public class RegisterDeviceTransaction
 				{
 					id[ i ] = symbols[ random.nextInt( symbols.length ) ];
 				}
-				device_id = new String( id );
+				String device_id = new String( id );
+				
+				// put the id in the shared preferences
+				Editor editor = device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
+				editor.putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, true );
+				if ( Build.VERSION.SDK_INT < 9 )
+				{
+					editor.commit();
+				} 
+				else 
+				{
+					editor.apply();
+				}
 				
 				// then create the JSON object for the http request
 				HashMap<String, String> params = new HashMap<String, String>();
@@ -101,7 +118,6 @@ public class RegisterDeviceTransaction
 	{
 		return new Response.Listener<JSONObject>() 
 		{
-			@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 			@Override
 			public void onResponse( JSONObject response )
 			{
@@ -127,22 +143,8 @@ public class RegisterDeviceTransaction
 				{
 					beginTransaction();
 				}
-				else // put the id in the shared preferences
-				{
-					SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
-					Editor editor = device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
-					editor.putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, true );
-					if ( Build.VERSION.SDK_INT < 9 )
-					{
-						editor.commit();
-					} 
-					else 
-					{
-						editor.apply();
-					}
-
-					
-					// check if there's a push notification id, if not then try to create one
+				else // check if there's a push notification id, if not then try to create one 
+				{	
 					GCMManager gcmManager = new GCMManager( context );
 					String push_notification_id = gcmManager.getRegistrationId( context );
 					if ( push_notification_id == null )
@@ -160,9 +162,23 @@ public class RegisterDeviceTransaction
 	{
 		return new Response.ErrorListener() 
 		{
+			@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 			@Override
 			public void onErrorResponse( VolleyError error )
 			{
+				// unset device id in shared preferences
+				SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+				Editor editor = device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, null );
+				editor.putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
+				if ( Build.VERSION.SDK_INT < 9 )
+				{
+					editor.commit();
+				} 
+				else 
+				{
+					editor.apply();
+				}
+				
 				Log.e( "error", "failed to register the device with the server" );
 			}
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="61" version="2.0">
+<workbench progressCount="51" version="2.0">
 <workbenchAdvisor/>
 <window height="778" maximized="true" width="1234" x="23" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -297,166 +297,7 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/AskQuestionTransaction.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/HTTPRequest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/ConnectionChangeReceiver.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/HTTPRequestsDataSource.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/RegisterDeviceTransaction.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/RegisterPushNotificationTransaction.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/Android_RSpeak_v1/AndroidManifest.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/GetCreditScoreTransaction.java"/>
-</editors>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2546" y="0"/>
-</item>
-<item historyLabel="HTTPRequest.java" index="1">
-<position info="not_deleted" x="2895" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2546" y="0"/>
-</item>
-<item historyLabel="HTTPRequest.java" index="1">
-<position info="not_deleted" x="2327" y="45"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2546" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1503" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1737" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2546" y="0"/>
-</item>
-<item historyLabel="HTTPRequest.java" index="1">
-<position info="not_deleted" x="2374" y="22"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2546" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1674" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2481" y="0"/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2481" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1832" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1947" y="0"/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1947" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2176" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1955" y="15"/>
-</item>
-<item historyLabel="HTTPRequestsDataSource.java" index="3">
-<position info="not_deleted" x="2413" y="14"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="1955" y="15"/>
-</item>
-<item historyLabel="RegisterPushNotificationTransaction.java" index="5">
-<position/>
-</item>
-<item historyLabel="RegisterPushNotificationTransaction.java" index="5">
-<position/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2458" y="0"/>
-</item>
-<item historyLabel="AskQuestionTransaction.java" index="0">
-<position info="not_deleted" x="2398" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2458" y="0"/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RegisterDeviceTransaction.java" index="4">
-<position info="not_deleted" x="2739" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2458" y="0"/>
-</item>
-<item historyLabel="RegisterPushNotificationTransaction.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="RegisterPushNotificationTransaction.java" index="5">
-<position info="not_deleted" x="2343" y="0"/>
-</item>
-<item historyLabel="ConnectionChangeReceiver.java" index="2">
-<position info="not_deleted" x="2458" y="0"/>
-</item>
-<item historyLabel="Android_RSpeak_v1 Manifest" index="6"/>
-<item active="true" historyLabel="GetCreditScoreTransaction.java" index="7">
-<position info="not_deleted" x="859" y="93"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -474,6 +315,24 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="Android_RSpeak_v1/AndroidManifest.xml">
+<persistable path="/Android_RSpeak_v1/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="qa_list_layout.xml" tooltip="Android_RSpeak_v1/res/layout/qa_list_layout.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/qa_list_layout.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseConversationListAdapter.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseConversationListAdapter.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/BrowseConversationListAdapter.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AskQuestionFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/AskQuestionFragment.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/AskQuestionFragment.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="fragment_browse_conversation.xml" tooltip="Android_RSpeak_v1/res/layout/fragment_browse_conversation.xml">
+<persistable path="/Android_RSpeak_v1/res/layout/fragment_browse_conversation.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BrowseConversationFragment.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseConversationFragment.java">
+<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/fragments/BrowseConversationFragment.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RegisterPushNotificationTransaction.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/RegisterPushNotificationTransaction.java">
 <persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/RegisterPushNotificationTransaction.java"/>
 </file>
@@ -489,9 +348,6 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ConnectionChangeReceiver.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/ConnectionChangeReceiver.java">
 <persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/ConnectionChangeReceiver.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="Android_RSpeak_v1/AndroidManifest.xml">
-<persistable path="/Android_RSpeak_v1/AndroidManifest.xml"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_browse_questions_answers.xml" tooltip="Android_RSpeak_v1/res/layout/activity_browse_questions_answers.xml">
 <persistable path="/Android_RSpeak_v1/res/layout/activity_browse_questions_answers.xml"/>
 </file>
@@ -503,21 +359,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GetCreditScoreTransaction.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/GetCreditScoreTransaction.java">
 <persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/transactions/GetCreditScoreTransaction.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="browse_questions_answers.xml" tooltip="Android_RSpeak_v1/res/menu/browse_questions_answers.xml">
-<persistable path="/Android_RSpeak_v1/res/menu/browse_questions_answers.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="colors.xml" tooltip="Android_RSpeak_v1/res/values/colors.xml">
-<persistable path="/Android_RSpeak_v1/res/values/colors.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="styles.xml" tooltip="Android_RSpeak_v1/res/values/styles.xml">
-<persistable path="/Android_RSpeak_v1/res/values/styles.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="QuestionsAnswersArrayAdapter.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/QuestionsAnswersArrayAdapter.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/adapters/QuestionsAnswersArrayAdapter.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="QuestionsDataSource.java" tooltip="Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/QuestionsDataSource.java">
-<persistable path="/Android_RSpeak_v1/src/com/example/android_rspeak_v1/database/QuestionsDataSource.java"/>
 </file>
 </mruList>
 </workbench>

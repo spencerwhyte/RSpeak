@@ -19,6 +19,24 @@ def retrieve_csrf(request):
 	c = Context({})
 	return t.render(c)
 
+@csrf_exempt
+def print_db(request):
+	"""
+	print out all tables in the database.
+	FOR DEBUGGING PURPOSES ONLY
+	"""
+	devices = Device.objects.all()
+	questions = Question.objects.all()
+	threads = Thread.objects.all()
+	responses = Response.objects.all()
+
+	print "DEVICES TABLE: \n" + str(devices)
+	print "QUESTIONS TABLE: \n" + str(questions)
+	print "THREADS TABLE: \n" + str(threads)
+	print "RESPONSES TABLE: \n" + str(responses)
+
+	return HttpResponse( json.dumps({}), content_type="application/json" )
+
 
 @csrf_exempt
 def retrieve_credit_score(request):

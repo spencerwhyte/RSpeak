@@ -3,7 +3,7 @@ package com.example.android_rspeak_v1.activities;
 import com.example.android_rspeak_v1.R;
 import com.example.android_rspeak_v1.adapters.QuestionsAnswersPagerAdapter;
 import com.example.android_rspeak_v1.database.HTTPRequest;
-import com.example.android_rspeak_v1.transactions.GCMManager;
+import com.example.android_rspeak_v1.gcm.GCMManager;
 import com.example.android_rspeak_v1.transactions.GetCreditScoreTransaction;
 import com.example.android_rspeak_v1.transactions.RegisterDeviceTransaction;
 import com.example.android_rspeak_v1.transactions.RegisterPushNotificationTransaction;

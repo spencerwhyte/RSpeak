@@ -1,0 +1,185 @@
+package com.example.android_rspeak_v1.transactions;
+
+import java.util.HashMap;
+import java.util.Random;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Build;
+import android.util.Log;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.example.android_rspeak_v1.database.HTTPRequest;
+import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
+
+public class RegisterDeviceTransaction 
+{
+	private static char[] symbols;
+	static 
+	{
+		StringBuilder tmp = new StringBuilder();
+		
+		for ( char ch = '0'; ch <= '9'; ++ch )
+		{
+			tmp.append( ch );
+		}
+		for ( char ch = 'A'; ch <= 'Z'; ++ch )
+		{
+			tmp.append( ch );
+		}
+		for ( char ch = 'a'; ch <= 'z'; ++ch )
+		{
+			tmp.append( ch );
+		}
+		
+		symbols = tmp.toString().toCharArray();
+	}
+ 
+	private Context context;
+	private HTTPRequest request;
+	
+	public RegisterDeviceTransaction( Context context )
+	{
+		this.context = context;
+	}
+	
+	public RegisterDeviceTransaction( Context context, HTTPRequest request )
+	{
+		this.context = context;
+		this.request = request;
+	}
+	
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	public void beginTransaction()
+	{	
+		if ( request == null )
+		{
+			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+			Random random = new Random();
+			boolean device_id_is_set = device_properties.getBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
+			
+			// only go through with the transaction if there is no device id already registered
+			if ( !device_id_is_set )
+			{
+				// first create a random 16 character String
+				char[] id = new char[ 16 ];
+				for ( int i = 0; i < 16; i++ )
+				{
+					id[ i ] = symbols[ random.nextInt( symbols.length ) ];
+				}
+				String device_id = new String( id );
+				
+				// put the id in the shared preferences
+				Editor editor = device_properties.edit().putString( HTTPRequest.DATA_DEVICE_ID, device_id );
+				editor.putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, true );
+				if ( Build.VERSION.SDK_INT < 9 )
+				{
+					editor.commit();
+				} 
+				else 
+				{
+					editor.apply();
+				}
+				
+				// then create the JSON object for the http request
+				HashMap<String, String> params = new HashMap<String, String>();
+			    params.put( HTTPRequest.DATA_DEVICE_ID, device_id );
+			    params.put( HTTPRequest.DATA_DEVICE_TYPE, "ANDROID" );
+			    JSONObject request_data = new JSONObject(params);
+				
+				// then add the question request to the database
+			    if ( request == null )
+			    {
+					HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+					requestSource.open();
+					this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_REGISTER_DEVICE, request_data.toString() );
+					requestSource.close();
+			    }
+					
+				// then try to send the request to the server
+				request.startRequest( successListener(), errorListener() );
+			}
+		}
+		else
+		{
+			request.startRequest( successListener(), errorListener() );
+		}
+	}
+	
+	// if the request is successful
+	public Response.Listener<JSONObject> successListener()
+	{
+		return new Response.Listener<JSONObject>() 
+		{
+			@Override
+			public void onResponse( JSONObject response )
+			{
+				boolean valid_id = false;
+				
+				try
+				{
+					valid_id = response.getBoolean( HTTPRequest.DATA_VALID_ID );
+				}
+				catch( JSONException e )
+				{
+					Log.e( "error", "The JSON response received after registering the device couldn't be parsed" );
+					return;
+				}
+				
+				// Remove the request from the database
+				HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
+				requestSource.open();
+				requestSource.deleteRequest( request.getID() );
+				requestSource.close();
+				
+				if ( !valid_id ) // start a new request with a new random ID
+				{
+					beginTransaction();
+				}
+				else 
+				{	
+					// check if there's a push notification id, if not then try to create one
+					GCMManager gcmManager = new GCMManager( context );
+					String push_notification_id = gcmManager.getRegistrationId( context );
+					if ( push_notification_id == null )
+					{
+						RegisterPushNotificationTransaction register_push_notificaiton_transaction = new RegisterPushNotificationTransaction( context );
+						register_push_notificaiton_transaction.beginTransaction();
+					}
+				}
+			}
+		};
+	}
+
+	// if the request is not successful
+	public Response.ErrorListener errorListener()
+	{
+		return new Response.ErrorListener() 
+		{
+			@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+			@Override
+			public void onErrorResponse( VolleyError error )
+			{
+				// unset device id in shared preferences
+				SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
+				Editor editor = device_properties.edit().putBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
+				if ( Build.VERSION.SDK_INT < 9 )
+				{
+					editor.commit();
+				} 
+				else 
+				{
+					editor.apply();
+				}
+				
+				Log.e( "error", "failed to register the device with the server" );
+			}
+		};
+	}
+}

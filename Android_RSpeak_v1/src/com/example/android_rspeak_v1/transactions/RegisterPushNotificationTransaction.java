@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
+import com.example.android_rspeak_v1.gcm.GCMManager;
 
 public class RegisterPushNotificationTransaction 
 {
@@ -42,9 +43,10 @@ public class RegisterPushNotificationTransaction
 			SharedPreferences device_properties = context.getSharedPreferences( "DEVICE_PROPERTIES", 0 );
 			String device_id = device_properties.getString( HTTPRequest.DATA_DEVICE_ID, null );
 			String push_notification_id = gcmManager.getRegistrationId( context );
+			boolean device_id_is_set = device_properties.getBoolean( HTTPRequest.DATA_DEVICE_ID_SET, false );
 			
 			// if there is no device id then register a new one
-			if ( device_id == null )
+			if ( !device_id_is_set )
 			{
 				RegisterDeviceTransaction register_device_transaction = new RegisterDeviceTransaction( context );
 				register_device_transaction.beginTransaction();

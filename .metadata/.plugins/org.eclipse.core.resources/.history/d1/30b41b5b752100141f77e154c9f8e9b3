@@ -1,0 +1,13 @@
+package com.example.android_rspeak_v1.gcm;
+
+import android.app.IntentService;
+
+public class GCMIntentService extends IntentService
+{
+
+	public GCMIntentService(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
+}

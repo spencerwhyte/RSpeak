@@ -9,7 +9,7 @@ class  Device(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Device with ID " + self.device_id
+		return "Device with ID " + str( self.device_id )
 
 
 class Question(models.Model):
@@ -21,7 +21,7 @@ class Question(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Question with ID " + self.question_id
+		return "Question with ID " + str( self.question_id )
 
 class Thread(models.Model):
 	thread_id = models.CharField(primary_key=True, max_length=16)
@@ -31,7 +31,7 @@ class Thread(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Thread with ID " + self.thread_id
+		return "Thread with ID " + str( self.thread_id )
 
 class Response(models.Model):
 	response_id = models.AutoField(primary_key=True)
@@ -42,4 +42,4 @@ class Response(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Response with ID " + self.response_id
+		return "Response with ID " + str( self.response_id )
