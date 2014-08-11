@@ -148,7 +148,7 @@ def ask(request):
 			all_devices = Device.objects.all().values()
 			random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
 
-			# ensure that we've a valid device
+			# ensure that we've a valid answerer device
 			if random_device is None:
 				return
 			while len( all_devices ) > 1 and random_device['device_id'] is asker_device_id:
@@ -161,10 +161,14 @@ def ask(request):
 				thread_id = random_alphanumeric( 16 )
 				response_thread = Thread.objects.filter( thread_id=thread_id )
 
+
 			# Start the thread between the asker device and the random device	
-			response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device_id=asker_device_id )
+			response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device_id=asker_device_id, answerer_device=random_device )
 			response_thread.save()
 			print "response thread with id: " + str(response_thread.thread_id)
+
+			# add question to answerer_device update stack
+			QuestionUpdates.add_update( device_id, { 'thread_id' : thread_id, 'content' : content })
 
 			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
 
@@ -201,10 +205,10 @@ def respond(request):
 				answerer_device = thread[0].answerer_device
 
 				if asker_device.device_id is device.device_id:
-					Updates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content } )
+					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content } )
 				
 				elif answerer_device.device_id is device.device_id:
-					Updates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content } )
+					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content } )
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
 
@@ -232,6 +236,7 @@ def update_thread(request):
 			# are back on the updates stack (else they won't reach the client).
 			try:
 				# retrieve updates and send them to the client device
-				updates = Updates.get_updates( device_id )
+				question_updates = QuestionUpdates.get_updates( device_id )
+				response_updates = ResponseUpdates.get_updates( device_id )
 
-				return HttpResponse( json.dumps({ 'updates' : updates }), content_type="application/json" )
+				return HttpResponse( json.dumps({ 'question_updates' : question_updates, 'response_updates' : response_updates }), content_type="application/json" )
