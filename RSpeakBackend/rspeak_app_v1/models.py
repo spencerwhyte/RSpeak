@@ -26,8 +26,8 @@ class Question(models.Model):
 class Thread(models.Model):
 	thread_id = models.CharField(primary_key=True, max_length=16)
 	question_id = models.PositiveIntegerField(default=1)
-	asker_device = models.ForeignKey('Device', related_name="asker_device")
-	answerer_device = models.ForeignKey('Device', related_name="answerer_device")
+	asker_device = models.ForeignKey('Device', related_name="asker")
+	answerer_device = models.ForeignKey('Device', related_name="answerer")
 	is_stopped = models.BooleanField(default=False)
 
 	# when printing an instance of this class in python shell you will get custom output

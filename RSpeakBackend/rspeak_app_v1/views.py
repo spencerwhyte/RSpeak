@@ -206,10 +206,10 @@ def respond(request):
 				answerer_device = thread[0].answerer_device
 
 				if asker_device.device_id is device.device_id:
-					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time()  } )
+					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
 				
 				elif answerer_device.device_id is device.device_id:
-					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time()  } )
+					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
 
@@ -241,3 +241,12 @@ def retrieve_updates(request):
 				response_updates = ResponseUpdates.get_updates( device_id )
 
 				return HttpResponse( json.dumps({ 'question_updates' : question_updates, 'response_updates' : response_updates }), content_type="application/json" )
+			except IOError:
+				# put back all updates into the update stack
+				for update in question_updates:
+					QuestionUpdates.add_update( device_id, update )
+
+				for update in response_updates:
+					ResponseUpdates.add_update( device_id, update )
+
+				print "Error: failed to send updates to client"

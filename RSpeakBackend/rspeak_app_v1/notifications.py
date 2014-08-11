@@ -47,7 +47,7 @@ class QuestionUpdates(Updates):
 
 	@classmethod
 	def get_updates(cls, device_id):
-		super(QuestionUpdates, cls).get_updates(_updates, device_id):
+		super(QuestionUpdates, cls).get_updates(_updates, device_id)
 
 class ResponseUpdates(Updates):
 	_updates = {}
@@ -58,7 +58,7 @@ class ResponseUpdates(Updates):
 
 	@classmethod
 	def get_updates(cls, device_id):
-		super(QuestionUpdates, cls).get_updates(_updates, device_id):
+		super(QuestionUpdates, cls).get_updates(_updates, device_id)
 
 
 # The method inspects the type of device and uses the corresponding service to
