@@ -42,7 +42,7 @@ public class GetCreditScoreTransaction
 		// then add the question request to the database
 		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
 		requestSource.open();
-		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_RETRIEVE_CREDIT_SCORE, request_data.toString() );
+		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_GET_CREDIT_SCORE, request_data.toString() );
 		requestSource.close();
 		
 		// then try to send the request to the server

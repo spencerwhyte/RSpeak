@@ -2,6 +2,7 @@ package com.example.android_rspeak_v1.transactions;
 
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,13 +18,17 @@ import com.android.volley.VolleyError;
 import com.example.android_rspeak_v1.RSpeakApplication;
 import com.example.android_rspeak_v1.database.HTTPRequest;
 import com.example.android_rspeak_v1.database.HTTPRequestsDataSource;
+import com.example.android_rspeak_v1.database.Question;
+import com.example.android_rspeak_v1.database.QuestionsDataSource;
+import com.example.android_rspeak_v1.database.ResponsesDataSource;
+import com.example.android_rspeak_v1.database.ThreadsDataSource;
 
-public class GetCreditScoreTransaction 
+public class GetUpdatesTransaction 
 {
 	private Context context;
 	private HTTPRequest request;
 	
-	public GetCreditScoreTransaction( Context context )
+	public GetUpdatesTransaction( Context context )
 	{
 		this.context = context;
 	}
@@ -42,7 +47,7 @@ public class GetCreditScoreTransaction
 		// then add the question request to the database
 		HTTPRequestsDataSource requestSource = new HTTPRequestsDataSource( context );
 		requestSource.open();
-		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_RETRIEVE_CREDIT_SCORE, request_data.toString() );
+		this.request = requestSource.createRequest( HTTPRequest.Type.POST, HTTPRequest.BASE_URL + HTTPRequest.URL_RETRIEVE_UPDATES, request_data.toString() );
 		requestSource.close();
 		
 		// then try to send the request to the server
@@ -64,17 +69,70 @@ public class GetCreditScoreTransaction
 				requestSource.deleteRequest( request.getID() );
 				requestSource.close();
 				
-				// get the question id and the thread id from the json response
-				int credit_points = -1;
+				// get the question and response updates
+				JSONArray question_updates = null;
+				JSONArray response_updates = null;
 				try
 				{
-					credit_points = response.getInt( HTTPRequest.DATA_CREDIT_POINTS );
+					question_updates = response.getJSONArray( HTTPRequest.DATA_QUESTION_UPDATES );
+					response_updates = response.getJSONArray( HTTPRequest.DATA_RESPONSE_UPDATES );
+					
+					// add foreign question/thread pairs to the database
+					if ( question_updates != null )
+					{
+						QuestionsDataSource qSource = new QuestionsDataSource( context );
+						ThreadsDataSource tSource = new ThreadsDataSource( context );
+						qSource.open();
+						tSource.open();
+						
+						for ( int i = 0; i < question_updates.length(); i++ )
+						{
+							JSONObject question_update = question_updates.getJSONObject( i );
+							String thread_id = question_update.getString( HTTPRequest.DATA_THREAD_ID );
+							String question_content = question_update.getString( HTTPRequest.DATA_CONTENT );
+							int time_posted = question_update.getInt( HTTPRequest.DATA_TIME );
+							
+							// add the question to the database							
+							Question question = qSource.createQuestion( question_content, time_posted, false );
+							
+							// add the thread to the database
+							tSource.createThread( thread_id, question.getID(), false );
+						}
+						
+						qSource.close();
+						tSource.close();
+					}
+					
+					// add foreign responses to current threads
+					if ( response_updates != null )
+					{
+						ResponsesDataSource rSource = new ResponsesDataSource( context );
+						rSource.open();
+						
+						for ( int i = 0; i < response_updates.length(); i++ )
+						{
+							JSONObject response_update = response_updates.getJSONObject( i );
+							String thread_id = response_update.getString( HTTPRequest.DATA_THREAD_ID );
+							String response_content = response_update.getString( HTTPRequest.DATA_CONTENT );
+							int time_posted = response_update.getInt( HTTPRequest.DATA_TIME );
+							
+							// add the response to the database							
+							com.example.android_rspeak_v1.database.Response thread_response = rSource.createResponse( thread_id, response_content, false, time_posted );
+							
+							// add the thread to the database
+							tSource.createThread( thread_id, question.getID(), false );
+						}
+						
+						rSource.close();
+					}
 				}
 				catch ( JSONException e )
 				{
-					Log.e( "error", "Error: couldn't read credit points after sending device id to server: " + e.toString() );
+					Log.e( "error", "Error: couldn't read question/response arrays after sending device id to server: " + e.toString() );
 					return;
 				}
+				
+				
 				
 				if ( credit_points != -1 ) // -1 could indicate the server didn't find the device id
 				{

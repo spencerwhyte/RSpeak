@@ -3,6 +3,7 @@
 
 import random
 import json
+import time
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -168,7 +169,7 @@ def ask(request):
 			print "response thread with id: " + str(response_thread.thread_id)
 
 			# add question to answerer_device update stack
-			QuestionUpdates.add_update( device_id, { 'thread_id' : thread_id, 'content' : content })
+			QuestionUpdates.add_update( device_id, { 'thread_id' : thread_id, 'content' : content, 'time' : int( time.time() ) })
 
 			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
 
@@ -205,16 +206,16 @@ def respond(request):
 				answerer_device = thread[0].answerer_device
 
 				if asker_device.device_id is device.device_id:
-					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content } )
+					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time()  } )
 				
 				elif answerer_device.device_id is device.device_id:
-					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content } )
+					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time()  } )
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
 
 
 @csrf_exempt
-def update_thread(request):
+def retrieve_updates(request):
 	"""
 	Request handler to update client model after receiving a push notification
 	1. Check queue to see if the client has any updates on standby
