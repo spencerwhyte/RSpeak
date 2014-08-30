@@ -11,6 +11,7 @@ from models import Device, Question, Thread, Response
 from notifications import QuestionUpdates, ResponseUpdates
 from utils import random_alphanumeric
 
+
 @csrf_exempt
 def print_db(request):
 	"""
