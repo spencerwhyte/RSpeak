@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "CentralTabBarController.h"
 #import <CoreData/CoreData.h>
-
+#import "Cloud.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
@@ -35,6 +35,8 @@
     self.window.rootViewController = centralTabBarController;
     
     [self.window makeKeyAndVisible];
+    
+    [[Cloud sharedInstance] synchronize];
     
     return YES;
 }
