@@ -13,7 +13,7 @@ import requests
 GCM_API_KEY = 'AIzaSyArtPPVAHtR4bItfPChQR063iwsEt2XmGU'
 GCM_URL = 'https://android.googleapis.com/gcm/send'
 
-class Updates():
+class Updates(object):
 	_updates_lock = threading.Lock()
 	
 	@classmethod
@@ -25,16 +25,22 @@ class Updates():
 		with cls._updates_lock:
 			if device_id in cls._updates:
 				cls._updates[device_id].append( update )
+				print "ADD: MORE THAN ONE UPDATE WAITING"
 			else:
 				cls._updates[device_id] = [ update ]
+				print "ADD: FIRST UPDATE"
 
 	@classmethod
 	def get_updates(cls, _updates, device_id):
 		updates = None
-
+		print "get_updates"
 		with cls._updates_lock:
+			print "INSIDE LOCK"
+			print cls._updates
 			if device_id in cls._updates:
-				updates = cls._updates.pop( device_id, None )
+				updates = cls._updates[device_id]
+				cls._updates[device_id] = []
+				print "Just popped an update"
 
 		return updates
 
@@ -47,18 +53,18 @@ class QuestionUpdates(Updates):
 
 	@classmethod
 	def get_updates(cls, device_id):
-		super(QuestionUpdates, cls).get_updates(QuestionUpdates._updates, device_id)
+		return super(QuestionUpdates, cls).get_updates(QuestionUpdates._updates, device_id)
 
 class ResponseUpdates(Updates):
 	_updates = {}
 
 	@classmethod
 	def add_update(cls, device_id, update):
-		super(QuestionUpdates, cls).add_update(ResponseUpdates._updates, device_id, update)
+		super(ResponseUpdates, cls).add_update(ResponseUpdates._updates, device_id, update)
 
 	@classmethod
 	def get_updates(cls, device_id):
-		super(QuestionUpdates, cls).get_updates(ResponseUpdates._updates, device_id)
+		return super(ResponseUpdates, cls).get_updates(ResponseUpdates._updates, device_id)
 
 
 # The method inspects the type of device and uses the corresponding service to

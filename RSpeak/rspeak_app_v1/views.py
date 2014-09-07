@@ -28,7 +28,7 @@ def print_db(request):
 	print "THREADS TABLE: \n" + str(threads)
 	print "RESPONSES TABLE: \n" + str(responses)
 
-	return HttpResponse( json.dumps({}), content_type="application/json" )
+	return HttpResponse( json.dumps({"Responses":str(responses), "Threads":str(threads), "Questions":str(questions), "Devices":str(devices)}), content_type="application/json" )
 
 
 @csrf_exempt
@@ -127,43 +127,73 @@ def ask(request):
 		json_data = json.loads( request.body )
 
 		try:
-			question_id = json_data['question_id']
 			question_content = json_data['content']
 			asker_device_id = json_data['device_id']
+			max_new_threads = json_data['max_new_threads']
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
+			question_id = random_alphanumeric( 16 )
+			
 			# then add question to database
 			question = Question( question_id=question_id, asker_device_id=asker_device_id, question_content=question_content )
 			question.save()
 
+			# We are going to start one or more threads with random devices, put the critical information about the thread in this array
+			# and send it back to the device
+			new_thread_ids = [];
+			responder_ids  = [];
+			
 			# then select a random device to send the question to
-			all_devices = Device.objects.all().values()
-			random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
+			all_devices = Device.objects.all()
+			asker_device = all_devices.filter(device_id = asker_device_id)[0];
+			print "Found asker device"
+			print asker_device
+			
+			while len(new_thread_ids) < max_new_threads:
+				random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
+				print "Chosing random device"
+				print random_device
+				# ensure that we've a valid answerer device
+				if random_device is None:
+					return
+				while len( all_devices ) > 1 and random_device.device_id == asker_device_id or random_device.device_id in responder_ids :
+					random_device = random.choice( all_devices )
 
-			# ensure that we've a valid answerer device
-			if random_device is None:
-				return
-			while len( all_devices ) > 1 and random_device['device_id'] is asker_device_id:
-				random_device = random.choice( all_devices )
+				
+				print "Chose another random device"
+				print random_device
+				responder_ids.append(random_device.device_id)
+				print "But I am"
+				print asker_device_id
+				
 
-			# find a unique thread id
-			thread_id = random_alphanumeric( 16 )
-			response_thread = Thread.objects.filter( thread_id=thread_id )
-			while response_thread.exists():
+				
+				# find a unique thread id
 				thread_id = random_alphanumeric( 16 )
 				response_thread = Thread.objects.filter( thread_id=thread_id )
+				while response_thread.exists() and thread_id in new_thread_ids:
+					thread_id = random_alphanumeric( 16 )
+					response_thread = Thread.objects.filter( thread_id=thread_id )[0]
+					
+				new_thread_ids.append(thread_id)
+				
+				
+	
+				# Start the thread between the asker device and the random device	
+				response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device=asker_device, answerer_device=random_device )
+				response_thread.save()
+				print "response thread with id: " + str(response_thread.thread_id)
+	
+				# add question to answerer_device update stack
+				QuestionUpdates.add_update(random_device.device_id, {'question_id':question_id, 'thread_id' : thread_id, 'content' : question_content, 'time' : int( time.time() ) })
+			
 
+			new_threads = []
+			for i in range(0, len(new_thread_ids)):
+				new_threads.append({'thread_id':new_thread_ids[i], 'responder_device_id':responder_ids[i]})
 
-			# Start the thread between the asker device and the random device	
-			response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device_id=asker_device_id, answerer_device=random_device )
-			response_thread.save()
-			print "response thread with id: " + str(response_thread.thread_id)
-
-			# add question to answerer_device update stack
-			QuestionUpdates.add_update( asker_device_id, { 'thread_id' : thread_id, 'content' : question_content, 'time' : int( time.time() ) })
-
-			return HttpResponse( json.dumps({ 'question_id' : question_id, 'thread_id' : response_thread.thread_id }), content_type="application/json" )
+			return HttpResponse( json.dumps({ 'question_id' : question_id, 'threads' : new_threads }), content_type="application/json" )
 
 
 @csrf_exempt

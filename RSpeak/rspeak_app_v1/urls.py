@@ -12,5 +12,5 @@ urlpatterns = patterns('',
 	url(r'^register/push_notification_id/$', 'rspeak_app_v1.views.register_push_notification_id', name='register_push_notification_id'),
 	url(r'^ask/$', 'rspeak_app_v1.views.ask', name='ask'),
 	url(r'^respond/$', 'rspeak_app_v1.views.respond', name='respond'),
-	url(r'^retrieve/updates/$', 'rspeak_app_v1.rspeak_app_v1.views.retrieve_updates', name='retrieve_updates'),
+	url(r'^retrieve/updates/$', 'rspeak_app_v1.views.retrieve_updates', name='retrieve_updates'),
 )
