@@ -149,7 +149,7 @@ def ask(request):
 			asker_device = all_devices.filter(device_id = asker_device_id)[0];
 			print "Found asker device"
 			print asker_device
-			
+			print max_new_threads
 			while len(new_thread_ids) < max_new_threads:
 				random_device = random.choice( all_devices ) if len( all_devices ) > 1 else None
 				print "Chosing random device"
@@ -167,8 +167,6 @@ def ask(request):
 				print "But I am"
 				print asker_device_id
 				
-
-				
 				# find a unique thread id
 				thread_id = random_alphanumeric( 16 )
 				response_thread = Thread.objects.filter( thread_id=thread_id )
@@ -178,17 +176,14 @@ def ask(request):
 					
 				new_thread_ids.append(thread_id)
 				
-				
-	
 				# Start the thread between the asker device and the random device	
 				response_thread = Thread( thread_id=thread_id, question_id=question.question_id, asker_device=asker_device, answerer_device=random_device )
 				response_thread.save()
 				print "response thread with id: " + str(response_thread.thread_id)
 	
 				# add question to answerer_device update stack
-				QuestionUpdates.add_update(random_device.device_id, {'question_id':question_id, 'thread_id' : thread_id, 'content' : question_content, 'time' : int( time.time() ) })
+				QuestionUpdates.add_update(random_device, {'question_id':question_id, 'thread_id' : thread_id, 'content' : question_content, 'time' : int( time.time() ) })
 			
-
 			new_threads = []
 			for i in range(0, len(new_thread_ids)):
 				new_threads.append({'thread_id':new_thread_ids[i], 'responder_device_id':responder_ids[i]})
@@ -218,6 +213,10 @@ def respond(request):
 			thread = Thread.objects.filter( thread_id=thread_id )
 			device = Device.objects.filter( device_id=device_id )
 
+			print "Passed parameter validation"
+			print thread.count()
+			print device.count()
+
 			if thread.exists() and device.exists():
 				# add response to database
 				response = Response( thread=thread[0], responder_device=device[0], response_content=response_content )
@@ -226,12 +225,19 @@ def respond(request):
 				# add update to the other device
 				asker_device = thread[0].asker_device
 				answerer_device = thread[0].answerer_device
-
-				if asker_device.device_id is device.device_id:
-					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
 				
-				elif answerer_device.device_id is device.device_id:
+				print "Thread and device actually exist"
+				print device_id
+				print asker_device.device_id
+				print answerer_device.device_id
+
+				if asker_device.device_id == device_id:
+					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
+					print "Adding an update to the answerers queue"
+					
+				elif answerer_device.device_id == device_id:
 					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
+					print "Adding an update to the askers queue"
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
 
@@ -258,17 +264,22 @@ def retrieve_updates(request):
 			# if this fails in any way (IOError) then make sure the updates
 			# are back on the updates stack (else they won't reach the client).
 			try:
+				
+				all_devices = Device.objects.all()
+				device = all_devices.filter(device_id = device_id)[0];
+				
 				# retrieve updates and send them to the client device
-				question_updates = QuestionUpdates.get_updates( device_id )
-				response_updates = ResponseUpdates.get_updates( device_id )
-
+				question_updates = QuestionUpdates.get_updates( device )
+				response_updates = ResponseUpdates.get_updates( device )
+				
 				return HttpResponse( json.dumps({ 'question_updates' : question_updates, 'response_updates' : response_updates }), content_type="application/json" )
 			except IOError:
 				# put back all updates into the update stack
+				# This doesn't look like it would actually work
 				for update in question_updates:
-					QuestionUpdates.add_update( device_id, update )
+					QuestionUpdates.add_update( device, update )
 
 				for update in response_updates:
-					ResponseUpdates.add_update( device_id, update )
+					ResponseUpdates.add_update( device, update )
 
 				print "Error: failed to send updates to client"

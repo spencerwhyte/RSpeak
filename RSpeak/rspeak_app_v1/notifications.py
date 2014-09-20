@@ -9,62 +9,35 @@
 
 import threading
 import requests
+from models import QuestionUpdate, ResponseUpdate
 
 GCM_API_KEY = 'AIzaSyArtPPVAHtR4bItfPChQR063iwsEt2XmGU'
 GCM_URL = 'https://android.googleapis.com/gcm/send'
 
-class Updates(object):
-	_updates_lock = threading.Lock()
-	
-	@classmethod
-	def add_update(cls, _updates, device_id, update):
-		"""
-		Push the update to the update stack assigned to
-		the particular recipient's device id
-		"""
-		with cls._updates_lock:
-			if device_id in cls._updates:
-				cls._updates[device_id].append( update )
-				print "ADD: MORE THAN ONE UPDATE WAITING"
-			else:
-				cls._updates[device_id] = [ update ]
-				print "ADD: FIRST UPDATE"
-
-	@classmethod
-	def get_updates(cls, _updates, device_id):
-		updates = None
-		print "get_updates"
-		with cls._updates_lock:
-			print "INSIDE LOCK"
-			print cls._updates
-			if device_id in cls._updates:
-				updates = cls._updates[device_id]
-				cls._updates[device_id] = []
-				print "Just popped an update"
-
-		return updates
-
-class QuestionUpdates(Updates):
+class QuestionUpdates(object):
 	_updates = {}
 
 	@classmethod
-	def add_update(cls, device_id, update):
-		super(QuestionUpdates, cls).add_update(QuestionUpdates._updates, device_id, update)
+	def add_update(cls, device, update):
+		questionUpdate = QuestionUpdate(device=device, update=update)
+		questionUpdate.save()
 
 	@classmethod
-	def get_updates(cls, device_id):
-		return super(QuestionUpdates, cls).get_updates(QuestionUpdates._updates, device_id)
+	def get_updates(cls, device):
+		return QuestionUpdates.objects.filter( device=device )
+		
 
-class ResponseUpdates(Updates):
+class ResponseUpdates(object):
 	_updates = {}
 
 	@classmethod
-	def add_update(cls, device_id, update):
-		super(ResponseUpdates, cls).add_update(ResponseUpdates._updates, device_id, update)
+	def add_update(cls, device, update):
+		responseUpdate = ResponseUpdate(device=device, update=update)
+		responseUpdate.save()
 
 	@classmethod
-	def get_updates(cls, device_id):
-		return super(ResponseUpdates, cls).get_updates(ResponseUpdates._updates, device_id)
+	def get_updates(cls, device):
+		return ResponseUpdates.objects.filter( device=device )
 
 
 # The method inspects the type of device and uses the corresponding service to

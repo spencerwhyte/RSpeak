@@ -36,8 +36,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'push_notifications',
     'rspeak_app_v1',
 )
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,6 +59,14 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = 'RSpeak.urls'
 
 WSGI_APPLICATION = 'RSpeak.wsgi.application'
+
+
+# Push notifications settings
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "GCM_API_KEY": "<your api key>",
+        "APNS_CERTIFICATE": "/Users/spencerwhyte/rspeak_local/RSpeak/aps_development.pem", # Todo, this should be a relative path instead
+}
 
 
 # Database

@@ -44,3 +44,19 @@ class Response(models.Model):
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
 		return "Response with ID " + str( self.response_id )
+	
+class ResponseUpdate(models.Model):
+	device = models.ForeignKey('Device')
+	update = models.CharField(max_length=350+100)
+	# when printing an instance of this class in python shell you will get custom output
+	def __unicode__(self):
+		return "Response with ID " + str( self.response_id )
+	
+	
+	
+class QuestionUpdate(models.Model):
+	device = models.ForeignKey('Device')
+	update = models.CharField(max_length=350+100)
+	# when printing an instance of this class in python shell you will get custom output
+	def __unicode__(self):
+		return "Response with ID " + str( self.response_id )
