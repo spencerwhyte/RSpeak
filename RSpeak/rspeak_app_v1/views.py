@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from models import Device, Question, Thread, Response
 from notifications import QuestionUpdates, ResponseUpdates
 from utils import random_alphanumeric
+from push_notifications.models import APNSDevice, GCMDevice
 
 
 @csrf_exempt
@@ -103,15 +104,22 @@ def register_push_notification_id(request):
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
+			
+
+			try:
+				push_device = APNSDevice.objects.get( registration_id=push_notification_id )
+			except Device.DoesNotExist:
+				push_device = APNSDevice(registration_id=push_notification_id, device_id = device_id)
+				push_device.save()
+			
+			print "Pushing the message"
+			push_device.send_message("Fuck yeah, we got push!")
+			
 			# See if the device id already exists
 			device = Device.objects.filter( device_id=device_id )
+			
+			return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
 
-			if device.exists():
-				device[0].push_notification_id = push_notification_id
-				device[0].save()
-				return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
-			else:
-				return HttpResponse( json.dumps({ 'valid_id' : False }), content_type="application/json" )
 
 
 @csrf_exempt
@@ -271,7 +279,6 @@ def retrieve_updates(request):
 				# retrieve updates and send them to the client device
 				question_updates = QuestionUpdates.get_updates( device )
 				response_updates = ResponseUpdates.get_updates( device )
-				
 				return HttpResponse( json.dumps({ 'question_updates' : question_updates, 'response_updates' : response_updates }), content_type="application/json" )
 			except IOError:
 				# put back all updates into the update stack

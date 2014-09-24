@@ -24,7 +24,11 @@ class QuestionUpdates(object):
 
 	@classmethod
 	def get_updates(cls, device):
-		return QuestionUpdates.objects.filter( device=device )
+		question_updates = QuestionUpdate.objects.filter( device=device )
+		update_payloads = []
+		for update in question_updates:
+			update_payloads.append(update.update());
+		return update_payloads
 		
 
 class ResponseUpdates(object):
@@ -37,7 +41,11 @@ class ResponseUpdates(object):
 
 	@classmethod
 	def get_updates(cls, device):
-		return ResponseUpdates.objects.filter( device=device )
+		response_updates = ResponseUpdate.objects.filter( device=device )
+		update_payloads = []
+		for update in response_updates:
+			update_payloads.append(update.update());
+		return update_payloads
 
 
 # The method inspects the type of device and uses the corresponding service to

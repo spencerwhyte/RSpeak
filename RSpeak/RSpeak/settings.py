@@ -8,6 +8,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+
+# Required installs
+# pip install django-uuidfield
+# pip install django-push-notifications
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -65,7 +70,8 @@ WSGI_APPLICATION = 'RSpeak.wsgi.application'
 
 PUSH_NOTIFICATIONS_SETTINGS = {
         "GCM_API_KEY": "<your api key>",
-        "APNS_CERTIFICATE": "/Users/spencerwhyte/rspeak_local/RSpeak/aps_development.pem", # Todo, this should be a relative path instead
+        "APNS_CERTIFICATE": "/Users/spencerwhyte/rspeak_local/RSpeak/apns-dev-cert.pem", # Todo, this should be a relative path instead
+        "APNS_HOST": "gateway.sandbox.push.apple.com",
 }
 
 
