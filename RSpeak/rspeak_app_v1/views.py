@@ -8,9 +8,17 @@ import time
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from models import Device, Question, Thread, Response
-from notifications import QuestionUpdates, ResponseUpdates
+from notifications import QuestionUpdates, ResponseUpdates, ThreadUpdates
 from utils import random_alphanumeric
 from push_notifications.models import APNSDevice, GCMDevice
+
+
+
+from django.core.serializers.json import Serializer as Builtin_Serializer
+
+class Serializer(Builtin_Serializer):
+    def get_dump_object(self, obj):
+        return self._current
 
 
 @csrf_exempt
@@ -39,11 +47,10 @@ def retrieve_credit_score(request):
 	We will need:
 	1. Only the device id
 	"""
-	if request.method == 'POST':
-		json_data = json.loads( request.body )
+	if request.method == 'GET':
 
 		try:
-			device_id = json_data['device_id']
+			device_id = request.GET.get('device_id', '')
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
@@ -105,18 +112,17 @@ def register_push_notification_id(request):
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
 			
-
 			try:
 				push_device = APNSDevice.objects.get( registration_id=push_notification_id )
-			except Device.DoesNotExist:
+			except APNSDevice.DoesNotExist:
 				push_device = APNSDevice(registration_id=push_notification_id, device_id = device_id)
 				push_device.save()
 			
-			print "Pushing the message"
-			push_device.send_message("Fuck yeah, we got push!")
+			#print "Pushing the message"
+			#push_device.send_message("Fuck yeah, we got push!")
 			
 			# See if the device id already exists
-			device = Device.objects.filter( device_id=device_id )
+			#device = Device.objects.filter( device_id=device_id )
 			
 			return HttpResponse( json.dumps({ 'valid_id' : True }), content_type="application/json" )
 
@@ -190,7 +196,8 @@ def ask(request):
 				print "response thread with id: " + str(response_thread.thread_id)
 	
 				# add question to answerer_device update stack
-				QuestionUpdates.add_update(random_device, {'question_id':question_id, 'thread_id' : thread_id, 'content' : question_content, 'time' : int( time.time() ) })
+				QuestionUpdates.add_update(random_device, question)
+				ThreadUpdates.add_update(random_device, response_thread)
 			
 			new_threads = []
 			for i in range(0, len(new_thread_ids)):
@@ -240,11 +247,11 @@ def respond(request):
 				print answerer_device.device_id
 
 				if asker_device.device_id == device_id:
-					ResponseUpdates.add_update( answerer_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
+					ResponseUpdates.add_update(answerer_device.device_id, response)
 					print "Adding an update to the answerers queue"
 					
 				elif answerer_device.device_id == device_id:
-					ResponseUpdates.add_update( asker_device, { 'thread_id' : thread_id, 'content' : response_content, 'time' : int( time.time() ) } )
+					ResponseUpdates.add_update(asker_device.device_id, response)
 					print "Adding an update to the askers queue"
 
 				return HttpResponse( json.dumps({}), content_type="application/json" )
@@ -272,21 +279,41 @@ def retrieve_updates(request):
 			# if this fails in any way (IOError) then make sure the updates
 			# are back on the updates stack (else they won't reach the client).
 			try:
-				
+				print device_id
 				all_devices = Device.objects.all()
 				device = all_devices.filter(device_id = device_id)[0];
 				
 				# retrieve updates and send them to the client device
 				question_updates = QuestionUpdates.get_updates( device )
+				thread_updates   = ThreadUpdates.get_updates(device)
 				response_updates = ResponseUpdates.get_updates( device )
-				return HttpResponse( json.dumps({ 'question_updates' : question_updates, 'response_updates' : response_updates }), content_type="application/json" )
+				
+				serializer = Serializer()
+ 				
+				
+				serialized_question_updates=serializer.serialize(question_updates)
+				serialized_thread_updates=serializer.serialize(thread_updates)
+				serialized_response_updates=serializer.serialize(response_updates)
+				
+				all_updates = { 'question_updates' : serialized_question_updates,'thread_updates':serialized_thread_updates, 'response_updates' : serialized_response_updates };
+				
+				return HttpResponse(all_updates , content_type="application/json" )
 			except IOError:
 				# put back all updates into the update stack
 				# This doesn't look like it would actually work
 				for update in question_updates:
 					QuestionUpdates.add_update( device, update )
+					
+				for update in thread_updates:
+					ThreadUpdates.add_update( device, update )
 
 				for update in response_updates:
 					ResponseUpdates.add_update( device, update )
 
 				print "Error: failed to send updates to client"
+				
+				
+				
+				
+				
+				

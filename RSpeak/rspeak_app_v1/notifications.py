@@ -8,8 +8,9 @@
 # as soon as possible.
 
 import threading
+import json
 import requests
-from models import QuestionUpdate, ResponseUpdate
+from models import QuestionUpdate, ResponseUpdate, ThreadUpdate
 
 GCM_API_KEY = 'AIzaSyArtPPVAHtR4bItfPChQR063iwsEt2XmGU'
 GCM_URL = 'https://android.googleapis.com/gcm/send'
@@ -18,8 +19,8 @@ class QuestionUpdates(object):
 	_updates = {}
 
 	@classmethod
-	def add_update(cls, device, update):
-		questionUpdate = QuestionUpdate(device=device, update=update)
+	def add_update(cls, device, question):
+		questionUpdate = QuestionUpdate(device=device, question=question)
 		questionUpdate.save()
 
 	@classmethod
@@ -27,16 +28,31 @@ class QuestionUpdates(object):
 		question_updates = QuestionUpdate.objects.filter( device=device )
 		update_payloads = []
 		for update in question_updates:
-			update_payloads.append(update.update());
+			update_payloads.append(update.question);
 		return update_payloads
 		
+class ThreadUpdates(object):
+	_updates = {}
+
+	@classmethod
+	def add_update(cls, device, thread):
+		threadUpdate = ThreadUpdate(device=device, thread=thread)
+		threadUpdate.save()
+
+	@classmethod
+	def get_updates(cls, device):
+		thread_updates = ThreadUpdate.objects.filter( device=device )
+		update_payloads = []
+		for update in thread_updates:
+			update_payloads.append(update.thread);
+		return update_payloads
 
 class ResponseUpdates(object):
 	_updates = {}
 
 	@classmethod
-	def add_update(cls, device, update):
-		responseUpdate = ResponseUpdate(device=device, update=update)
+	def add_update(cls, device, response):
+		responseUpdate = ResponseUpdate(device=device, response=response)
 		responseUpdate.save()
 
 	@classmethod
@@ -44,7 +60,7 @@ class ResponseUpdates(object):
 		response_updates = ResponseUpdate.objects.filter( device=device )
 		update_payloads = []
 		for update in response_updates:
-			update_payloads.append(update.update());
+			update_payloads.append(update.response);
 		return update_payloads
 
 

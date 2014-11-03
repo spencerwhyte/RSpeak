@@ -3,7 +3,7 @@ from django.db import models
 
 
 # Create your models here.
-class  Device(models.Model):
+class Device(models.Model):
 	device_id = models.CharField(primary_key=True, max_length=36)
 	credit_points = models.PositiveIntegerField(default=1)
 	device_type = models.CharField(max_length=32)
@@ -47,18 +47,26 @@ class Response(models.Model):
 	def __unicode__(self):
 		return "Response with ID " + str( self.response_id )
 	
-class ResponseUpdate(models.Model):
-	device = models.ForeignKey('Device')
-	update = models.CharField(max_length=350+100)
-	# when printing an instance of this class in python shell you will get custom output
-	def __unicode__(self):
-		return "Response with ID " + str( self.response_id )
-	
-	
-	
 class QuestionUpdate(models.Model):
-	device = models.ForeignKey('Device')
-	update = models.CharField(max_length=350+100)
+	device = models.ForeignKey('Device') # The device who needs to be notified about the new question
+	question=models.ForeignKey('Question')
+
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Response with ID " + str( self.response_id )
+		return "Question Update"
+	
+class ThreadUpdate(models.Model):
+	device = models.ForeignKey('Device') # The device who needs to be notified about a new thread
+	thread=models.ForeignKey('Thread') # The thread that we want to tell the device about
+
+	# when printing an instance of this class in python shell you will get custom output
+	def __unicode__(self):
+		return "Thread Update"
+	
+class ResponseUpdate(models.Model):
+	device = models.ForeignKey('Device') # The device who needs to be notified about the new response
+	response=models.ForeignKey('Response') # This is the response that we want to tell the device about
+
+	def __unicode__(self):
+		return "Response Update"
+	
