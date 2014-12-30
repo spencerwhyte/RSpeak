@@ -5,6 +5,7 @@ import random
 import json
 import time
 
+from django.core import serializers
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from models import Device, Question, Thread, Response
@@ -23,6 +24,8 @@ class Serializer(Builtin_Serializer):
 
 @csrf_exempt
 def print_db(request):
+	device = Device( device_id="Testing123", device_type="ANDROID" )
+	device.save()
 	"""
 	print out all tables in the database.
 	FOR DEBUGGING PURPOSES ONLY
@@ -31,11 +34,14 @@ def print_db(request):
 	questions = Question.objects.all()
 	threads = Thread.objects.all()
 	responses = Response.objects.all()
+	device = Device.objects.get( device_id="Testing123" )
+	serialized_device = serializers.serialize('json', [ device, ])
 
 	print "DEVICES TABLE: \n" + str(devices)
 	print "QUESTIONS TABLE: \n" + str(questions)
 	print "THREADS TABLE: \n" + str(threads)
 	print "RESPONSES TABLE: \n" + str(responses)
+	print "serialized_device: \n" + str(serialized_device) 
 
 	return HttpResponse( json.dumps({"Responses":str(responses), "Threads":str(threads), "Questions":str(questions), "Devices":str(devices)}), content_type="application/json" )
 
