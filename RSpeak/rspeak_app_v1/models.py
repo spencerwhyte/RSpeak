@@ -6,7 +6,8 @@ from django.db import models
 class Device(models.Model):
 	device_id = models.CharField(primary_key=True, max_length=36)
 	credit_points = models.PositiveIntegerField(default=1)
-	device_type = models.CharField(max_length=32)
+	model = models.CharField(max_length=32) # Model (Iphone 5, Galaxy Note 2, etc)
+	os = models.CharField(max_length=32) # Operating System (IOS, Android, etc)
 	push_notification_id = models.CharField(max_length=64)
 
 	# when printing an instance of this class in python shell you will get custom output

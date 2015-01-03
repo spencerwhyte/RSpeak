@@ -11,7 +11,7 @@ import threading
 import json
 import requests
 from push_notifications.models import APNSDevice, GCMDevice
-from models import QuestionUpdate, ResponseUpdate, ThreadUpdate
+from models import QuestionUpdate, ResponseUpdate, ThreadUpdate, Device
 
 
 GCM_API_KEY = 'AIzaSyArtPPVAHtR4bItfPChQR063iwsEt2XmGU'
@@ -72,14 +72,24 @@ class ResponseUpdates(object):
 			update_payloads.append(update.response);
 			update.delete()
 		return update_payloads
-
+	
+	
 
 def notify_device(notification, device_id):
+	# Look up the device and see if is an Apple device, or a google device
+	device = Device.objects.get( device_id=device_id )
+	if device.os == "IOS":
 		try:
 			push_device = APNSDevice.objects.get(device_id=device_id)
-			push_device.send_message(notification)
+			try:
+				push_device.send_message(notification)
+			except Exception:
+				print "Failed to send push notification to " + device_id
+				
 		except APNSDevice.DoesNotExist:
 			print device_id + " does not support push notifications."
+	elif device.os == "Android":
+		print "TODO: Missing implementation"
 	
 
 # The method inspects the type of device and uses the corresponding service to

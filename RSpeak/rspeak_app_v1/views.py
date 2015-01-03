@@ -81,7 +81,8 @@ def register_device(request):
 
 		try:
 			device_id = json_data['device_id']
-			device_type = json_data['device_type']
+			device_model = json_data['model']
+			device_os = json_data['os']
 		except KeyError:
 			print "Error: A posted question did not have a JSON object with the required properties"
 		else:
@@ -93,7 +94,7 @@ def register_device(request):
 			if device:
 				return HttpResponse(json.dumps({ 'valid_id' : False }), content_type="application/json")
 			else:
-				device = Device(device_id=device_id, device_type=device_type)
+				device = Device(device_id=device_id, model=device_model, os=device_os)
 				device.save()
 				return HttpResponse(json.dumps({ 'valid_id' : True }), content_type="application/json")
 
