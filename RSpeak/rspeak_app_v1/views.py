@@ -180,10 +180,6 @@ def ask(request):
 				print random_device
 				responder_ids.append(random_device.device_id)
 				
-				
-				push_device = APNSDevice.objects.get(device_id=random_device.device_id)
-				push_device.send_message(question.content)
-				
 				print "But I am"
 				print asker_device_id
 				
@@ -251,14 +247,10 @@ def respond(request):
 
 				if asker_device.device_id == device_id:
 					ResponseUpdates.add_update(answerer_device, response)
-					push_device = APNSDevice.objects.get(device_id=answerer_device.device_id)
-					push_device.send_message(response.response_content)
 					print "Adding an update to the answerers queue"
 					
 				elif answerer_device.device_id == device_id:
 					ResponseUpdates.add_update(asker_device, response)
-					push_device = APNSDevice.objects.get(device_id=asker_device.device_id)
-					push_device.send_message(response.response_content)
 					print "Adding an update to the askers queue"
 
 				return HttpResponse(json.dumps({}), content_type="application/json")

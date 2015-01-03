@@ -10,7 +10,9 @@
 import threading
 import json
 import requests
+from push_notifications.models import APNSDevice, GCMDevice
 from models import QuestionUpdate, ResponseUpdate, ThreadUpdate
+
 
 GCM_API_KEY = 'AIzaSyArtPPVAHtR4bItfPChQR063iwsEt2XmGU'
 GCM_URL = 'https://android.googleapis.com/gcm/send'
@@ -20,6 +22,7 @@ class QuestionUpdates(object):
 
 	@classmethod
 	def add_update(cls, device, question):
+		notify_device(question.content, device.device_id)
 		questionUpdate = QuestionUpdate(device=device, question=question)
 		questionUpdate.save()
 
@@ -57,6 +60,7 @@ class ResponseUpdates(object):
 
 	@classmethod
 	def add_update(cls, device, response):
+		notify_device(response.response_content, device.device_id)
 		responseUpdate = ResponseUpdate(device=device, response=response)
 		responseUpdate.save()
 
@@ -69,6 +73,14 @@ class ResponseUpdates(object):
 			update.delete()
 		return update_payloads
 
+
+def notify_device(notification, device_id):
+		try:
+			push_device = APNSDevice.objects.get(device_id=device_id)
+			push_device.send_message(notification)
+		except APNSDevice.DoesNotExist:
+			print device_id + " does not support push notifications."
+	
 
 # The method inspects the type of device and uses the corresponding service to
 # sends a notification in order to sync the device with the updates
