@@ -24,11 +24,14 @@ class QuestionUpdates(object):
 		questionUpdate.save()
 
 	@classmethod
-	def get_updates(cls, device):
+	def remove_updates(cls, device):
 		question_updates = QuestionUpdate.objects.filter( device=device )
 		update_payloads = []
 		for update in question_updates:
 			update_payloads.append(update.question);
+			update.delete()
+			#.values('question_id', 'asker_device', 'time_posted','content')
+		
 		return update_payloads
 		
 class ThreadUpdates(object):
@@ -38,13 +41,15 @@ class ThreadUpdates(object):
 	def add_update(cls, device, thread):
 		threadUpdate = ThreadUpdate(device=device, thread=thread)
 		threadUpdate.save()
+		
 
 	@classmethod
-	def get_updates(cls, device):
+	def remove_updates(cls, device):
 		thread_updates = ThreadUpdate.objects.filter( device=device )
 		update_payloads = []
 		for update in thread_updates:
 			update_payloads.append(update.thread);
+			update.delete()
 		return update_payloads
 
 class ResponseUpdates(object):
@@ -56,11 +61,12 @@ class ResponseUpdates(object):
 		responseUpdate.save()
 
 	@classmethod
-	def get_updates(cls, device):
+	def remove_updates(cls, device):
 		response_updates = ResponseUpdate.objects.filter( device=device )
 		update_payloads = []
 		for update in response_updates:
 			update_payloads.append(update.response);
+			update.delete()
 		return update_payloads
 
 

@@ -15,18 +15,15 @@ class Device(models.Model):
 
 
 class Question(models.Model):
-	surrogate = models.AutoField(primary_key=True)
-	question_id = models.CharField(max_length=16)
 	asker_device = models.ForeignKey('Device')
 	time_posted = models.DateTimeField(auto_now_add=True)
-	question_content = models.CharField(max_length=350)
+	content = models.CharField(max_length=350)
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Question with ID " + str( self.question_id )
+		return "Question with ID " + str( self.id )
 
 class Thread(models.Model):
-	thread_id = models.CharField(primary_key=True, max_length=16)
 	question_id = question_id = models.CharField(max_length=16)
 	asker_device = models.ForeignKey('Device', related_name="asker")
 	answerer_device = models.ForeignKey('Device', related_name="answerer")
@@ -34,10 +31,9 @@ class Thread(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Thread with ID " + str( self.thread_id )
+		return "Thread with ID " + str( self.id )
 
 class Response(models.Model):
-	response_id = models.AutoField(primary_key=True)
 	thread = models.ForeignKey('Thread')
 	responder_device = models.ForeignKey('Device')
 	time_posted = models.DateTimeField(auto_now_add=True)
@@ -45,7 +41,7 @@ class Response(models.Model):
 
 	# when printing an instance of this class in python shell you will get custom output
 	def __unicode__(self):
-		return "Response with ID " + str( self.response_id )
+		return "Response with ID " + str( self.id )
 	
 class QuestionUpdate(models.Model):
 	device = models.ForeignKey('Device') # The device who needs to be notified about the new question
