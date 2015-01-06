@@ -166,6 +166,7 @@ def ask(request):
 			print "Found asker device"
 			print asker_device
 			print max_new_threads
+			reasonable_number_of_tries = 0
 			while len(new_thread_ids) < max_new_threads:
 				random_device = random.choice(all_devices) if len(all_devices) > 1 else None
 				print "Chosing random device"
@@ -174,8 +175,14 @@ def ask(request):
 				if random_device is None:
 					return
 				while len(all_devices) > 1 and random_device.device_id == asker_device_id or random_device.device_id in responder_ids :
-					random_device = random.choice(all_devices)
-
+					if reasonable_number_of_tries < 5:
+						random_device = random.choice(all_devices)
+						reasonable_number_of_tries = reasonable_number_of_tries + 1
+					else:
+						break
+					
+				if reasonable_number_of_tries >= 5:
+					break
 				
 				print "Chose another random device"
 				print random_device
